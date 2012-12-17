@@ -1,0 +1,14 @@
+Aihe: toiminta-RPG
+Toteutetaan peli, jossa taistellaan hirvioitä vastaan.
+Pelaaja saa kokemuspisteitä tappaessaan hirviöitä ja 
+sitä mukaan kehittyy vahvemmaksi, mutta myös hirviöt
+muuttuvat sitä mukaa voimakkammiksi.
+
+Käyttäjä: Pelaaja
+
+Pelaajan toiminnot:
+-liikkuminen
+-lähihyökkäys
+-loitsu
+-kokemuspisteiden käyttö (esim. uuteen loitsuun, voimaan jne.)
+ 

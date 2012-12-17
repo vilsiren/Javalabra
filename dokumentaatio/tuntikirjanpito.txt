@@ -1,0 +1,3 @@
+pvm       käytetty aika   ajankäytön kohde    
+
+17.12     10 min          aihemäärittely			                
