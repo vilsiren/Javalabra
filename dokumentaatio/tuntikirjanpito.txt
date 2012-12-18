@@ -1,3 +1,5 @@
 pvm       käytetty aika   ajankäytön kohde    
 
-17.12     10 min          aihemäärittely			                
+17.12     10 min          aihemäärittely
+18.12     15 min          aihemäärittely tarkennus & luokkakaavio
+       
