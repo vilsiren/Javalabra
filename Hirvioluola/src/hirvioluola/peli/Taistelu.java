@@ -54,7 +54,7 @@ public class Taistelu {
         return korkeus;
     }
     
-    private boolean taistelukentanSisalla(int x, int y){
+    public boolean taistelukentanSisalla(int x, int y){
         if(x < 0 || x >= leveys){
             return false;
         }

@@ -33,4 +33,14 @@ public class TaisteluTest {
         taistelu.lisaaHirvio(new Orkki(8,9,1,2,taistelu));
         assert(taistelu.getHirviot().size() == 2);
     }
+    
+    @Test
+    public void taistelukentanSisallaTrueJosSisalla(){
+        assert(taistelu.taistelukentanSisalla(0, 9));
+    }
+    
+    @Test
+    public void taistelukentanSisallaFalseJosUlkona(){
+        assert(!taistelu.taistelukentanSisalla(15, 0));
+    }
 }
