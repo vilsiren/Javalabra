@@ -2,6 +2,8 @@ package hirvioluola.domain;
 
 import hirvioluola.loitsut.Loitsu;
 import hirvioluola.peli.Taistelu;
+import java.awt.Color;
+import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,6 +52,12 @@ public class Pelaaja extends Taistelija {
 
     @Override
     public void toimi() {
+    }
+
+    @Override
+    public void piirra(Graphics g) {
+        g.setColor(Color.BLUE);
+        g.fillOval(x*20, y*20, 20, 20);        
     }
 
     

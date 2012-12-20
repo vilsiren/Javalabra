@@ -1,6 +1,8 @@
 package hirvioluola.domain;
 
 import hirvioluola.peli.Taistelu;
+import java.awt.Color;
+import java.awt.Graphics;
 
 public class Orkki extends Taistelija{
     
@@ -54,6 +56,12 @@ public class Orkki extends Taistelija{
             liiku(suuntaX(), 0);
         }
         
+    }
+
+    @Override
+    public void piirra(Graphics g) {
+        g.setColor(Color.GREEN);
+        g.fillOval(x*20, y*20, 20, 20);
     }
     
 }

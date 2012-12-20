@@ -2,6 +2,7 @@
 package hirvioluola.domain;
 
 import hirvioluola.peli.Taistelu;
+import java.awt.Graphics;
 
 public abstract class Taistelija {
     
@@ -54,6 +55,8 @@ public abstract class Taistelija {
     }
     
     public abstract void toimi();
+    
+    public abstract void piirra(Graphics g);
     
     public boolean liiku(int dx, int dy){
         for(Taistelija hirvio : taistelu.getHirviot()){

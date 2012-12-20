@@ -2,14 +2,18 @@ package hirvioluola.peli;
 
 import hirvioluola.domain.Pelaaja;
 import hirvioluola.domain.Taistelija;
+import hirvioluola.gui.Piirtoalusta;
 import hirvioluola.loitsut.Loitsu;
 import hirvioluola.loitsut.Parannus;
 import hirvioluola.loitsut.Salama;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import javax.swing.Timer;
 
-public class Taistelu {
+public class Taistelu extends Timer implements ActionListener {
     
     private Pelaaja pelaaja;
     private List<Taistelija> hirviot;
@@ -17,14 +21,28 @@ public class Taistelu {
     private int korkeus;
     private Scanner lukija;
     private final String suunnat = "wdsa";
+    private Piirtoalusta alusta;
+    private char komento;
 
     public Taistelu(Pelaaja pelaaja, int leveys, int korkeus) {
-        this.pelaaja = pelaaja;
+        super(1000, null);
+        this.pelaaja = pelaaja;        
         pelaaja.setTaistelu(this);
         this.hirviot = new ArrayList<>();
         this.leveys = leveys;
         this.korkeus = korkeus;
         lukija = new Scanner(System.in);
+        komento = ' ';
+        addActionListener(this);
+        setInitialDelay(2000);
+    }
+    
+    public void setKomento(char komento){
+        this.komento = komento;
+    }
+    
+    public void setAlusta(Piirtoalusta alusta){
+        this.alusta = alusta;
     }
     
     public void lisaaHirvio(Taistelija hirvio){
@@ -182,6 +200,21 @@ public class Taistelu {
         else{
             System.out.println("Voitit!");
         }
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        alusta.repaint();
+        if(pelaaja.getHp() <= 0 || hirviot.isEmpty()){
+            return;
+        }
+        if(komento != ' '){
+            liikutaPelaajaa(komento);
+        }
+        for(Taistelija hirvio : hirviot){
+            hirvio.toimi();
+        }
+        komento = ' ';
     }
     
     
