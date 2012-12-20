@@ -27,7 +27,7 @@ public class OrkkiTest {
     @Test
     public void hyokkaysToimii() {
         orkki1.hyokkaa(pelaaja);
-        assert(pelaaja.hp == pelaaja.hpMax - orkki1.voima);
+        assert(pelaaja.getHp() == pelaaja.getHpMax() - orkki1.getVoima());
     }
     
     @Test
@@ -43,7 +43,7 @@ public class OrkkiTest {
     @Test
     public void orkki2LiikkuuKohtiPelaajaYakselillaKunKutsutaanMetodiaToimi(){
         orkki2.toimi();
-        assert(orkki2.x == 3 && orkki2.y == 1);
+        assert(orkki2.getX() == 3 && orkki2.getY() == 1);
     }
     
     @Test
@@ -51,7 +51,7 @@ public class OrkkiTest {
         //orkit liikkuvat ensisijaisesti y-akselilla kohti pelaajaa, mutta koska
         //orkki2 on orkki1:n tiellä, orkki2 liikkuu x-akselilla
         orkki1.toimi();
-        assert(orkki1.x == 2 && orkki1.y == 3);
+        assert(orkki1.getX() == 2 && orkki1.getY() == 3);
     }
     
     @Test 
@@ -59,7 +59,7 @@ public class OrkkiTest {
         Orkki orkki3 = new Orkki(2,0,1,3,taistelu);
         taistelu.lisaaHirvio(orkki3);
         orkki3.toimi();
-        assert(orkki3.x == 1 && orkki3.y == 0);
+        assert(orkki3.getX() == 1 && orkki3.getY() == 0);
     }
     
     @Test
@@ -67,6 +67,6 @@ public class OrkkiTest {
         Orkki orkki4 = new Orkki(1,0,1,3,taistelu);
         taistelu.lisaaHirvio(orkki4);
         orkki4.toimi();
-        assert(pelaaja.hp == pelaaja.hpMax - orkki4.voima);        
+        assert(pelaaja.getHp() == pelaaja.getHpMax() - orkki4.getVoima());        
     }
 }

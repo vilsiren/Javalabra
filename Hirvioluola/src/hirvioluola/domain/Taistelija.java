@@ -40,11 +40,24 @@ public abstract class Taistelija {
         return hp;
     }
     
+    public void vahingoitu(int vahinko){
+        this.hp -= vahinko;
+    }
+    
+    public void parannu(int parannus){
+        if(this.hp + parannus >= this.hpMax){
+            this.hp = hpMax;
+        }
+        else{
+            this.hp += parannus;
+        }
+    }
+    
     public abstract void toimi();
     
     public boolean liiku(int dx, int dy){
         for(Taistelija hirvio : taistelu.getHirviot()){
-            if(hirvio.x == this.x + dx && hirvio.y == this.y + dy){
+            if(hirvio.getX() == this.x + dx && hirvio.getY() == this.y + dy){
                 return false;
             }
         }
@@ -54,13 +67,13 @@ public abstract class Taistelija {
     }
     
     public boolean hyokkaysalueella(Taistelija kohde){
-        if(kohde.x == this.x && Math.abs(this.y - kohde.y) == 1) return true;
-        if(kohde.y == this.y && Math.abs(this.x - kohde.x) == 1) return true;
+        if(kohde.getX() == this.x && Math.abs(this.y - kohde.getY()) == 1) return true;
+        if(kohde.getY() == this.y && Math.abs(this.x - kohde.getX()) == 1) return true;
         else return false;
     }
     
     public void hyokkaa(Taistelija kohde){
-        kohde.hp -= this.voima;
+        kohde.vahingoitu(this.voima);
     }
     
 }

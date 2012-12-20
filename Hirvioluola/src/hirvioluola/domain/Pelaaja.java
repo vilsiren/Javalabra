@@ -24,6 +24,30 @@ public class Pelaaja extends Taistelija {
         super.taistelu = taistelu;
     }
 
+    public int getMp() {
+        return mp;
+    }
+
+    public void setMp(int mp) {
+        this.mp = mp;
+    }
+
+    public int getMpMax() {
+        return mpMax;
+    }
+
+    public void setMpMax(int mpMax) {
+        this.mpMax = mpMax;
+    }
+    
+    public List<Loitsu> getLoitsut() {
+        return loitsut;
+    }
+    
+    public void lisaaLoitsu(Loitsu loitsu) {
+        loitsut.add(loitsu);
+    }
+
     @Override
     public void toimi() {
     }

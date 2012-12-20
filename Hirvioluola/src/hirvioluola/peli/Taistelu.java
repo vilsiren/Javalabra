@@ -2,6 +2,9 @@ package hirvioluola.peli;
 
 import hirvioluola.domain.Pelaaja;
 import hirvioluola.domain.Taistelija;
+import hirvioluola.loitsut.Loitsu;
+import hirvioluola.loitsut.Parannus;
+import hirvioluola.loitsut.Salama;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -13,6 +16,7 @@ public class Taistelu {
     private int leveys;
     private int korkeus;
     private Scanner lukija;
+    private final String suunnat = "wdsa";
 
     public Taistelu(Pelaaja pelaaja, int leveys, int korkeus) {
         this.pelaaja = pelaaja;
@@ -87,40 +91,51 @@ public class Taistelu {
         }        
     }
     
-    public void suorita(){
-        while(pelaaja.getHp() > 0 && !hirviot.isEmpty()){
-            tulostaKartta();
-            
-            String syote = lukija.nextLine();
-            char komento;
-            if(syote.equals("")){
-                komento = '\u0000';
+    private void teeLoitsu(int loitsunNumero){
+        if(loitsunNumero >= pelaaja.getLoitsut().size()){
+            return;
+        }
+        Loitsu loitsu = pelaaja.getLoitsut().get(loitsunNumero);
+        if(loitsu.kuluttaaMPta() > pelaaja.getMp()){
+            return;
+        }
+        if(loitsu instanceof Parannus){
+            loitsu.suorita(pelaaja);
+        }
+        if(loitsu instanceof Salama){
+            try{
+                int monesHirvio = Integer.parseInt(lukija.nextLine());
+                Taistelija kohde = hirviot.get(monesHirvio);
+                loitsu.suorita(kohde);
+                if(kohde.getHp() <= 0) hirviot.remove(kohde);                
             }
-            else{
-                komento = syote.charAt(0);
-            }
+            catch(Exception e){}
+        }
+        pelaaja.setMp(pelaaja.getMp() - loitsu.kuluttaaMPta());
+    } 
+    
+    private void liikutaPelaajaa(char suunta){
             
             int dx = 0;
             int dy = 0;
-            if(komento == 'w'){
+            if(suunta == 'w'){
                 dx = 0;
                 dy = -1;
             }
-            if(komento == 'd'){
+            if(suunta == 'd'){
                 dx = 1;
                 dy = 0;
             }
-            if(komento == 's'){
+            if(suunta == 's'){
                 dx = 0;
                 dy = 1;
             }
-            if(komento == 'a'){
+            if(suunta == 'a'){
                 dx = -1;
                 dy = 0;
             }            
             
-            if(taistelukentanSisalla(pelaaja.getX() + dx, pelaaja.getY() + dy)
-                    && !(dx == 0 && dy == 0)){
+            if(taistelukentanSisalla(pelaaja.getX() + dx, pelaaja.getY() + dy)){
                 boolean liikkuu = pelaaja.liiku(dx, dy);
                 if(!liikkuu){
                     Taistelija kohde = null;
@@ -134,11 +149,32 @@ public class Taistelu {
                         hirviot.remove(kohde);
                     }                    
                 }
+            }        
+        
+    }
+    
+    public void suorita(){
+        while(pelaaja.getHp() > 0 && !hirviot.isEmpty()){
+            System.out.println("HP: " + pelaaja.getHp() + " MP: " + pelaaja.getMp());
+            tulostaKartta();
+            
+            String syote = lukija.nextLine();
+            if(!syote.equals("") && suunnat.contains(syote)){
+                liikutaPelaajaa(syote.charAt(0));
             }
+            
+            else{
+                try{
+                    int loitsunnumero = Integer.parseInt(syote);
+                    teeLoitsu(loitsunnumero);
+                }
+                catch(Exception e){                
+                }
+            }             
             
             for(Taistelija hirvio : hirviot){
                 hirvio.toimi();
-            }
+            }            
         }
         if(pelaaja.getHp() <= 0){
             System.out.println("Hävisit!");
