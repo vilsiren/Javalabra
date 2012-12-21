@@ -21,7 +21,7 @@ public class Hirvioluola {
     public static void main(String[] args) {
         pelaaja = new Pelaaja(0,0,1,15,15);
         pelaaja.lisaaLoitsu(new Parannus(2,5,pelaaja));
-        pelaaja.lisaaLoitsu(new Salama(4,6));
+        pelaaja.lisaaLoitsu(new Salama(4,6, pelaaja));
         taistelu = new Taistelu(pelaaja,10,10);
         orkki1 = new Orkki(3,3,1,3,taistelu);
         orkki2 = new Orkki(3,2,1,3,taistelu); 

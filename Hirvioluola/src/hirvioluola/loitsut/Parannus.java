@@ -1,27 +1,19 @@
 package hirvioluola.loitsut;
 
-import hirvioluola.domain.Pelaaja;
-import hirvioluola.domain.Taistelija;
+import hirvioluola.domain.Loitsija;
 
-public class Parannus implements Loitsu{
+public class Parannus extends Loitsu{
     
-    private int kuluttaaMPta;
     private int parannus;
-    private Taistelija loitsija;
     
-    public Parannus(int kuluttaaMPta, int parannus, Taistelija loitsija){
-        this.loitsija = loitsija;
-        this.kuluttaaMPta = kuluttaaMPta;
+    public Parannus(int kuluttaaMPta, int parannus, Loitsija loitsija){
+        super(kuluttaaMPta, loitsija);
         this.parannus = parannus;
     }
 
     @Override
-    public int kuluttaaMPta() {
-        return kuluttaaMPta;
-    }
-
-    @Override
     public void suorita() {
+        super.suorita();
         loitsija.parannu(parannus);
     }
     

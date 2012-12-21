@@ -132,9 +132,6 @@ public class Taistelu extends Timer implements ActionListener {
             return;
         }
         Loitsu loitsu = pelaaja.getLoitsut().get(loitsunNumero);
-        if(loitsu.kuluttaaMPta() > pelaaja.getMp()){
-            return;
-        }
         if(loitsu instanceof LoitsuJolleValitaanKohde){
             tulostaKartta(true);
             try{
@@ -149,7 +146,6 @@ public class Taistelu extends Timer implements ActionListener {
         else{
             loitsu.suorita();
         }
-        pelaaja.setMp(pelaaja.getMp() - loitsu.kuluttaaMPta());
     } 
     
     private void liikutaPelaajaa(char suunta){

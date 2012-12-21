@@ -1,26 +1,22 @@
 
 package hirvioluola.loitsut;
 
+import hirvioluola.domain.Loitsija;
 import hirvioluola.domain.Taistelija;
 
-public class Salama implements LoitsuJolleValitaanKohde {
+public class Salama extends LoitsuJolleValitaanKohde {
     
-    private int kuluttaaMPta;
     private int vahinko;
     private Taistelija kohde;
 
-    public Salama(int kuluttaaMPta, int vahinko) {
-        this.kuluttaaMPta = kuluttaaMPta;
+    public Salama(int kuluttaaMPta, int vahinko, Loitsija loitsija) {
+        super(kuluttaaMPta, loitsija);
         this.vahinko = vahinko;
     }    
 
     @Override
-    public int kuluttaaMPta() {
-        return kuluttaaMPta;
-    }
-
-    @Override
     public void suorita() {
+        super.suorita();
         kohde.vahingoitu(vahinko);
     }
 
