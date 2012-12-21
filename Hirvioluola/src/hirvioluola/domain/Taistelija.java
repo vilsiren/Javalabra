@@ -41,6 +41,10 @@ public abstract class Taistelija {
         return hp;
     }
     
+    public Taistelu getTaistelu() {
+        return this.taistelu;
+    }
+    
     public void vahingoitu(int vahinko){
         this.hp -= vahinko;
     }

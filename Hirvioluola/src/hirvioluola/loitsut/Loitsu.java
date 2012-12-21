@@ -4,6 +4,6 @@ import hirvioluola.domain.Taistelija;
 
 public interface Loitsu {
     
-    public int kuluttaaMPta();
-    public void suorita(Taistelija kohde);
+    public abstract int kuluttaaMPta();
+    public abstract void suorita();
 }

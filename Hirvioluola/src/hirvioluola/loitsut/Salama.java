@@ -3,10 +3,11 @@ package hirvioluola.loitsut;
 
 import hirvioluola.domain.Taistelija;
 
-public class Salama implements Loitsu {
+public class Salama implements LoitsuJolleValitaanKohde {
     
     private int kuluttaaMPta;
     private int vahinko;
+    private Taistelija kohde;
 
     public Salama(int kuluttaaMPta, int vahinko) {
         this.kuluttaaMPta = kuluttaaMPta;
@@ -19,8 +20,13 @@ public class Salama implements Loitsu {
     }
 
     @Override
-    public void suorita(Taistelija kohde) {
+    public void suorita() {
         kohde.vahingoitu(vahinko);
+    }
+
+    @Override
+    public void setKohde(Taistelija kohde) {
+        this.kohde = kohde;
     }
     
 }
