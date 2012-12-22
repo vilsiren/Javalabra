@@ -67,6 +67,7 @@ public class Taistelu extends Timer implements ActionListener {
             }          
         }
         hirviot.add(hirvio);
+        hirvio.setTaistelu(this);
     }
 
     public Pelaaja getPelaaja() {
@@ -128,8 +129,8 @@ public class Taistelu extends Timer implements ActionListener {
                 int x = Integer.parseInt(lukija.nextLine());
                 int y = Integer.parseInt(lukija.nextLine());
                 LoitsuJolleValitaanRuutu ruutuloitsu = (LoitsuJolleValitaanRuutu) loitsu;
-                if(ruutuloitsu.setRuutu(x,y) == true ){
-                    ruutuloitsu.suorita();
+                if(ruutuloitsu.setRuutu(x,y, pelaaja) == true ){
+                    ruutuloitsu.suorita(pelaaja);
                 }
             }
             catch(Exception e){}
@@ -140,11 +141,11 @@ public class Taistelu extends Timer implements ActionListener {
                 LoitsuJolleValitaanSuunta suuntaloitsu = (LoitsuJolleValitaanSuunta) loitsu;
                 int[] suunta = suunta(syote.charAt(0));
                 suuntaloitsu.setSuunta(suunta[0], suunta[1]);
-                suuntaloitsu.suorita();
+                suuntaloitsu.suorita(pelaaja);
             }
         }
         else{
-            loitsu.suorita();
+            loitsu.suorita(pelaaja);
         }
     }
     

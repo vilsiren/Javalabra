@@ -4,11 +4,9 @@ import hirvioluola.domain.Loitsija;
 
 public abstract class Loitsu {
     
-    protected Loitsija loitsija;
     protected int kuluttaaMPta;
 
-    public Loitsu(int kuluttaaMPta, Loitsija loitsija) {
-        this.loitsija = loitsija;
+    public Loitsu(int kuluttaaMPta) {
         this.kuluttaaMPta = kuluttaaMPta;
     }    
     
@@ -16,7 +14,7 @@ public abstract class Loitsu {
         return kuluttaaMPta;
     }
     
-    public void suorita(){
+    public void suorita(Loitsija loitsija){
         if(kuluttaaMPta > loitsija.getMp()){
             return;
         }

@@ -6,9 +6,9 @@ import hirvioluola.domain.Taistelija;
 
 public abstract class LoitsuJolleValitaanRuutu extends Loitsu {
     
-    public LoitsuJolleValitaanRuutu(int kuluttaaMPta, Loitsija loitsija){
-        super(kuluttaaMPta, loitsija);
+    public LoitsuJolleValitaanRuutu(int kuluttaaMPta){
+        super(kuluttaaMPta);
     }
     
-    public abstract boolean setRuutu(int x, int y);
+    public abstract boolean setRuutu(int x, int y, Loitsija loitsija);
 }

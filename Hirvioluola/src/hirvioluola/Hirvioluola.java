@@ -22,20 +22,20 @@ public class Hirvioluola {
 
     public static void main(String[] args) {
         pelaaja = new Pelaaja(0,0,1,15,15);
-        pelaaja.lisaaLoitsu(new Parannus(2,5,pelaaja));
-        pelaaja.lisaaLoitsu(new Salama(4,6, pelaaja));
-        pelaaja.lisaaLoitsu(new Teleportaatio(2,pelaaja));
-        pelaaja.lisaaLoitsu(new Taikanuoli(2,5, true, pelaaja));
+        pelaaja.lisaaLoitsu(new Parannus(2,5));
+        pelaaja.lisaaLoitsu(new Salama(4,6));
+        pelaaja.lisaaLoitsu(new Teleportaatio(2));
+        pelaaja.lisaaLoitsu(new Taikanuoli(2,5, true));
         taistelu = new Taistelu(pelaaja,10,10);
-        orkki1 = new Orkki(3,3,1,3,taistelu);
-        orkki2 = new Orkki(3,2,1,3,taistelu); 
+        orkki1 = new Orkki(3,3,1,3);
+        orkki2 = new Orkki(3,2,1,3); 
         taistelu.lisaaHirvio(orkki1);
         taistelu.lisaaHirvio(orkki2);
-        taistelu.lisaaHirvio(new Orkki(2,4,1,3,taistelu));
-        taistelu.lisaaHirvio(new Orkki(1,4,1,3,taistelu));
-        taistelu.lisaaHirvio(new Orkki(6,8,1,3,taistelu));
-        taistelu.lisaaHirvio(new Orkki(7,8,1,3,taistelu));
-        taistelu.lisaaHirvio(new Orkki(8,8,1,3,taistelu));      
+        taistelu.lisaaHirvio(new Orkki(2,4,1,3));
+        taistelu.lisaaHirvio(new Orkki(1,4,1,3));
+        taistelu.lisaaHirvio(new Orkki(6,8,1,3));
+        taistelu.lisaaHirvio(new Orkki(7,8,1,3));
+        taistelu.lisaaHirvio(new Orkki(8,8,1,3));      
         taistelu.suorita();
 //        Kayttoliittyma kali = new Kayttoliittyma(taistelu);
 //        

@@ -11,18 +11,18 @@ public class Taikanuoli extends LoitsuJolleValitaanSuunta{
     private int vahinko;
     private boolean lapaiseva;
 
-    public Taikanuoli(int kuluttaaMPta, int vahinko, boolean lapaiseva, Loitsija loitsija) {
-        super(kuluttaaMPta, loitsija);
+    public Taikanuoli(int kuluttaaMPta, int vahinko, boolean lapaiseva) {
+        super(kuluttaaMPta);
         this.vahinko = vahinko;
         this.lapaiseva = lapaiseva;
     }
     
     @Override
-    public void suorita(){
-        super.suorita();
-        Taistelu taistelu = super.loitsija.getTaistelu();
+    public void suorita(Loitsija loitsija){
+        super.suorita(loitsija);
+        Taistelu taistelu = loitsija.getTaistelu();
         Pelaaja pelaaja = taistelu.getPelaaja();
-        int y = pelaaja.getY() + super.dx;
+        int y = pelaaja.getY() + super.dy;
         int x = pelaaja.getX() + super.dx;
         while(taistelu.taistelukentanSisalla(x, y)){            
             for(Taistelija hirvio : taistelu.getHirviot()){

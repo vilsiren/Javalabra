@@ -8,28 +8,28 @@ public class Teleportaatio extends LoitsuJolleValitaanRuutu{
     
     private int x, y;
 
-    public Teleportaatio(int kuluttaaMPta, Loitsija loitsija) {
-        super(kuluttaaMPta, loitsija);
+    public Teleportaatio(int kuluttaaMPta) {
+        super(kuluttaaMPta);
     }
     
     @Override
-    public void suorita(){
-        super.suorita();
-        super.loitsija.setX(x);
-        super.loitsija.setY(y);                        
+    public void suorita(Loitsija loitsija){
+        super.suorita(loitsija);
+        loitsija.setX(x);
+        loitsija.setY(y);                        
     }
 
     @Override
-    public boolean setRuutu(int x, int y) {
-        if(!super.loitsija.getTaistelu().taistelukentanSisalla(x, y)){
+    public boolean setRuutu(int x, int y, Loitsija loitsija) {
+        if(!loitsija.getTaistelu().taistelukentanSisalla(x, y)){
             return false;
         }
-        Pelaaja pelaaja = super.loitsija.getTaistelu().getPelaaja();
-        if(!(super.loitsija instanceof Pelaaja) && super.loitsija.getX() == pelaaja.getX()
-                && super.loitsija.getY() == pelaaja.getY()){
+        Pelaaja pelaaja = loitsija.getTaistelu().getPelaaja();
+        if(!(loitsija instanceof Pelaaja) && loitsija.getX() == pelaaja.getX()
+                && loitsija.getY() == pelaaja.getY()){
             return false;
         }
-        for(Taistelija hirvio : super.loitsija.getTaistelu().getHirviot()){
+        for(Taistelija hirvio : loitsija.getTaistelu().getHirviot()){
             if(x == hirvio.getX() && y == hirvio.getY()){
                 return false;
             }

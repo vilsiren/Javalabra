@@ -18,8 +18,8 @@ public class OrkkiTest {
     public void setUp() {
         pelaaja = new Pelaaja(0,0,1,5,5);
         taistelu = new Taistelu(pelaaja,10,10);
-        orkki1 = new Orkki(3,3,1,3,taistelu);
-        orkki2 = new Orkki(3,2,1,3,taistelu); 
+        orkki1 = new Orkki(3,3,1,3);
+        orkki2 = new Orkki(3,2,1,3); 
         taistelu.lisaaHirvio(orkki1);
         taistelu.lisaaHirvio(orkki2);
     }
@@ -56,7 +56,7 @@ public class OrkkiTest {
     
     @Test 
     public void orkkiLiikkuuKohtiPelaajaaXakselillaKunYkoordinaattiSamaKuinPelaajalla(){
-        Orkki orkki3 = new Orkki(2,0,1,3,taistelu);
+        Orkki orkki3 = new Orkki(2,0,1,3);
         taistelu.lisaaHirvio(orkki3);
         orkki3.toimi();
         assert(orkki3.getX() == 1 && orkki3.getY() == 0);
@@ -64,7 +64,7 @@ public class OrkkiTest {
     
     @Test
     public void orkkiHyokkaaKunPelaajaHyokkaysalueella(){
-        Orkki orkki4 = new Orkki(1,0,1,3,taistelu);
+        Orkki orkki4 = new Orkki(1,0,1,3);
         taistelu.lisaaHirvio(orkki4);
         orkki4.toimi();
         assert(pelaaja.getHp() == pelaaja.getHpMax() - orkki4.getVoima());        

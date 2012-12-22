@@ -8,8 +8,12 @@ public class Orkki extends Taistelija{
     
     private Pelaaja pelaaja;
 
-    public Orkki(int x, int y, int voima, int hpMax, Taistelu taistelu) {
+    public Orkki(int x, int y, int voima, int hpMax) {
         super(x, y, voima, hpMax);
+    }
+    
+    @Override
+    public void setTaistelu(Taistelu taistelu){
         super.taistelu = taistelu;
         pelaaja = taistelu.getPelaaja();
     }

@@ -1,13 +1,12 @@
 package hirvioluola.loitsut;
 
-import hirvioluola.domain.Loitsija;
 
 public abstract class LoitsuJolleValitaanSuunta extends Loitsu {
     
     protected int dx, dy;
 
-    public LoitsuJolleValitaanSuunta(int kuluttaaMPta, Loitsija loitsija) {
-        super(kuluttaaMPta, loitsija);
+    public LoitsuJolleValitaanSuunta(int kuluttaaMPta) {
+        super(kuluttaaMPta);
     }
     
     private int muuta(int d){

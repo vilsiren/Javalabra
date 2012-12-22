@@ -53,6 +53,10 @@ public abstract class Taistelija {
         return this.taistelu;
     }
     
+    public void setTaistelu(Taistelu taistelu){
+        this.taistelu = taistelu;
+    }
+    
     public void vahingoitu(int vahinko){
         this.hp -= vahinko;
     }

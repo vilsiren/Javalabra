@@ -28,10 +28,16 @@ public class TaisteluTest {
     
     @Test
     public void hirvionLisaysToimii(){        
-        taistelu.lisaaHirvio(new Orkki(9,9,1,2,taistelu));
-        taistelu.lisaaHirvio(new Orkki(9,9,1,2,taistelu));
-        taistelu.lisaaHirvio(new Orkki(8,9,1,2,taistelu));
+        Orkki orkki1 = new Orkki(9,9,1,2);
+        Orkki orkki2 = new Orkki(9,9,1,2);
+        Orkki orkki3 = new Orkki(8,9,1,2);
+        taistelu.lisaaHirvio(orkki1);
+        taistelu.lisaaHirvio(orkki2);
+        taistelu.lisaaHirvio(orkki3);
         assert(taistelu.getHirviot().size() == 2);
+        assert(orkki1.getTaistelu() == taistelu);
+        assert(orkki2.getTaistelu() == null);
+        assert(orkki3.getTaistelu() == taistelu);
     }
     
     @Test
