@@ -7,6 +7,8 @@ import hirvioluola.gui.Kayttoliittyma;
 import hirvioluola.gui.Piirtoalusta;
 import hirvioluola.loitsut.Parannus;
 import hirvioluola.loitsut.Salama;
+import hirvioluola.loitsut.Taikanuoli;
+import hirvioluola.loitsut.Teleportaatio;
 import hirvioluola.peli.Taistelu;
 import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
@@ -22,6 +24,8 @@ public class Hirvioluola {
         pelaaja = new Pelaaja(0,0,1,15,15);
         pelaaja.lisaaLoitsu(new Parannus(2,5,pelaaja));
         pelaaja.lisaaLoitsu(new Salama(4,6, pelaaja));
+        pelaaja.lisaaLoitsu(new Teleportaatio(2,pelaaja));
+        pelaaja.lisaaLoitsu(new Taikanuoli(2,5, true, pelaaja));
         taistelu = new Taistelu(pelaaja,10,10);
         orkki1 = new Orkki(3,3,1,3,taistelu);
         orkki2 = new Orkki(3,2,1,3,taistelu); 
