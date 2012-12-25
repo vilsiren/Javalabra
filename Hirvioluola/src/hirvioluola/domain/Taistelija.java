@@ -91,8 +91,7 @@ public abstract class Taistelija {
     }
     
     public boolean hyokkaysalueella(Taistelija kohde){
-        if(kohde.getX() == this.x && Math.abs(this.y - kohde.getY()) == 1) return true;
-        if(kohde.getY() == this.y && Math.abs(this.x - kohde.getX()) == 1) return true;
+        if(Math.abs(this.x - kohde.getX()) <= 1 && Math.abs(this.y - kohde.getY()) <= 1) return true;
         else return false;
     }
     

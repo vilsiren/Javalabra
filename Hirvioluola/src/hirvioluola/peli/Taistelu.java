@@ -190,17 +190,33 @@ public class Taistelu extends Timer implements ActionListener {
                 suunta[0] = 0;
                 suunta[1] = -1;
             }
+            else if(komento.equals("e")){
+                suunta[0] = 1;
+                suunta[1] = -1;
+            }
             else if(komento.equals("d")){
                 suunta[0] = 1;
                 suunta[1] = 0;
             }
-            else if(komento.equals("s")){
+            else if(komento.equals("c")){
+                suunta[0] = 1;
+                suunta[1] = 1;
+            }
+            else if(komento.equals("x")){
                 suunta[0] = 0;
+                suunta[1] = 1;
+            }
+            else if(komento.equals("z")){
+                suunta[0] = -1;
                 suunta[1] = 1;
             }
             else if(komento.equals("a")){
                 suunta[0] = -1;
                 suunta[1] = 0;
+            }
+            else if(komento.equals("q")){
+                suunta[0] = -1;
+                suunta[1] = -1;
             }
             else{
                 return null;

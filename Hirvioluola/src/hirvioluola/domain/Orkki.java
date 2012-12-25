@@ -40,7 +40,54 @@ public class Orkki extends Taistelija{
         else{
             return 1;
         }
-    }    
+    }
+    
+    private void lahestyPelaajaa(){
+        if(suuntaY() == 0){
+            lahestyPelaajaaXakselilla();
+            return;
+        }
+        
+        if(suuntaX() == 0 ){
+            lahestyPelaajaaYakselilla();
+            return;
+        }
+        
+        boolean liikkuu = liiku( suuntaX(), suuntaY() );
+        
+        if(!liikkuu){
+            liikkuu = lahestyPelaajaaYakselilla();
+            if(!liikkuu){
+                lahestyPelaajaaXakselilla();
+            }
+        }                
+    }
+    
+    private boolean lahestyPelaajaaXakselilla(){
+        boolean liikkuu = liiku( suuntaX(), 0 );
+        if(!liikkuu){
+            if(taistelu.taistelukentanSisalla(x + suuntaX() , y + 1) ){
+                liikkuu = liiku(suuntaX(), 1);
+            }
+            if(!liikkuu && taistelu.taistelukentanSisalla(x + suuntaX(), y - 1) ){
+                liikkuu = liiku(suuntaX(), -1);
+            }
+        }
+        return liikkuu;
+    }
+    
+    private boolean lahestyPelaajaaYakselilla(){        
+        boolean liikkuu = liiku( 0, suuntaY() );
+        if(!liikkuu){
+            if(taistelu.taistelukentanSisalla(x + 1 , y + suuntaY() ) ){
+                liikkuu = liiku(1, suuntaY());
+            }
+            if(!liikkuu && taistelu.taistelukentanSisalla(x - 1, y + suuntaY() ) ){
+                liikkuu = liiku(-1, suuntaY());
+            }
+        }
+        return liikkuu;
+    }
     
     @Override
     public void toimi() {
@@ -49,16 +96,7 @@ public class Orkki extends Taistelija{
             return;
         }
         
-        if(suuntaX() == 0 || suuntaY() == 0){
-            liiku( suuntaX(), suuntaY() );
-            return;
-        }
-        
-        boolean liikkuu = liiku( 0, suuntaY() );
-        
-        if(!liikkuu){
-            liiku(suuntaX(), 0);
-        }
+        lahestyPelaajaa();
         
     }
 
