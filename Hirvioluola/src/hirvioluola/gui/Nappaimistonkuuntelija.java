@@ -22,13 +22,13 @@ public class Nappaimistonkuuntelija implements KeyListener{
     @Override
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-            taistelu.setKomento('a');
+            taistelu.setKomento("a");
         } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            taistelu.setKomento('d');
+            taistelu.setKomento("d");
         } else if (e.getKeyCode() == KeyEvent.VK_UP) {
-            taistelu.setKomento('w');
+            taistelu.setKomento("w");
         } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-            taistelu.setKomento('s');
+            taistelu.setKomento("s");
         }         
     }
 

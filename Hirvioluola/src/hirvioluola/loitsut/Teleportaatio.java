@@ -3,33 +3,33 @@ package hirvioluola.loitsut;
 import hirvioluola.domain.Loitsija;
 import hirvioluola.domain.Pelaaja;
 import hirvioluola.domain.Taistelija;
+import hirvioluola.peli.Taistelu;
 
-public class Teleportaatio extends LoitsuJolleValitaanRuutu{
+public class Teleportaatio implements Loitsu, ToimintoJolleValitaanRuutu{
     
     private int x, y;
+    private int kuluttaaMPta;
 
     public Teleportaatio(int kuluttaaMPta) {
-        super(kuluttaaMPta);
+        this.kuluttaaMPta = kuluttaaMPta;
     }
     
     @Override
     public void suorita(Loitsija loitsija){
-        super.suorita(loitsija);
         loitsija.setX(x);
         loitsija.setY(y);                        
     }
 
     @Override
-    public boolean setRuutu(int x, int y, Loitsija loitsija) {
-        if(!loitsija.getTaistelu().taistelukentanSisalla(x, y)){
+    public boolean setRuutu(int x, int y, Taistelu taistelu) {
+        if(!taistelu.taistelukentanSisalla(x, y)){
             return false;
         }
-        Pelaaja pelaaja = loitsija.getTaistelu().getPelaaja();
-        if(!(loitsija instanceof Pelaaja) && loitsija.getX() == pelaaja.getX()
-                && loitsija.getY() == pelaaja.getY()){
+        Pelaaja pelaaja = taistelu.getPelaaja();
+        if( x == pelaaja.getX() && y == pelaaja.getY()){
             return false;
         }
-        for(Taistelija hirvio : loitsija.getTaistelu().getHirviot()){
+        for(Taistelija hirvio : taistelu.getHirviot()){
             if(x == hirvio.getX() && y == hirvio.getY()){
                 return false;
             }
@@ -38,5 +38,13 @@ public class Teleportaatio extends LoitsuJolleValitaanRuutu{
         this.y = y;
         return true;
     }
-    
+    @Override
+    public String toString(){
+        return "Teleportaatio, kuluttaa: " + kuluttaaMPta() + " mp";
+    }    
+
+    @Override
+    public int kuluttaaMPta() {
+        return kuluttaaMPta;
+    }
 }

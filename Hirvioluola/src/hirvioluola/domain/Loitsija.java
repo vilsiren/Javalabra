@@ -22,6 +22,9 @@ public abstract class Loitsija extends Taistelija {
     }
 
     public void setMp(int mp) {
+        if(mp < 0 || mp > mpMax){
+            return;
+        }
         this.mp = mp;
     }
 
@@ -30,6 +33,9 @@ public abstract class Loitsija extends Taistelija {
     }
 
     public void setMpMax(int mpMax) {
+        if(mpMax < 0){
+            return;
+        }
         this.mpMax = mpMax;
     }
 
@@ -41,4 +47,13 @@ public abstract class Loitsija extends Taistelija {
         loitsut.add(loitsu);
     }
     
+    public boolean teeLoitsu(Loitsu loitsu){
+        if(mp < loitsu.kuluttaaMPta()){
+            return false;
+        }        
+        else{
+            mp -= loitsu.kuluttaaMPta();
+            return true;
+        }
+    }    
 }

@@ -66,6 +66,7 @@ public class OrkkiTest {
     public void orkkiHyokkaaKunPelaajaHyokkaysalueella(){
         Orkki orkki4 = new Orkki(1,0,1,3);
         taistelu.lisaaHirvio(orkki4);
+        assert(orkki4.hyokkaysalueella(pelaaja));
         orkki4.toimi();
         assert(pelaaja.getHp() == pelaaja.getHpMax() - orkki4.getVoima());        
     }

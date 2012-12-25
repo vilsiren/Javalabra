@@ -19,25 +19,32 @@ public class TaisteluTest {
     
     Taistelu taistelu;
     Pelaaja pelaaja;
+    Orkki orkki1;
+    Orkki orkki2;
     
     @Before
     public void setUp() {
+        orkki1 = new Orkki(9,9,1,2);
+        orkki2 = new Orkki(8,9,1,2);      
         pelaaja = new Pelaaja(0,0,1,5,5);
         taistelu = new Taistelu(pelaaja,10,10);
+        taistelu.lisaaHirvio(orkki1);
+        taistelu.lisaaHirvio(orkki2);          
     }
     
     @Test
     public void hirvionLisaysToimii(){        
-        Orkki orkki1 = new Orkki(9,9,1,2);
-        Orkki orkki2 = new Orkki(9,9,1,2);
-        Orkki orkki3 = new Orkki(8,9,1,2);
-        taistelu.lisaaHirvio(orkki1);
-        taistelu.lisaaHirvio(orkki2);
-        taistelu.lisaaHirvio(orkki3);
         assert(taistelu.getHirviot().size() == 2);
         assert(orkki1.getTaistelu() == taistelu);
-        assert(orkki2.getTaistelu() == null);
-        assert(orkki3.getTaistelu() == taistelu);
+        assert(orkki2.getTaistelu() == taistelu);
+    }
+    
+    @Test
+    public void hirviotaEiLisataJosListassaOnHirvioSamoillaKoordinaateilla(){
+        Orkki orkki3 = new Orkki(orkki1.getX(),orkki2.getY(),1,2);
+        taistelu.lisaaHirvio(orkki3);
+        assert(!taistelu.getHirviot().contains(orkki3));
+        assert(orkki3.getTaistelu() == null);
     }
     
     @Test
@@ -46,7 +53,29 @@ public class TaisteluTest {
     }
     
     @Test
-    public void taistelukentanSisallaFalseJosUlkona(){
-        assert(!taistelu.taistelukentanSisalla(15, 0));
+    public void taistelukentanSisallaFalseJosXonLiianSuuri(){
+        assert(!taistelu.taistelukentanSisalla(taistelu.getLeveys(), 0));
+    }
+    
+    @Test
+    public void taistelukentanSisallaFalseJosYonLiianSuuri(){
+        assert(!taistelu.taistelukentanSisalla(0, taistelu.getKorkeus()));
+    }
+    
+    @Test
+    public void taistelukentanSisallaFalseJosXonNegatiivinen(){
+        assert(!taistelu.taistelukentanSisalla(-1, 0));
+    }
+    
+    @Test
+    public void taistelukentanSisallaFalseJosYonNegatiivinen(){
+        assert(!taistelu.taistelukentanSisalla(0, -1));
+    }    
+    
+    @Test
+    public void hirviolistaPaivittyy(){
+        orkki1.vahingoitu(orkki1.getHp());
+        taistelu.paivitaHirviolista();
+        assert(!taistelu.getHirviot().contains(orkki1));
     }
 }

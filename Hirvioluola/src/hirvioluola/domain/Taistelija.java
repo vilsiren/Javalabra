@@ -58,7 +58,12 @@ public abstract class Taistelija {
     }
     
     public void vahingoitu(int vahinko){
-        this.hp -= vahinko;
+        if(this.hp < vahinko){
+            this.hp = 0;
+        }
+        else{
+            this.hp -= vahinko;
+        }    
     }
     
     public void parannu(int parannus){

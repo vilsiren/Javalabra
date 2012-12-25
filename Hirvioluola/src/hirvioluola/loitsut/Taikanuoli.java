@@ -6,24 +6,23 @@ import hirvioluola.domain.Pelaaja;
 import hirvioluola.domain.Taistelija;
 import hirvioluola.peli.Taistelu;
 
-public class Taikanuoli extends LoitsuJolleValitaanSuunta{
+public class Taikanuoli implements Loitsu, ToimintoJolleValitaanSuunta{
     
-    private int vahinko;
+    private int vahinko, dx, dy, kuluttaaMPta;
     private boolean lapaiseva;
 
     public Taikanuoli(int kuluttaaMPta, int vahinko, boolean lapaiseva) {
-        super(kuluttaaMPta);
+        this.kuluttaaMPta = kuluttaaMPta;
         this.vahinko = vahinko;
         this.lapaiseva = lapaiseva;
     }
     
     @Override
     public void suorita(Loitsija loitsija){
-        super.suorita(loitsija);
         Taistelu taistelu = loitsija.getTaistelu();
         Pelaaja pelaaja = taistelu.getPelaaja();
-        int y = pelaaja.getY() + super.dy;
-        int x = pelaaja.getX() + super.dx;
+        int y = pelaaja.getY() + dy;
+        int x = pelaaja.getX() + dx;
         while(taistelu.taistelukentanSisalla(x, y)){            
             for(Taistelija hirvio : taistelu.getHirviot()){
                 if(hirvio.getX() == x && hirvio.getY() == y){
@@ -31,8 +30,29 @@ public class Taikanuoli extends LoitsuJolleValitaanSuunta{
                     if(!lapaiseva) return;
                 }
             }
-            x += super.dx;
-            y += super.dy;
+            x += dx;
+            y += dy;
         }
+    }
+    
+    @Override
+    public String toString(){
+        String s = "";
+        if(lapaiseva){
+            s += "Läpäisevä ";
+        }
+        s += "Taikanuoli, vahingoitaa: " + vahinko + " hp, kuluttaa: " + kuluttaaMPta() + " mp";
+        return s;
+    }    
+
+    @Override
+    public int kuluttaaMPta() {
+        return kuluttaaMPta;
+    }
+
+    @Override
+    public void setSuunta(int dx, int dy) {
+        this.dx = dx;
+        this.dy = dy;
     }
 }
