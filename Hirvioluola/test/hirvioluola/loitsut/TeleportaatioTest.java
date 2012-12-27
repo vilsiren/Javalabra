@@ -1,7 +1,7 @@
 
 package hirvioluola.loitsut;
 
-import hirvioluola.domain.Orkki;
+import hirvioluola.domain.Hirvio;
 import hirvioluola.domain.Pelaaja;
 import hirvioluola.peli.Taistelu;
 import org.junit.After;
@@ -13,14 +13,14 @@ public class TeleportaatioTest {
     
     private Teleportaatio teleport;
     private Pelaaja pelaaja;
-    private Orkki orkki;
+    private Hirvio orkki;
     private Taistelu taistelu;
     
     @Before
     public void setUp() {
         teleport = new Teleportaatio(1);
         pelaaja = new Pelaaja(0,0,2,5,5);
-        orkki = new Orkki(3,3,2,5);
+        orkki = new Hirvio(3,3,2,5,0);
         taistelu = new Taistelu(pelaaja,10,10);
         taistelu.lisaaHirvio(orkki);        
     }

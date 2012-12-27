@@ -1,36 +1,32 @@
 package hirvioluola.peli;
 
+import hirvioluola.domain.Hirvio;
 import hirvioluola.domain.Pelaaja;
 import hirvioluola.domain.Taistelija;
 import hirvioluola.gui.Piirtoalusta;
 import hirvioluola.loitsut.Loitsu;
 import hirvioluola.loitsut.ToimintoJolleValitaanRuutu;
 import hirvioluola.loitsut.ToimintoJolleValitaanSuunta;
-import hirvioluola.loitsut.Parannus;
-import hirvioluola.loitsut.Salama;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 import javax.swing.JLabel;
-import javax.swing.Timer;
 
-public class Taistelu extends Timer implements ActionListener {
+public class Taistelu {
     
     private Pelaaja pelaaja;
-    private List<Taistelija> hirviot;
+    private List<Hirvio> hirviot;
     private int leveys;
     private int korkeus;
     private Scanner lukija;
-    private final String suunnat = "wdsa";
+    public final String suunnat = "qweadzxc";
     private Piirtoalusta alusta;
     private JLabel status;
     private String komento;
 
     public Taistelu(Pelaaja pelaaja, int leveys, int korkeus) {
-        super(1000, null);
+
         this.pelaaja = pelaaja;        
         pelaaja.setTaistelu(this);
         this.hirviot = new ArrayList<>();
@@ -38,8 +34,6 @@ public class Taistelu extends Timer implements ActionListener {
         this.korkeus = korkeus;
         lukija = new Scanner(System.in);
         komento = "";
-        addActionListener(this);
-        setInitialDelay(2000);
     }
     
     public void setKomento(String komento){
@@ -54,14 +48,14 @@ public class Taistelu extends Timer implements ActionListener {
         this.status = status;
     }
     
-    public void lisaaHirvio(Taistelija hirvio){
+    public void lisaaHirvio(Hirvio hirvio){
         if(hirvio.getX() == pelaaja.getX() && hirvio.getY() == pelaaja.getY()){
             return;
         }
         if( !taistelukentanSisalla( hirvio.getX(), hirvio.getY() ) ){
             return;
         }
-        for(Taistelija hirvio2 : hirviot){
+        for(Hirvio hirvio2 : hirviot){
             if(hirvio.getX() == hirvio2.getX() && hirvio.getY() == hirvio2.getY()){
                 return;
             }          
@@ -74,7 +68,7 @@ public class Taistelu extends Timer implements ActionListener {
         return pelaaja;
     }
 
-    public List<Taistelija> getHirviot() {
+    public List<Hirvio> getHirviot() {
         return hirviot;
     }
 
@@ -96,8 +90,17 @@ public class Taistelu extends Timer implements ActionListener {
         return true;        
     }
     
+    public Hirvio hirvioRuudussa(int x, int y){
+        for(Hirvio hirvio : hirviot){
+            if(hirvio.getX() == x && hirvio.getY() == y){
+                return hirvio;
+            }
+        }
+        return null;
+    }
+    
     public void paivitaHirviolista(){
-        Iterator<Taistelija> iter = hirviot.iterator();
+        Iterator<Hirvio> iter = hirviot.iterator();
         while(iter.hasNext()){
             if(iter.next().getHp() <= 0){
                     iter.remove();
@@ -106,7 +109,7 @@ public class Taistelu extends Timer implements ActionListener {
     }          
         
     public void hirviotToimii(){
-        for(Taistelija hirvio : hirviot){
+        for(Hirvio hirvio : hirviot){
             hirvio.toimi();
         }
     }
@@ -138,7 +141,7 @@ public class Taistelu extends Timer implements ActionListener {
         for(Loitsu loitsu : pelaaja.getLoitsut()){
             System.out.println(pelaaja.getLoitsut().indexOf(loitsu) + " " + loitsu);
         }
-    }
+    }    
     
     private void teeLoitsu(int loitsunNumero){
         if(loitsunNumero >= pelaaja.getLoitsut().size()){
@@ -150,38 +153,50 @@ public class Taistelu extends Timer implements ActionListener {
         }
         
         if(loitsu instanceof ToimintoJolleValitaanRuutu){
-            int[] koordinaatit = kysyKoordinaatit();
-            if(koordinaatit != null){
-                ToimintoJolleValitaanRuutu ruutuloitsu = (ToimintoJolleValitaanRuutu) loitsu;
-                if(ruutuloitsu.setRuutu(koordinaatit[0],koordinaatit[1], this) == false){
-                    return;
-                }
-            }
+            ToimintoJolleValitaanRuutu ruutuloitsu = (ToimintoJolleValitaanRuutu) loitsu;
+            valitseRuutu(ruutuloitsu);
         }    
         
         else if(loitsu instanceof ToimintoJolleValitaanSuunta){
-            int[] suunta = suunta(lukija.nextLine());
-            if(suunta == null) return;
             ToimintoJolleValitaanSuunta suuntaloitsu = (ToimintoJolleValitaanSuunta) loitsu;
-            suuntaloitsu.setSuunta(suunta[0], suunta[1]);
+            valitseSuunta(suuntaloitsu);
         }
         
         loitsu.suorita(pelaaja);
     }
+                       
     
-    private int[] kysyKoordinaatit(){
-        try{
-            int[] koordinaatit = new int[2];
-            System.out.print("x: ");
-            koordinaatit[0] = Integer.parseInt(lukija.nextLine());
-            System.out.print("y: ");
-            koordinaatit[1] = Integer.parseInt(lukija.nextLine());
-            return koordinaatit;           
+    private void valitseRuutu(ToimintoJolleValitaanRuutu toiminto){
+        while(true){
+            try{
+                int x, y;
+                System.out.print("x: ");
+                x = Integer.parseInt(lukija.nextLine());
+                System.out.print("y: ");
+                y = Integer.parseInt(lukija.nextLine());
+                if(toiminto.setRuutu(x, y, this) == false ){
+                    throw new Exception();
+                }
+                break;
+            }
+            catch(Exception e){
+            }
+        }      
+    }
+    
+    private void valitseSuunta(ToimintoJolleValitaanSuunta toiminto){
+        while(true){
+            try{
+                int[] suunta = suunta(lukija.nextLine());
+                if(suunta == null){
+                    throw new Exception();               
+                }
+                toiminto.setSuunta(suunta[0], suunta[1]);
+                break;
+            }
+            catch(Exception e){               
+            }
         }
-        catch(Exception e){
-            return null;
-        }
-               
     }
     
     private int[] suunta(String komento){
@@ -270,13 +285,11 @@ public class Taistelu extends Timer implements ActionListener {
         }
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        
+    public void kierros() {;
         status.setText("HP: " + pelaaja.getHp() + " MP: " + pelaaja.getMp());
-        if(pelaaja.getHp() <= 0 || hirviot.isEmpty()){
-            return;
-        }
+//        if(pelaaja.getHp() <= 0 || hirviot.isEmpty()){
+//            return;
+//        }
         if(!komento.equals("")){
             liikutaPelaajaa(suunta(komento)[0], suunta(komento)[1]);
         }
@@ -284,7 +297,6 @@ public class Taistelu extends Timer implements ActionListener {
         hirviotToimii();
         alusta.repaint();
         komento = "";
-    }
-    
+    }    
     
 }

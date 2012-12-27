@@ -7,19 +7,19 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class OrkkiTest {
+public class HirvioTest {
     
     Taistelu taistelu;
     Pelaaja pelaaja;
-    Orkki orkki1;
-    Orkki orkki2;
+    Hirvio orkki1;
+    Hirvio orkki2;
     
     @Before
     public void setUp() {
         pelaaja = new Pelaaja(0,0,1,5,5);
         taistelu = new Taistelu(pelaaja,10,10);
-        orkki1 = new Orkki(3,3,1,3);
-        orkki2 = new Orkki(3,2,1,3); 
+        orkki1 = new Hirvio(3,3,1,3,0);
+        orkki2 = new Hirvio(3,2,1,3,0); 
         taistelu.lisaaHirvio(orkki1);
         taistelu.lisaaHirvio(orkki2);
     }
@@ -56,7 +56,7 @@ public class OrkkiTest {
     
     @Test 
     public void orkkiLiikkuuKohtiPelaajaaXakselillaKunYkoordinaattiSamaKuinPelaajalla(){
-        Orkki orkki3 = new Orkki(2,0,1,3);
+        Hirvio orkki3 = new Hirvio(2,0,1,3,0);
         taistelu.lisaaHirvio(orkki3);
         orkki3.toimi();
         assert(orkki3.getX() == 1 && orkki3.getY() == 0);
@@ -64,7 +64,7 @@ public class OrkkiTest {
     
     @Test
     public void orkkiHyokkaaKunPelaajaHyokkaysalueella(){
-        Orkki orkki4 = new Orkki(1,0,1,3);
+        Hirvio orkki4 = new Hirvio(1,0,1,3,0);
         taistelu.lisaaHirvio(orkki4);
         assert(orkki4.hyokkaysalueella(pelaaja));
         orkki4.toimi();

@@ -1,7 +1,6 @@
 
 package hirvioluola.loitsut;
 
-import hirvioluola.domain.Loitsija;
 import hirvioluola.domain.Pelaaja;
 import hirvioluola.domain.Taistelija;
 import hirvioluola.peli.Taistelu;
@@ -18,7 +17,7 @@ public class Salama implements Loitsu, ToimintoJolleValitaanRuutu {
     }    
 
     @Override
-    public void suorita(Loitsija loitsija) {
+    public void suorita(Taistelija loitsija) {
         if(!(loitsija instanceof Pelaaja)){
             kohde = loitsija.getTaistelu().getPelaaja();
         }
@@ -38,7 +37,7 @@ public class Salama implements Loitsu, ToimintoJolleValitaanRuutu {
     
     @Override
     public String toString(){
-        return "Salama, vahingoitaa: " + vahinko + " hp, kuluttaa: " + kuluttaaMPta() + " mp";
+        return "Salama, vahingoittaa: " + vahinko + " hp, kuluttaa: " + kuluttaaMPta() + " mp";
     }
 
     @Override

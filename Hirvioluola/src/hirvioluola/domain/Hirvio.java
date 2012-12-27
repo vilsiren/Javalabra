@@ -4,12 +4,12 @@ import hirvioluola.peli.Taistelu;
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class Orkki extends Taistelija{
+public class Hirvio extends Taistelija{
     
     private Pelaaja pelaaja;
 
-    public Orkki(int x, int y, int voima, int hpMax) {
-        super(x, y, voima, hpMax);
+    public Hirvio(int x, int y, int voima, int hpMax, int mpMax) {
+        super(x, y, voima, hpMax, mpMax);
     }
     
     @Override
@@ -89,7 +89,6 @@ public class Orkki extends Taistelija{
         return liikkuu;
     }
     
-    @Override
     public void toimi() {
         if(hyokkaysalueella(pelaaja)) { 
             hyokkaa(pelaaja);

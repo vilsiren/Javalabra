@@ -5,7 +5,7 @@ package hirvioluola.peli;
  * and open the template in the editor.
  */
 
-import hirvioluola.domain.Orkki;
+import hirvioluola.domain.Hirvio;
 import hirvioluola.domain.Pelaaja;
 import hirvioluola.peli.Taistelu;
 import org.junit.After;
@@ -19,13 +19,13 @@ public class TaisteluTest {
     
     Taistelu taistelu;
     Pelaaja pelaaja;
-    Orkki orkki1;
-    Orkki orkki2;
+    Hirvio orkki1;
+    Hirvio orkki2;
     
     @Before
     public void setUp() {
-        orkki1 = new Orkki(9,9,1,2);
-        orkki2 = new Orkki(8,9,1,2);      
+        orkki1 = new Hirvio(9,9,1,2,0);
+        orkki2 = new Hirvio(8,9,1,2,0);      
         pelaaja = new Pelaaja(0,0,1,5,5);
         taistelu = new Taistelu(pelaaja,10,10);
         taistelu.lisaaHirvio(orkki1);
@@ -41,7 +41,7 @@ public class TaisteluTest {
     
     @Test
     public void hirviotaEiLisataJosListassaOnHirvioSamoillaKoordinaateilla(){
-        Orkki orkki3 = new Orkki(orkki1.getX(),orkki2.getY(),1,2);
+        Hirvio orkki3 = new Hirvio(orkki1.getX(),orkki2.getY(),1,2,0);
         taistelu.lisaaHirvio(orkki3);
         assert(!taistelu.getHirviot().contains(orkki3));
         assert(orkki3.getTaistelu() == null);

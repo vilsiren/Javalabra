@@ -46,7 +46,9 @@ public class Kayttoliittyma implements Runnable {
  
     public void luoKomponentit(Container container) {
         alusta = new Piirtoalusta(taistelu);
+        alusta.setFocusable(true);
         status = new JLabel();
+        status.setFocusable(true);
         GridLayout layout = new GridLayout(2, 1);
         container.setLayout(layout);
         container.add(status);

@@ -1,6 +1,6 @@
 package hirvioluola.loitsut;
 
-import hirvioluola.domain.Loitsija;
+import hirvioluola.domain.Taistelija;
 
 public class Parannus implements Loitsu{
     
@@ -13,7 +13,7 @@ public class Parannus implements Loitsu{
     }
 
     @Override
-    public void suorita(Loitsija loitsija) {
+    public void suorita(Taistelija loitsija) {
         loitsija.parannu(parannus);
     }
     

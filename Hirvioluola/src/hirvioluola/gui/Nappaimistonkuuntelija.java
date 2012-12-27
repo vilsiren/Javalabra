@@ -4,6 +4,7 @@ package hirvioluola.gui;
 
 import hirvioluola.peli.Taistelu;
 import java.awt.Component;
+import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
@@ -21,15 +22,21 @@ public class Nappaimistonkuuntelija implements KeyListener{
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-            taistelu.setKomento("a");
-        } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            taistelu.setKomento("d");
-        } else if (e.getKeyCode() == KeyEvent.VK_UP) {
-            taistelu.setKomento("w");
-        } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-            taistelu.setKomento("s");
-        }         
+//        if (e.getKeyCode() == KeyEvent.VK_A) {
+//            taistelu.setKomento("a");
+//        } else if (e.getKeyCode() == KeyEvent.VK_D) {
+//            taistelu.setKomento("d");
+//        } else if (e.getKeyCode() == KeyEvent.VK_W) {
+//            taistelu.setKomento("w");
+//        } else if (e.getKeyCode() == KeyEvent.VK_X) {
+//            taistelu.setKomento("x");
+//        }
+        String komento = "" + e.getKeyChar();
+        if(taistelu.suunnat.contains(komento)){
+            taistelu.setKomento("" + e.getKeyChar());
+            taistelu.kierros();
+            
+        }
     }
 
     @Override

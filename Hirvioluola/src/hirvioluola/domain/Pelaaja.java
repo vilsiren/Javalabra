@@ -5,7 +5,7 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 
 
-public class Pelaaja extends Loitsija {
+public class Pelaaja extends Taistelija {
     
     private int kokemuspisteet;
     
@@ -16,10 +16,6 @@ public class Pelaaja extends Loitsija {
         this.loitsut = new ArrayList<>();
         this.kokemuspisteet = 0;
     }    
-
-    @Override
-    public void toimi() {
-    }
 
     @Override
     public void piirra(Graphics g) {

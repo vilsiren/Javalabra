@@ -1,8 +1,9 @@
 
 package hirvioluola.loitsut;
 
-import hirvioluola.domain.Loitsija;
+
 import hirvioluola.domain.Pelaaja;
+import hirvioluola.domain.Taistelija;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,7 +12,7 @@ import static org.junit.Assert.*;
 public class ParannusTest {
     
     private Parannus parannus;
-    private Loitsija loitsija;
+    private Taistelija loitsija;
     private int kuluttaaMPta;
     private int parantaaHPta;
     

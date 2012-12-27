@@ -1,8 +1,7 @@
 
 package hirvioluola.loitsut;
 
-import hirvioluola.domain.Loitsija;
-import hirvioluola.domain.Orkki;
+import hirvioluola.domain.Hirvio;
 import hirvioluola.domain.Pelaaja;
 import hirvioluola.peli.Taistelu;
 import org.junit.After;
@@ -15,7 +14,7 @@ public class SalamaTest {
     
     private Salama salama;
     private Pelaaja pelaaja;
-    private Orkki orkki;
+    private Hirvio orkki;
     private Taistelu taistelu;
     private int vahinko;
     
@@ -25,7 +24,7 @@ public class SalamaTest {
         vahinko = 4;
         salama = new Salama(2,vahinko);
         pelaaja = new Pelaaja(0,0,2,5,5);
-        orkki = new Orkki(3,3,2,5);
+        orkki = new Hirvio(3,3,2,5,0);
         taistelu = new Taistelu(pelaaja,10,10);
         taistelu.lisaaHirvio(orkki);
     }

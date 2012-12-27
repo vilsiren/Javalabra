@@ -1,6 +1,5 @@
 package hirvioluola.loitsut;
 
-import hirvioluola.domain.Loitsija;
 import hirvioluola.domain.Pelaaja;
 import hirvioluola.domain.Taistelija;
 import hirvioluola.peli.Taistelu;
@@ -15,7 +14,7 @@ public class Teleportaatio implements Loitsu, ToimintoJolleValitaanRuutu{
     }
     
     @Override
-    public void suorita(Loitsija loitsija){
+    public void suorita(Taistelija loitsija){
         loitsija.setX(x);
         loitsija.setY(y);                        
     }
