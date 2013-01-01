@@ -19,7 +19,7 @@ public class Parannus extends Loitsu{
     
     @Override
     public String toString(){
-        return "Parannus, parantaa: " + parannus + " hp, kuluttaa: " + kuluttaaMPta() + "mp";
+        return "Parannus, parantaa: " + parannus + " hp, kuluttaa: " + kuluttaaMPta() +  "mp";
     }
 
     @Override

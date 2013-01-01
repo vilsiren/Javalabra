@@ -9,8 +9,8 @@ public class Pelaaja extends Taistelija {
     
     private int kokemuspisteet;
     
-    public Pelaaja(int x, int y, int voima, int hpMax, int mpMax) {
-        super(x, y, voima, hpMax, mpMax);
+    public Pelaaja(int voima, int hpMax, int mpMax) {
+        super(voima, hpMax, mpMax);
         this.mpMax = mpMax;
         this.mp = mpMax;
         this.loitsut = new ArrayList<>();

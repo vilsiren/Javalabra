@@ -21,7 +21,7 @@ public class ParannusTest {
         kuluttaaMPta = 2;
         parantaaHPta = 3;
         parannus = new Parannus(kuluttaaMPta, parantaaHPta);
-        loitsija = new Pelaaja(0,0,2,5,5);
+        loitsija = new Pelaaja(2,5,5);
         loitsija.vahingoitu(4);
     }
     

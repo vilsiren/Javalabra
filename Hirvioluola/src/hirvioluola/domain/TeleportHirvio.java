@@ -8,8 +8,8 @@ public class TeleportHirvio extends Hirvio{
     
     private Teleportaatio teleport;
 
-    public TeleportHirvio(int x, int y, int voima, int hpMax, int mpMax) {
-        super(x, y, voima, hpMax, mpMax);
+    public TeleportHirvio(int voima, int hpMax, int mpMax) {
+        super(voima, hpMax, mpMax);
         teleport = new Teleportaatio(4);
     }
     

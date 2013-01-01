@@ -23,7 +23,9 @@ public class Tulikeha extends Loitsu{
     @Override
     public void teeLoitsu(Taistelija loitsija) {
         for(Hirvio h : loitsija.getTaistelu().getHirviot()){
-            if(Math.abs( h.getX() - loitsija.getX() ) <= sade && Math.abs( h.getY() - loitsija.getY()) <= sade){
+            if(Math.abs( h.getX() - loitsija.getX() ) <= sade && 
+                    Math.abs( h.getY() - loitsija.getY()) <= sade &&
+                    h != loitsija){
                 h.vahingoitu(vahinko);
             }
         }

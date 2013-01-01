@@ -23,23 +23,24 @@ public class Hirvioluola {
     private static Hirvio orkki2;    
 
     public static void main(String[] args) {
-        pelaaja = new Pelaaja(0,0,1,100,100);
+        pelaaja = new Pelaaja(1,100,100);
         pelaaja.lisaaLoitsu(new Parannus(2,5));
         pelaaja.lisaaLoitsu(new Salama(4,6));
         pelaaja.lisaaLoitsu(new Teleportaatio(2));
         pelaaja.lisaaLoitsu(new Taikanuoli(2,5, true));
         pelaaja.lisaaLoitsu(new Tulikeha(3,2));
-        taistelu = new Taistelu(pelaaja,10,10);
-        orkki1 = new Hirvio(3,3,1,3,0);
-        orkki2 = new Hirvio(3,2,1,3,0); 
-        taistelu.lisaaHirvio(orkki1);
-        taistelu.lisaaHirvio(orkki2);
-        taistelu.lisaaHirvio(new Hirvio(2,4,1,3,0));
-        taistelu.lisaaHirvio(new Hirvio(1,4,1,3,0));
-        taistelu.lisaaHirvio(new Hirvio(6,8,1,3,0));
-        taistelu.lisaaHirvio(new Hirvio(7,8,1,3,0));
-        taistelu.lisaaHirvio(new Hirvio(8,8,1,3,0));
-        taistelu.lisaaHirvio(new TeleportHirvio(9,3,4,10,10));
+        taistelu = new Taistelu(10,10);
+        taistelu.setPelaaja(pelaaja,0,0);
+        orkki1 = new Hirvio(1,3,0);
+        orkki2 = new Hirvio(1,3,0); 
+        taistelu.lisaaHirvio(orkki1,3,3);
+        taistelu.lisaaHirvio(orkki2,3,2);
+        taistelu.lisaaHirvio(new Hirvio(1,3,0),2,4);
+        taistelu.lisaaHirvio(new Hirvio(1,3,0),1,4);
+        taistelu.lisaaHirvio(new Hirvio(1,3,0),6,8);
+        taistelu.lisaaHirvio(new Hirvio(1,3,0),7,8);
+        taistelu.lisaaHirvio(new Hirvio(1,3,0),8,8);
+        taistelu.lisaaHirvio(new TeleportHirvio(4,10,10),9,3);
         taistelu.suorita();
 //        Kayttoliittyma kali = new Kayttoliittyma(taistelu);
 //        

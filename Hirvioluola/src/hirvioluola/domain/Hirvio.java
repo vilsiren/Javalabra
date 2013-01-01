@@ -8,8 +8,8 @@ public class Hirvio extends Taistelija{
     
     protected Pelaaja pelaaja;
 
-    public Hirvio(int x, int y, int voima, int hpMax, int mpMax) {
-        super(x, y, voima, hpMax, mpMax);
+    public Hirvio(int voima, int hpMax, int mpMax) {
+        super(voima, hpMax, mpMax);
     }
     
     @Override

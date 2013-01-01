@@ -25,15 +25,20 @@ public class Taistelu {
     private JLabel status;
     private String komento;
 
-    public Taistelu(Pelaaja pelaaja, int leveys, int korkeus) {
+    public Taistelu(int leveys, int korkeus) {
 
-        this.pelaaja = pelaaja;        
-        pelaaja.setTaistelu(this);
         this.hirviot = new ArrayList<>();
         this.leveys = leveys;
         this.korkeus = korkeus;
         lukija = new Scanner(System.in);
         komento = "";
+    }
+    
+    public void setPelaaja(Pelaaja pelaaja, int x, int y){
+        this.pelaaja = pelaaja;
+        pelaaja.setTaistelu(this);
+        pelaaja.setX(x);
+        pelaaja.setY(y);
     }
     
     public void setKomento(String komento){
@@ -48,20 +53,22 @@ public class Taistelu {
         this.status = status;
     }
     
-    public void lisaaHirvio(Hirvio hirvio){
-        if(hirvio.getX() == pelaaja.getX() && hirvio.getY() == pelaaja.getY()){
+    public void lisaaHirvio(Hirvio hirvio, int x, int y){
+        if(x == pelaaja.getX() && y == pelaaja.getY()){
             return;
         }
-        if( !taistelukentanSisalla( hirvio.getX(), hirvio.getY() ) ){
+        if( !taistelukentanSisalla( x, y ) ){
             return;
         }
         for(Hirvio hirvio2 : hirviot){
-            if(hirvio.getX() == hirvio2.getX() && hirvio.getY() == hirvio2.getY()){
+            if(x == hirvio2.getX() && y == hirvio2.getY()){
                 return;
             }          
         }
         hirviot.add(hirvio);
         hirvio.setTaistelu(this);
+        hirvio.setX(x);
+        hirvio.setY(y);
     }
 
     public Pelaaja getPelaaja() {
@@ -109,7 +116,7 @@ public class Taistelu {
     }          
         
     public void hirviotToimii(){
-        for(Hirvio hirvio : hirviot){
+        for(Hirvio hirvio : hirviot){            
             hirvio.toimi();
         }
     }
@@ -129,12 +136,14 @@ public class Taistelu {
         
         kartta[pelaaja.getX()][pelaaja.getY()] = pelaaja.merkki();
         
+        System.out.println();
         for (int y = 0; y < korkeus; y++) {
             for (int x = 0; x < leveys; x++) {
                 System.out.print(kartta[x][y]);
             }
             System.out.println();
-        }        
+        }
+        System.out.println();
     }
     
     private void tulostaPelaajanLoitsut(){

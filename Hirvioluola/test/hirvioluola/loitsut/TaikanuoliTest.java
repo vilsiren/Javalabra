@@ -23,12 +23,13 @@ public class TaikanuoliTest {
     public void setUp() {
         lapaiseva = new Taikanuoli(2,vahinko,true);
         eiLapaiseva = new Taikanuoli(2,vahinko,false);
-        pelaaja = new Pelaaja(0,0,2,5,5);
-        orkki = new Hirvio(0,3,2,5,0);
-        orkki2 = new Hirvio(0,5,2,5,0);
-        taistelu = new Taistelu(pelaaja,10,10);
-        taistelu.lisaaHirvio(orkki);
-        taistelu.lisaaHirvio(orkki2);
+        pelaaja = new Pelaaja(2,5,5);
+        orkki = new Hirvio(2,5,0);
+        orkki2 = new Hirvio(2,5,0);
+        taistelu = new Taistelu(10,10);
+        taistelu.setPelaaja(pelaaja, 0,0);
+        taistelu.lisaaHirvio(orkki,0,3);
+        taistelu.lisaaHirvio(orkki2, 0, 5);
     }
     
     @Test

@@ -23,10 +23,11 @@ public class SalamaTest {
     public void setUp() {
         vahinko = 4;
         salama = new Salama(2,vahinko);
-        pelaaja = new Pelaaja(0,0,2,5,5);
-        orkki = new Hirvio(3,3,2,5,0);
-        taistelu = new Taistelu(pelaaja,10,10);
-        taistelu.lisaaHirvio(orkki);
+        pelaaja = new Pelaaja(2,5,5);
+        orkki = new Hirvio(2,5,0);
+        taistelu = new Taistelu(10,10);
+        taistelu.setPelaaja(pelaaja,0,0);
+        taistelu.lisaaHirvio(orkki,3,3);
     }
     
     @Test

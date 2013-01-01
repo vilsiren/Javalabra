@@ -16,12 +16,13 @@ public class HirvioTest {
     
     @Before
     public void setUp() {
-        pelaaja = new Pelaaja(0,0,1,5,5);
-        taistelu = new Taistelu(pelaaja,10,10);
-        orkki1 = new Hirvio(4,3,1,3,0);
-        orkki2 = new Hirvio(3,2,1,3,0); 
-        taistelu.lisaaHirvio(orkki1);
-        taistelu.lisaaHirvio(orkki2);
+        pelaaja = new Pelaaja(1,5,5);
+        taistelu = new Taistelu(10,10);
+        taistelu.setPelaaja(pelaaja,0,0);
+        orkki1 = new Hirvio(1,3,0);
+        orkki2 = new Hirvio(1,3,0); 
+        taistelu.lisaaHirvio(orkki1,4,3);
+        taistelu.lisaaHirvio(orkki2,3,2);
     }
     
     @Test
@@ -58,16 +59,16 @@ public class HirvioTest {
     
     @Test 
     public void orkkiLiikkuuKohtiPelaajaaXakselillaKunYkoordinaattiSamaKuinPelaajalla(){
-        Hirvio orkki3 = new Hirvio(2,0,1,3,0);
-        taistelu.lisaaHirvio(orkki3);
+        Hirvio orkki3 = new Hirvio(1,3,0);
+        taistelu.lisaaHirvio(orkki3, 2, 0);
         orkki3.toimi();
         assert(orkki3.getX() == 1 && orkki3.getY() == 0);
     }
     
     @Test
     public void orkkiHyokkaaKunPelaajaHyokkaysalueella(){
-        Hirvio orkki4 = new Hirvio(1,0,1,3,0);
-        taistelu.lisaaHirvio(orkki4);
+        Hirvio orkki4 = new Hirvio(1,3,0);
+        taistelu.lisaaHirvio(orkki4, 1, 0);
         assert(orkki4.hyokkaysalueella(pelaaja));
         orkki4.toimi();
         assert(pelaaja.getHp() == pelaaja.getHpMax() - orkki4.getVoima());        

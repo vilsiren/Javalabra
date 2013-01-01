@@ -28,9 +28,7 @@ public abstract class Taistelija {
         return voima;
     }
 
-    public Taistelija(int x, int y, int voima, int hpMax, int mpMax) {
-        this.x = x;
-        this.y = y;
+    public Taistelija(int voima, int hpMax, int mpMax) {
         this.voima = voima;
         this.hpMax = hpMax;
         this.hp = hpMax;
