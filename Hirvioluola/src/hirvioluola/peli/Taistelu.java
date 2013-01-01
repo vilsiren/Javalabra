@@ -123,11 +123,11 @@ public class Taistelu {
             }
         }        
         
-            for (Taistelija h : hirviot) {
-                kartta[h.getX()][h.getY()] = 'h';
+            for (Hirvio h : hirviot) {
+                kartta[h.getX()][h.getY()] = h.merkki();
             }        
         
-        kartta[pelaaja.getX()][pelaaja.getY()] = '@';
+        kartta[pelaaja.getX()][pelaaja.getY()] = pelaaja.merkki();
         
         for (int y = 0; y < korkeus; y++) {
             for (int x = 0; x < leveys; x++) {
@@ -148,7 +148,7 @@ public class Taistelu {
             return;
         }
         Loitsu loitsu = pelaaja.getLoitsut().get(loitsunNumero);
-        if(pelaaja.teeLoitsu(loitsu) == false){
+        if(pelaaja.getMp() < loitsu.kuluttaaMPta() ){
             return;
         }
         
@@ -241,14 +241,15 @@ public class Taistelu {
     
     private void liikutaPelaajaa(int dx, int dy){       
              
-            if(taistelukentanSisalla(pelaaja.getX() + dx, pelaaja.getY() + dy)){
-                boolean liikkuu = pelaaja.liiku(dx, dy);
-                if(!liikkuu){
-                    for(Taistelija hirvio : hirviot){
-                        if(hirvio.getX() == pelaaja.getX() + dx && hirvio.getY() == pelaaja.getY() + dy){
-                            pelaaja.hyokkaa(hirvio);
-                        }
-                    }             
+            int x = pelaaja.getX() + dx;
+            int y = pelaaja.getY() + dy;
+            if(taistelukentanSisalla(x, y)){
+                Hirvio hirvio = hirvioRuudussa(x,y);
+                if(hirvio != null){
+                    pelaaja.hyokkaa(hirvio);
+                }
+                else{
+                    pelaaja.liiku(dx, dy);
                 }
             }        
         

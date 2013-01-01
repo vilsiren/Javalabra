@@ -23,5 +23,10 @@ public class Pelaaja extends Taistelija {
         g.fillOval(x*20, y*20, 20, 20);        
     }
 
+    @Override
+    public char merkki() {
+        return '@';
+    }
+
     
 }

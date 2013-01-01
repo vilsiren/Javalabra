@@ -5,7 +5,7 @@ import hirvioluola.domain.Hirvio;
 import hirvioluola.domain.Taistelija;
 
 
-public class Tulikeha implements Loitsu{
+public class Tulikeha extends Loitsu{
     
     private int sade;
     private int vahinko;
@@ -21,7 +21,7 @@ public class Tulikeha implements Loitsu{
     }
 
     @Override
-    public void suorita(Taistelija loitsija) {
+    public void teeLoitsu(Taistelija loitsija) {
         for(Hirvio h : loitsija.getTaistelu().getHirviot()){
             if(Math.abs( h.getX() - loitsija.getX() ) <= sade && Math.abs( h.getY() - loitsija.getY()) <= sade){
                 h.vahingoitu(vahinko);

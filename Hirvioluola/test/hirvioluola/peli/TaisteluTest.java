@@ -34,7 +34,8 @@ public class TaisteluTest {
     
     @Test
     public void hirvionLisaysToimii(){        
-        assert(taistelu.getHirviot().size() == 2);
+        assert(taistelu.getHirviot().contains(orkki1));
+        assert(taistelu.getHirviot().contains(orkki2));
         assert(orkki1.getTaistelu() == taistelu);
         assert(orkki2.getTaistelu() == taistelu);
     }
@@ -49,7 +50,8 @@ public class TaisteluTest {
     
     @Test
     public void taistelukentanSisallaTrueJosSisalla(){
-        assert(taistelu.taistelukentanSisalla(0, 9));
+        assert(taistelu.taistelukentanSisalla(taistelu.getLeveys() - 1, taistelu.getKorkeus() -1));
+        assert(taistelu.taistelukentanSisalla(0, 0));
     }
     
     @Test
@@ -70,7 +72,18 @@ public class TaisteluTest {
     @Test
     public void taistelukentanSisallaFalseJosYonNegatiivinen(){
         assert(!taistelu.taistelukentanSisalla(0, -1));
-    }    
+    }
+    
+    @Test
+    public void hirvioRuudussaPalauttaaOikeanHirvion(){
+        assert(taistelu.hirvioRuudussa( orkki1.getX(), orkki1.getY() ) == orkki1);
+        assert(taistelu.hirvioRuudussa( orkki2.getX(), orkki2.getY() ) == orkki2);
+    }
+    
+    @Test
+    public void hirvioRuudussaPalauttaaNullJosRuudussaEiHirviota(){
+        assert(taistelu.hirvioRuudussa(5,5) == null);
+    }
     
     @Test
     public void hirviolistaPaivittyy(){

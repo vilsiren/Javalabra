@@ -2,9 +2,17 @@ package hirvioluola.loitsut;
 
 import hirvioluola.domain.Taistelija;
 
-public interface Loitsu {  
+public abstract class Loitsu {  
     
-    int kuluttaaMPta();        
-    void suorita(Taistelija loitsija);
+    public abstract int kuluttaaMPta();        
+    
+    protected abstract void teeLoitsu(Taistelija loitsija);
+    
+    public void suorita(Taistelija loitsija){
+        if(loitsija.getMp() >= kuluttaaMPta()){
+            loitsija.vahennaMPta( kuluttaaMPta() );
+            teeLoitsu(loitsija);
+        }        
+    }
     
 }

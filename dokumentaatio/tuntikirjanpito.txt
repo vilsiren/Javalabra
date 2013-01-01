@@ -5,3 +5,4 @@ pvm       käytetty aika   ajankäytön kohde
 18.12     2 h             alustavaa luokkien Taistelija, Orkki ja Pelaaja koodausta;
 19.12     3 h	          luokka Taistelu, aiempien luokkien säätöä, testausta;
 25.12     1 h             viistosuunnat lisäys, hirvioiden toimintalogiikan kehittely
+1.1       30 min          testien päivittelyä

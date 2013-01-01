@@ -1,11 +1,12 @@
 
 package hirvioluola.loitsut;
 
+import hirvioluola.domain.Hirvio;
 import hirvioluola.domain.Pelaaja;
 import hirvioluola.domain.Taistelija;
 import hirvioluola.peli.Taistelu;
 
-public class Salama implements Loitsu, ToimintoJolleValitaanRuutu {
+public class Salama extends Loitsu implements ToimintoJolleValitaanRuutu {
     
     private int vahinko;
     private Taistelija kohde;
@@ -17,7 +18,7 @@ public class Salama implements Loitsu, ToimintoJolleValitaanRuutu {
     }    
 
     @Override
-    public void suorita(Taistelija loitsija) {
+    public void teeLoitsu(Taistelija loitsija) {
         if(!(loitsija instanceof Pelaaja)){
             kohde = loitsija.getTaistelu().getPelaaja();
         }
@@ -26,13 +27,14 @@ public class Salama implements Loitsu, ToimintoJolleValitaanRuutu {
 
     @Override
     public boolean setRuutu(int x, int y, Taistelu taistelu) {
-        for(Taistelija hirvio : taistelu.getHirviot()){
-            if(hirvio.getX() == x && hirvio.getY() == y){
-                kohde = hirvio;
-                return true;
-            }
+        Hirvio hirvio = taistelu.hirvioRuudussa(x,y);
+        if(hirvio == null){
+            return false;
         }
-        return false;
+        else{
+            kohde = hirvio;
+            return true;
+        }
     }
     
     @Override

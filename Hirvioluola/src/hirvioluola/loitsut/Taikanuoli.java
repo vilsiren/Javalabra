@@ -1,11 +1,12 @@
 
 package hirvioluola.loitsut;
 
+import hirvioluola.domain.Hirvio;
 import hirvioluola.domain.Pelaaja;
 import hirvioluola.domain.Taistelija;
 import hirvioluola.peli.Taistelu;
 
-public class Taikanuoli implements Loitsu, ToimintoJolleValitaanSuunta{
+public class Taikanuoli extends Loitsu implements ToimintoJolleValitaanSuunta{
     
     private int vahinko, dx, dy, kuluttaaMPta;
     private boolean lapaiseva;
@@ -17,17 +18,16 @@ public class Taikanuoli implements Loitsu, ToimintoJolleValitaanSuunta{
     }
     
     @Override
-    public void suorita(Taistelija loitsija){
+    public void teeLoitsu(Taistelija loitsija){
         Taistelu taistelu = loitsija.getTaistelu();
         Pelaaja pelaaja = taistelu.getPelaaja();
         int y = pelaaja.getY() + dy;
         int x = pelaaja.getX() + dx;
         while(taistelu.taistelukentanSisalla(x, y)){            
-            for(Taistelija hirvio : taistelu.getHirviot()){
-                if(hirvio.getX() == x && hirvio.getY() == y){
-                    hirvio.vahingoitu(vahinko);
-                    if(!lapaiseva) return;
-                }
+            Hirvio hirvio = taistelu.hirvioRuudussa(x, y);
+            if(hirvio != null){
+                hirvio.vahingoitu(vahinko);
+                if(!lapaiseva) return;
             }
             x += dx;
             y += dy;

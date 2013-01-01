@@ -3,6 +3,7 @@ package hirvioluola;
 
 import hirvioluola.domain.Hirvio;
 import hirvioluola.domain.Pelaaja;
+import hirvioluola.domain.TeleportHirvio;
 import hirvioluola.gui.Kayttoliittyma;
 import hirvioluola.gui.Piirtoalusta;
 import hirvioluola.loitsut.Parannus;
@@ -37,20 +38,21 @@ public class Hirvioluola {
         taistelu.lisaaHirvio(new Hirvio(1,4,1,3,0));
         taistelu.lisaaHirvio(new Hirvio(6,8,1,3,0));
         taistelu.lisaaHirvio(new Hirvio(7,8,1,3,0));
-        taistelu.lisaaHirvio(new Hirvio(8,8,1,3,0));      
-        //taistelu.suorita();
-        Kayttoliittyma kali = new Kayttoliittyma(taistelu);
-        
-        SwingUtilities.invokeLater(kali);
-        while (kali.getAlusta() == null) {
-            try {
-                Thread.sleep(100);
-            } catch (InterruptedException ex) {
-                System.out.println("Piirtoalustaa ei ole vielä luotu.");
-            }
-        }        
-        taistelu.setAlusta(kali.getAlusta());
-        taistelu.setStatus(kali.getStatus());
+        taistelu.lisaaHirvio(new Hirvio(8,8,1,3,0));
+        taistelu.lisaaHirvio(new TeleportHirvio(9,3,4,10,10));
+        taistelu.suorita();
+//        Kayttoliittyma kali = new Kayttoliittyma(taistelu);
+//        
+//        SwingUtilities.invokeLater(kali);
+//        while (kali.getAlusta() == null) {
+//            try {
+//                Thread.sleep(100);
+//            } catch (InterruptedException ex) {
+//                System.out.println("Piirtoalustaa ei ole vielä luotu.");
+//            }
+//        }        
+//        taistelu.setAlusta(kali.getAlusta());
+//        taistelu.setStatus(kali.getStatus());
         
         
 

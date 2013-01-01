@@ -2,7 +2,7 @@ package hirvioluola.loitsut;
 
 import hirvioluola.domain.Taistelija;
 
-public class Parannus implements Loitsu{
+public class Parannus extends Loitsu{
     
     private int parannus;
     private int kuluttaaMPta;
@@ -13,7 +13,7 @@ public class Parannus implements Loitsu{
     }
 
     @Override
-    public void suorita(Taistelija loitsija) {
+    public void teeLoitsu(Taistelija loitsija) {
         loitsija.parannu(parannus);
     }
     

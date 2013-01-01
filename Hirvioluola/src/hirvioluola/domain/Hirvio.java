@@ -6,7 +6,7 @@ import java.awt.Graphics;
 
 public class Hirvio extends Taistelija{
     
-    private Pelaaja pelaaja;
+    protected Pelaaja pelaaja;
 
     public Hirvio(int x, int y, int voima, int hpMax, int mpMax) {
         super(x, y, voima, hpMax, mpMax);
@@ -45,48 +45,65 @@ public class Hirvio extends Taistelija{
     private void lahestyPelaajaa(){
         if(suuntaY() == 0){
             lahestyPelaajaaXakselilla();
-            return;
         }
         
-        if(suuntaX() == 0 ){
+        else if(suuntaX() == 0 ){
             lahestyPelaajaaYakselilla();
-            return;
         }
-        
-        boolean liikkuu = liiku( suuntaX(), suuntaY() );
-        
-        if(!liikkuu){
-            liikkuu = lahestyPelaajaaYakselilla();
-            if(!liikkuu){
-                lahestyPelaajaaXakselilla();
-            }
-        }                
-    }
-    
-    private boolean lahestyPelaajaaXakselilla(){
-        boolean liikkuu = liiku( suuntaX(), 0 );
-        if(!liikkuu){
-            if(taistelu.taistelukentanSisalla(x + suuntaX() , y + 1) ){
-                liikkuu = liiku(suuntaX(), 1);
-            }
-            if(!liikkuu && taistelu.taistelukentanSisalla(x + suuntaX(), y - 1) ){
-                liikkuu = liiku(suuntaX(), -1);
-            }
+        else if( suuntaanVoiLiikkua(suuntaX(), suuntaY()) ){
+            liiku(suuntaX(), suuntaY());
+
+        }        
+        else if(!lahestyPelaajaaYakselilla()){
+            lahestyPelaajaaXakselilla();
         }
-        return liikkuu;
     }
+    private boolean lahestyPelaajaaXakselilla(){        
+        if(suuntaanVoiLiikkua(suuntaX(), 0) ){
+            liiku(suuntaX(), 0);
+            return true;
+        }
+        else if(suuntaanVoiLiikkua(suuntaX(), 1)){
+            liiku(suuntaX(), 1);
+            return true;
+        }
+        else if(suuntaanVoiLiikkua(suuntaX(), -1)){
+            liiku(suuntaX(), -1);
+            return true;
+        }
+        else{
+            return false;
+        }
+    }       
     
     private boolean lahestyPelaajaaYakselilla(){        
-        boolean liikkuu = liiku( 0, suuntaY() );
-        if(!liikkuu){
-            if(taistelu.taistelukentanSisalla(x + 1 , y + suuntaY() ) ){
-                liikkuu = liiku(1, suuntaY());
-            }
-            if(!liikkuu && taistelu.taistelukentanSisalla(x - 1, y + suuntaY() ) ){
-                liikkuu = liiku(-1, suuntaY());
-            }
+        if(suuntaanVoiLiikkua( 0, suuntaY() ) ){
+            liiku(0, suuntaY() );
+            return true;
         }
-        return liikkuu;
+        else if(suuntaanVoiLiikkua( 1, suuntaY() )){
+            liiku(1, suuntaY());
+            return true;
+        }
+        else if(suuntaanVoiLiikkua( -1, suuntaY() )){
+            liiku(-1, suuntaY());
+            return true;
+        }
+        else{
+            return false;
+        }
+    }    
+    
+    private boolean suuntaanVoiLiikkua(int dx, int dy){
+        if(!taistelu.taistelukentanSisalla(x + dx, y + dy)){
+            return false;
+        }
+        if(taistelu.hirvioRuudussa(x + dx,y + dy) == null){
+           return true; 
+        }
+        else{
+            return false;
+        }
     }
     
     public void toimi() {
@@ -103,6 +120,11 @@ public class Hirvio extends Taistelija{
     public void piirra(Graphics g) {
         g.setColor(Color.GREEN);
         g.fillOval(x*20, y*20, 20, 20);
+    }
+
+    @Override
+    public char merkki() {
+        return 'h';
     }
     
 }

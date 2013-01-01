@@ -113,29 +113,24 @@ public abstract class Taistelija {
     
     public void lisaaLoitsu(Loitsu loitsu) {
         loitsut.add(loitsu);
-    }
+    }    
     
-    public boolean teeLoitsu(Loitsu loitsu){
-        if(mp < loitsu.kuluttaaMPta()){
-            return false;
-        }        
-        else{
-            mp -= loitsu.kuluttaaMPta();
-            return true;
+    public void vahennaMPta(int vahennys){
+        if(vahennys > this.mp){
+            this.mp = 0;
         }
-    }        
+        else{
+            this.mp -= vahennys;
+        }
+    }
     
     public abstract void piirra(Graphics g);
     
-    public boolean liiku(int dx, int dy){
-        for(Taistelija hirvio : taistelu.getHirviot()){
-            if(hirvio.getX() == this.x + dx && hirvio.getY() == this.y + dy){
-                return false;
-            }
-        }
+    public abstract char merkki();
+    
+    public void liiku(int dx, int dy){
         this.x += dx;
         this.y += dy;
-        return true;
     }
     
     public boolean hyokkaysalueella(Taistelija kohde){
@@ -146,5 +141,6 @@ public abstract class Taistelija {
     public void hyokkaa(Taistelija kohde){
         kohde.vahingoitu(this.voima);
     }
+    
     
 }

@@ -35,7 +35,7 @@ public class ParannusTest {
     @Test
     public void kuluttaaOikeanMaaranMPta() {
         int mpAluksi = loitsija.getMp();
-        loitsija.teeLoitsu(parannus);
+        parannus.suorita(loitsija);
         assert(loitsija.getMp() == mpAluksi - kuluttaaMPta);
     }
     

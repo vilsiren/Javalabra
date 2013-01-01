@@ -18,7 +18,7 @@ public class HirvioTest {
     public void setUp() {
         pelaaja = new Pelaaja(0,0,1,5,5);
         taistelu = new Taistelu(pelaaja,10,10);
-        orkki1 = new Hirvio(3,3,1,3,0);
+        orkki1 = new Hirvio(4,3,1,3,0);
         orkki2 = new Hirvio(3,2,1,3,0); 
         taistelu.lisaaHirvio(orkki1);
         taistelu.lisaaHirvio(orkki2);
@@ -41,17 +41,19 @@ public class HirvioTest {
     }
     
     @Test
-    public void orkki2LiikkuuKohtiPelaajaYakselillaKunKutsutaanMetodiaToimi(){
+    public void orkki2LiikkuuKohtiPelaajaaMolemmillaAkseleillaKunKutsutaanMetodiaToimi(){
+        int xAluksi = orkki2.getX();
+        int yAluksi = orkki2.getY();
         orkki2.toimi();
-        assert(orkki2.getX() == 3 && orkki2.getY() == 1);
+        assert(orkki2.getX() == xAluksi - 1 && orkki2.getY() == yAluksi - 1);
     }
     
     @Test
-    public void orkki1LiikkuuKohtiPelaajaaXakselillakunKutsutaanMetodiaToimi(){
-        //orkit liikkuvat ensisijaisesti y-akselilla kohti pelaajaa, mutta koska
-        //orkki2 on orkki1:n tiellä, orkki2 liikkuu x-akselilla
+    public void orkki1LiikkuuKohtiPelaajaaYakselillakunKutsutaanMetodiaToimi(){
+        int xAluksi = orkki1.getX();
+        int yAluksi = orkki1.getY();
         orkki1.toimi();
-        assert(orkki1.getX() == 2 && orkki1.getY() == 3);
+        assert(orkki1.getX() == xAluksi && orkki1.getY() == yAluksi - 1);
     }
     
     @Test 
