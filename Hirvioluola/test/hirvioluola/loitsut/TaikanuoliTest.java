@@ -28,8 +28,8 @@ public class TaikanuoliTest {
         orkki2 = new Hirvio(2,5,0);
         taistelu = new Taistelu(10,10);
         taistelu.setPelaaja(pelaaja, 0,0);
-        taistelu.lisaaHirvio(orkki,0,3);
-        taistelu.lisaaHirvio(orkki2, 0, 5);
+        taistelu.lisaaOlio(orkki,0,3);
+        taistelu.lisaaOlio(orkki2, 0, 5);
     }
     
     @Test

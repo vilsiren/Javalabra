@@ -6,3 +6,4 @@ pvm       käytetty aika   ajankäytön kohde
 19.12     3 h	          luokka Taistelu, aiempien luokkien säätöä, testausta;
 25.12     1 h             viistosuunnat lisäys, hirvioiden toimintalogiikan kehittely
 1.1       30 min          testien päivittelyä
+2.1       45 min          yläluokka Ruutuolio, luokka Este ja niihin liittyvät muutokset

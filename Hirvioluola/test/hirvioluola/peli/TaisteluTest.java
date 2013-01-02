@@ -29,8 +29,8 @@ public class TaisteluTest {
         pelaaja = new Pelaaja(1,5,5);
         taistelu = new Taistelu(10,10);
         taistelu.setPelaaja(pelaaja,0,0);
-        taistelu.lisaaHirvio(orkki1,9,9);
-        taistelu.lisaaHirvio(orkki2,8,9);          
+        taistelu.lisaaOlio(orkki1,9,9);
+        taistelu.lisaaOlio(orkki2,8,9);          
     }
     
     @Test
@@ -44,7 +44,7 @@ public class TaisteluTest {
     @Test
     public void hirviotaEiLisataJosListassaOnHirvioSamoillaKoordinaateilla(){
         Hirvio orkki3 = new Hirvio(1,2,0);
-        taistelu.lisaaHirvio(orkki3, orkki1.getX(), orkki1.getY());
+        taistelu.lisaaOlio(orkki3, orkki1.getX(), orkki1.getY());
         assert(!taistelu.getHirviot().contains(orkki3));
         assert(orkki3.getTaistelu() == null);
     }
@@ -76,20 +76,20 @@ public class TaisteluTest {
     }
     
     @Test
-    public void hirvioRuudussaPalauttaaOikeanHirvion(){
-        assert(taistelu.hirvioRuudussa( orkki1.getX(), orkki1.getY() ) == orkki1);
-        assert(taistelu.hirvioRuudussa( orkki2.getX(), orkki2.getY() ) == orkki2);
+    public void olioRuudussaPalauttaaOikeanOlion(){
+        assert(taistelu.olioRuudussa( orkki1.getX(), orkki1.getY() ) == orkki1);
+        assert(taistelu.olioRuudussa( orkki2.getX(), orkki2.getY() ) == orkki2);
     }
     
     @Test
     public void hirvioRuudussaPalauttaaNullJosRuudussaEiHirviota(){
-        assert(taistelu.hirvioRuudussa(5,5) == null);
+        assert(taistelu.olioRuudussa(5,5) == null);
     }
     
     @Test
     public void hirviolistaPaivittyy(){
         orkki1.vahingoitu(orkki1.getHp());
-        taistelu.paivitaHirviolista();
+        taistelu.paivitaListat();
         assert(!taistelu.getHirviot().contains(orkki1));
     }
 }

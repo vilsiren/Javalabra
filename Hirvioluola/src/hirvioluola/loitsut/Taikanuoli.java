@@ -3,6 +3,7 @@ package hirvioluola.loitsut;
 
 import hirvioluola.domain.Hirvio;
 import hirvioluola.domain.Pelaaja;
+import hirvioluola.domain.Ruutuolio;
 import hirvioluola.domain.Taistelija;
 import hirvioluola.peli.Taistelu;
 
@@ -24,9 +25,9 @@ public class Taikanuoli extends Loitsu implements ToimintoJolleValitaanSuunta{
         int y = pelaaja.getY() + dy;
         int x = pelaaja.getX() + dx;
         while(taistelu.taistelukentanSisalla(x, y)){            
-            Hirvio hirvio = taistelu.hirvioRuudussa(x, y);
-            if(hirvio != null){
-                hirvio.vahingoitu(vahinko);
+            Ruutuolio olio = taistelu.olioRuudussa(x, y);
+            if(olio != null){
+                olio.vahingoitu(vahinko);
                 if(!lapaiseva) return;
             }
             x += dx;

@@ -55,7 +55,13 @@ public class Hirvio extends Taistelija{
 
         }        
         else if(!lahestyPelaajaaYakselilla()){
-            lahestyPelaajaaXakselilla();
+            if(!lahestyPelaajaaXakselilla()){
+              for(Este e : super.taistelu.getEsteet()){
+                  if(hyokkaysalueella(e)){
+                      hyokkaa(e);
+                  }
+              }  
+            }
         }
     }
     private boolean lahestyPelaajaaXakselilla(){        
@@ -98,7 +104,7 @@ public class Hirvio extends Taistelija{
         if(!taistelu.taistelukentanSisalla(x + dx, y + dy)){
             return false;
         }
-        if(taistelu.hirvioRuudussa(x + dx,y + dy) == null){
+        if(taistelu.olioRuudussa(x + dx,y + dy) == null){
            return true; 
         }
         else{

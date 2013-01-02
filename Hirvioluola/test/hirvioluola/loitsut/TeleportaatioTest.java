@@ -23,7 +23,7 @@ public class TeleportaatioTest {
         orkki = new Hirvio(2,5,0);
         taistelu = new Taistelu(10,10);
         taistelu.setPelaaja(pelaaja,0,0);
-        taistelu.lisaaHirvio(orkki,3,3);        
+        taistelu.lisaaOlio(orkki,3,3);        
     }
     
     private boolean loitsijanKoordinaatitPysyySamanaKunYritaaTeleportataRuutuun(int x, int y){

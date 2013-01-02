@@ -7,17 +7,12 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Taistelija {
+public abstract class Taistelija extends Ruutuolio {
     
-    protected int x;
-    protected int y;
-    protected int hp;
-    protected int hpMax;
     protected int voima;
     protected int mp;
     protected int mpMax;
     protected List<Loitsu> loitsut;    
-    protected Taistelu taistelu;
     
 
     public int getHpMax() {
@@ -29,50 +24,13 @@ public abstract class Taistelija {
     }
 
     public Taistelija(int voima, int hpMax, int mpMax) {
-        this.voima = voima;
-        this.hpMax = hpMax;
-        this.hp = hpMax;
+        super(hpMax);
+        this.voima = voima;        
         this.mpMax = mpMax;
         this.mp = mpMax;
         loitsut = new ArrayList<>();        
     }
 
-    public void setX(int x) {
-        this.x = x;
-    }
-
-    public void setY(int y) {
-        this.y = y;
-    }
-
-    public int getX() {
-        return x;
-    }
-
-    public int getY() {
-        return y;
-    }    
-
-    public int getHp() {
-        return hp;
-    }
-    
-    public Taistelu getTaistelu() {
-        return this.taistelu;
-    }
-    
-    public void setTaistelu(Taistelu taistelu){
-        this.taistelu = taistelu;
-    }
-    
-    public void vahingoitu(int vahinko){
-        if(this.hp < vahinko){
-            this.hp = 0;
-        }
-        else{
-            this.hp -= vahinko;
-        }    
-    }
     
     public void parannu(int parannus){
         if(this.hp + parannus >= this.hpMax){
@@ -124,19 +82,17 @@ public abstract class Taistelija {
     
     public abstract void piirra(Graphics g);
     
-    public abstract char merkki();
-    
     public void liiku(int dx, int dy){
         this.x += dx;
         this.y += dy;
     }
     
-    public boolean hyokkaysalueella(Taistelija kohde){
+    public boolean hyokkaysalueella(Ruutuolio kohde){
         if(Math.abs(this.x - kohde.getX()) <= 1 && Math.abs(this.y - kohde.getY()) <= 1) return true;
         else return false;
     }
     
-    public void hyokkaa(Taistelija kohde){
+    public void hyokkaa(Ruutuolio kohde){
         kohde.vahingoitu(this.voima);
     }
     

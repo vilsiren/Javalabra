@@ -2,6 +2,7 @@
 package hirvioluola.loitsut;
 
 import hirvioluola.domain.Hirvio;
+import hirvioluola.domain.Ruutuolio;
 import hirvioluola.domain.Taistelija;
 
 
@@ -22,11 +23,11 @@ public class Tulikeha extends Loitsu{
 
     @Override
     public void teeLoitsu(Taistelija loitsija) {
-        for(Hirvio h : loitsija.getTaistelu().getHirviot()){
-            if(Math.abs( h.getX() - loitsija.getX() ) <= sade && 
-                    Math.abs( h.getY() - loitsija.getY()) <= sade &&
-                    h != loitsija){
-                h.vahingoitu(vahinko);
+        for(Ruutuolio olio : loitsija.getTaistelu().ruutuOliot()){
+            if(Math.abs( olio.getX() - loitsija.getX() ) <= sade && 
+                    Math.abs( olio.getY() - loitsija.getY()) <= sade &&
+                    olio != loitsija){
+                olio.vahingoitu(vahinko);
             }
         }
     }

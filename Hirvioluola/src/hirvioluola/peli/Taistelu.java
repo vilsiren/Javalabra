@@ -1,7 +1,9 @@
 package hirvioluola.peli;
 
+import hirvioluola.domain.Este;
 import hirvioluola.domain.Hirvio;
 import hirvioluola.domain.Pelaaja;
+import hirvioluola.domain.Ruutuolio;
 import hirvioluola.domain.Taistelija;
 import hirvioluola.gui.Piirtoalusta;
 import hirvioluola.loitsut.Loitsu;
@@ -17,6 +19,7 @@ public class Taistelu {
     
     private Pelaaja pelaaja;
     private List<Hirvio> hirviot;
+    private List<Este> esteet;
     private int leveys;
     private int korkeus;
     private Scanner lukija;
@@ -28,6 +31,7 @@ public class Taistelu {
     public Taistelu(int leveys, int korkeus) {
 
         this.hirviot = new ArrayList<>();
+        this.esteet = new ArrayList<>();
         this.leveys = leveys;
         this.korkeus = korkeus;
         lukija = new Scanner(System.in);
@@ -53,22 +57,24 @@ public class Taistelu {
         this.status = status;
     }
     
-    public void lisaaHirvio(Hirvio hirvio, int x, int y){
-        if(x == pelaaja.getX() && y == pelaaja.getY()){
-            return;
-        }
+    public void lisaaOlio(Ruutuolio olio, int x, int y){
         if( !taistelukentanSisalla( x, y ) ){
             return;
         }
-        for(Hirvio hirvio2 : hirviot){
-            if(x == hirvio2.getX() && y == hirvio2.getY()){
-                return;
-            }          
+        if(olioRuudussa(x,y) != null){
+            return;
         }
-        hirviot.add(hirvio);
-        hirvio.setTaistelu(this);
-        hirvio.setX(x);
-        hirvio.setY(y);
+        if(olio instanceof Hirvio){
+            Hirvio h = (Hirvio) olio;
+            hirviot.add(h);
+        }
+        if(olio instanceof Este){
+            Este e = (Este) olio;
+            esteet.add(e);
+        }
+        olio.setTaistelu(this);
+        olio.setX(x);
+        olio.setY(y);
     }
 
     public Pelaaja getPelaaja() {
@@ -77,6 +83,22 @@ public class Taistelu {
 
     public List<Hirvio> getHirviot() {
         return hirviot;
+    }
+    
+    public List<Este> getEsteet(){
+        return esteet;
+    }
+    
+    public List<Ruutuolio> ruutuOliot() {
+        List<Ruutuolio> oliot = new ArrayList<>();
+        if(pelaaja != null) oliot.add(pelaaja);
+        for(Hirvio h : hirviot){
+            oliot.add(h);
+        }
+        for(Este e : esteet){
+            oliot.add(e);
+        }
+        return oliot;
     }
 
     public int getLeveys() {
@@ -97,20 +119,26 @@ public class Taistelu {
         return true;        
     }
     
-    public Hirvio hirvioRuudussa(int x, int y){
-        for(Hirvio hirvio : hirviot){
-            if(hirvio.getX() == x && hirvio.getY() == y){
-                return hirvio;
+    public Ruutuolio olioRuudussa(int x, int y){
+        for(Ruutuolio olio : ruutuOliot() ){
+            if(olio.getX() == x && olio.getY() == y){
+                return olio;
             }
         }
         return null;
     }
     
-    public void paivitaHirviolista(){
+    public void paivitaListat(){
         Iterator<Hirvio> iter = hirviot.iterator();
         while(iter.hasNext()){
             if(iter.next().getHp() <= 0){
                     iter.remove();
+            }
+        }
+        Iterator<Este> iter2 = esteet.iterator();
+        while(iter2.hasNext()){
+            if(iter2.next().getHp() <= 0){
+                iter2.remove();
             }
         }
     }          
@@ -130,11 +158,9 @@ public class Taistelu {
             }
         }        
         
-            for (Hirvio h : hirviot) {
-                kartta[h.getX()][h.getY()] = h.merkki();
-            }        
-        
-        kartta[pelaaja.getX()][pelaaja.getY()] = pelaaja.merkki();
+        for(Ruutuolio olio : ruutuOliot()){
+            kartta[olio.getX()][olio.getY()] = olio.merkki();
+        }
         
         System.out.println();
         for (int y = 0; y < korkeus; y++) {
@@ -253,9 +279,9 @@ public class Taistelu {
             int x = pelaaja.getX() + dx;
             int y = pelaaja.getY() + dy;
             if(taistelukentanSisalla(x, y)){
-                Hirvio hirvio = hirvioRuudussa(x,y);
-                if(hirvio != null){
-                    pelaaja.hyokkaa(hirvio);
+                Ruutuolio olio = olioRuudussa(x,y);
+                if(olio != null){
+                    pelaaja.hyokkaa(olio);
                 }
                 else{
                     pelaaja.liiku(dx, dy);
@@ -284,7 +310,7 @@ public class Taistelu {
                 catch(Exception e){                
                 }
             }
-            paivitaHirviolista();
+            paivitaListat();
             hirviotToimii();
         }
         if(pelaaja.getHp() <= 0){
@@ -303,7 +329,7 @@ public class Taistelu {
         if(!komento.equals("")){
             liikutaPelaajaa(suunta(komento)[0], suunta(komento)[1]);
         }
-        paivitaHirviolista();
+        paivitaListat();
         hirviotToimii();
         alusta.repaint();
         komento = "";

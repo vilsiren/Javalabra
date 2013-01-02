@@ -24,11 +24,7 @@ public class Teleportaatio extends Loitsu implements ToimintoJolleValitaanRuutu{
         if(!taistelu.taistelukentanSisalla(x, y)){
             return false;
         }
-        Pelaaja pelaaja = taistelu.getPelaaja();
-        if( x == pelaaja.getX() && y == pelaaja.getY()){
-            return false;
-        }
-        if(taistelu.hirvioRuudussa(x, y) != null){
+        if(taistelu.olioRuudussa(x, y) != null){
             return false;
         }
         this.x = x;

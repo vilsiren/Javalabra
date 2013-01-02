@@ -1,6 +1,7 @@
 
 package hirvioluola;
 
+import hirvioluola.domain.Este;
 import hirvioluola.domain.Hirvio;
 import hirvioluola.domain.Pelaaja;
 import hirvioluola.domain.TeleportHirvio;
@@ -23,7 +24,7 @@ public class Hirvioluola {
     private static Hirvio orkki2;    
 
     public static void main(String[] args) {
-        pelaaja = new Pelaaja(1,100,100);
+        pelaaja = new Pelaaja(2,100,100);
         pelaaja.lisaaLoitsu(new Parannus(2,5));
         pelaaja.lisaaLoitsu(new Salama(4,6));
         pelaaja.lisaaLoitsu(new Teleportaatio(2));
@@ -33,14 +34,15 @@ public class Hirvioluola {
         taistelu.setPelaaja(pelaaja,0,0);
         orkki1 = new Hirvio(1,3,0);
         orkki2 = new Hirvio(1,3,0); 
-        taistelu.lisaaHirvio(orkki1,3,3);
-        taistelu.lisaaHirvio(orkki2,3,2);
-        taistelu.lisaaHirvio(new Hirvio(1,3,0),2,4);
-        taistelu.lisaaHirvio(new Hirvio(1,3,0),1,4);
-        taistelu.lisaaHirvio(new Hirvio(1,3,0),6,8);
-        taistelu.lisaaHirvio(new Hirvio(1,3,0),7,8);
-        taistelu.lisaaHirvio(new Hirvio(1,3,0),8,8);
-        taistelu.lisaaHirvio(new TeleportHirvio(4,10,10),9,3);
+        taistelu.lisaaOlio(orkki1,3,3);
+        taistelu.lisaaOlio(orkki2,3,2);
+        taistelu.lisaaOlio(new Hirvio(1,3,0),2,4);
+        taistelu.lisaaOlio(new Hirvio(1,3,0),1,4);
+        taistelu.lisaaOlio(new Hirvio(1,3,0),6,8);
+        taistelu.lisaaOlio(new Hirvio(1,3,0),7,8);
+        taistelu.lisaaOlio(new Hirvio(1,3,0),8,8);
+        taistelu.lisaaOlio(new TeleportHirvio(4,10,10),9,3);
+        taistelu.lisaaOlio(new Este(5, 'e'), 0,1);
         taistelu.suorita();
 //        Kayttoliittyma kali = new Kayttoliittyma(taistelu);
 //        
