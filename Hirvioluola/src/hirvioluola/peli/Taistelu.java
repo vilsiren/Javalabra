@@ -2,9 +2,9 @@ package hirvioluola.peli;
 
 import hirvioluola.domain.Este;
 import hirvioluola.domain.Hirvio;
+import hirvioluola.domain.Liittolainen;
 import hirvioluola.domain.Pelaaja;
 import hirvioluola.domain.Ruutuolio;
-import hirvioluola.domain.Taistelija;
 import hirvioluola.gui.Piirtoalusta;
 import hirvioluola.loitsut.Loitsu;
 import hirvioluola.loitsut.ToimintoJolleValitaanRuutu;
@@ -19,6 +19,7 @@ public class Taistelu {
     
     private Pelaaja pelaaja;
     private List<Hirvio> hirviot;
+    private List<Liittolainen> liittolaiset;
     private List<Este> esteet;
     private int leveys;
     private int korkeus;
@@ -32,6 +33,7 @@ public class Taistelu {
 
         this.hirviot = new ArrayList<>();
         this.esteet = new ArrayList<>();
+        this.liittolaiset = new ArrayList<>();
         this.leveys = leveys;
         this.korkeus = korkeus;
         lukija = new Scanner(System.in);
@@ -39,6 +41,9 @@ public class Taistelu {
     }
     
     public void setPelaaja(Pelaaja pelaaja, int x, int y){
+        if(olioRuudussa(x,y) != null || !taistelukentanSisalla(x,y)){
+            return;
+        }
         this.pelaaja = pelaaja;
         pelaaja.setTaistelu(this);
         pelaaja.setX(x);
@@ -72,6 +77,15 @@ public class Taistelu {
             Este e = (Este) olio;
             esteet.add(e);
         }
+        if(olio instanceof Liittolainen){
+            Liittolainen l = (Liittolainen) olio;
+            liittolaiset.add(l);
+        }
+        if(olio instanceof Pelaaja){
+            Pelaaja p = (Pelaaja) olio;
+            this.pelaaja = p;
+        }
+                
         olio.setTaistelu(this);
         olio.setX(x);
         olio.setY(y);
@@ -85,19 +99,20 @@ public class Taistelu {
         return hirviot;
     }
     
+    public List<Liittolainen> getLiittolaiset() {
+        return liittolaiset;
+    }
+    
     public List<Este> getEsteet(){
         return esteet;
     }
     
     public List<Ruutuolio> ruutuOliot() {
         List<Ruutuolio> oliot = new ArrayList<>();
+        oliot.addAll(hirviot);
+        oliot.addAll(esteet);
+        oliot.addAll(liittolaiset);
         if(pelaaja != null) oliot.add(pelaaja);
-        for(Hirvio h : hirviot){
-            oliot.add(h);
-        }
-        for(Este e : esteet){
-            oliot.add(e);
-        }
         return oliot;
     }
 
@@ -131,19 +146,34 @@ public class Taistelu {
     public void paivitaListat(){
         Iterator<Hirvio> iter = hirviot.iterator();
         while(iter.hasNext()){
-            if(iter.next().getHp() <= 0){
-                    iter.remove();
+            Hirvio h = iter.next();
+            if(h.getHp() <= 0){
+                h.setTaistelu(null);
+                iter.remove();
             }
         }
         Iterator<Este> iter2 = esteet.iterator();
         while(iter2.hasNext()){
-            if(iter2.next().getHp() <= 0){
+            Este e = iter2.next();
+            if(e.getHp() <= 0){
+                e.setTaistelu(null);
                 iter2.remove();
             }
         }
-    }          
+        Iterator<Liittolainen> iter3 = liittolaiset.iterator();
+        while(iter3.hasNext()){
+            Liittolainen l = iter3.next();
+            if(l.getHp() <= 0){
+                l.setTaistelu(null);
+                iter3.remove();
+            }
+        }
+    }
         
-    public void hirviotToimii(){
+    public void tekoalyTaistelijatToimii(){
+        for(Liittolainen l : liittolaiset){
+            l.toimi();
+        }
         for(Hirvio hirvio : hirviot){            
             hirvio.toimi();
         }
@@ -311,7 +341,7 @@ public class Taistelu {
                 }
             }
             paivitaListat();
-            hirviotToimii();
+            tekoalyTaistelijatToimii();
         }
         if(pelaaja.getHp() <= 0){
             System.out.println("Hävisit!");
@@ -330,7 +360,7 @@ public class Taistelu {
             liikutaPelaajaa(suunta(komento)[0], suunta(komento)[1]);
         }
         paivitaListat();
-        hirviotToimii();
+        tekoalyTaistelijatToimii();
         alusta.repaint();
         komento = "";
     }    

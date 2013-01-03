@@ -14,8 +14,8 @@ public class TeleportHirvio extends Hirvio{
     }
     
     private boolean setTeleportRuutu(){
-        for(int y0 = pelaaja.getY() - 1; y0 <= pelaaja.getY() + 1; y0++){
-            for(int x0 = pelaaja.getX() - 1; x0 <= pelaaja.getX() + 1; x0++){
+        for(int y0 = kohde.getY() - 1; y0 <= kohde.getY() + 1; y0++){
+            for(int x0 = kohde.getX() - 1; x0 <= kohde.getX() + 1; x0++){
                 if(teleport.setRuutu(x0, y0, taistelu) == true){
                     return true;
                 }
@@ -26,7 +26,7 @@ public class TeleportHirvio extends Hirvio{
     
     @Override
     public void toimi(){        
-        if(hyokkaysalueella(pelaaja) || mp < teleport.kuluttaaMPta() || setTeleportRuutu() == false){
+        if(hyokkaysalueella(kohde) || mp < teleport.kuluttaaMPta() || setTeleportRuutu() == false){
             super.toimi();
         }
         else{
