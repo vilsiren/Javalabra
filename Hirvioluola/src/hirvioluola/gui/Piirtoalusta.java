@@ -4,7 +4,7 @@
  */
 package hirvioluola.gui;
 
-import hirvioluola.domain.Hirvio;
+import hirvioluola.domain.Vihollinen;
 import hirvioluola.peli.Taistelu;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -23,7 +23,7 @@ public class Piirtoalusta extends JPanel{
     protected void paintComponent(Graphics graphics) {
         super.paintComponent(graphics);
         taistelu.getPelaaja().piirra(graphics);
-        for(Hirvio hirvio : taistelu.getHirviot()){
+        for(Vihollinen hirvio : taistelu.getViholliset()){
             hirvio.piirra(graphics);
         }
     }        

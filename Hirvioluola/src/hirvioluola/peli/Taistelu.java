@@ -1,7 +1,7 @@
 package hirvioluola.peli;
 
 import hirvioluola.domain.Este;
-import hirvioluola.domain.Hirvio;
+import hirvioluola.domain.Vihollinen;
 import hirvioluola.domain.Liittolainen;
 import hirvioluola.domain.Pelaaja;
 import hirvioluola.domain.Ruutuolio;
@@ -18,7 +18,7 @@ import javax.swing.JLabel;
 public class Taistelu {
     
     private Pelaaja pelaaja;
-    private List<Hirvio> hirviot;
+    private List<Vihollinen> viholliset;
     private List<Liittolainen> liittolaiset;
     private List<Este> esteet;
     private int leveys;
@@ -31,7 +31,7 @@ public class Taistelu {
 
     public Taistelu(int leveys, int korkeus) {
 
-        this.hirviot = new ArrayList<>();
+        this.viholliset = new ArrayList<>();
         this.esteet = new ArrayList<>();
         this.liittolaiset = new ArrayList<>();
         this.leveys = leveys;
@@ -69,9 +69,9 @@ public class Taistelu {
         if(olioRuudussa(x,y) != null){
             return;
         }
-        if(olio instanceof Hirvio){
-            Hirvio h = (Hirvio) olio;
-            hirviot.add(h);
+        if(olio instanceof Vihollinen){
+            Vihollinen v = (Vihollinen) olio;
+            viholliset.add(v);
         }
         if(olio instanceof Este){
             Este e = (Este) olio;
@@ -95,8 +95,8 @@ public class Taistelu {
         return pelaaja;
     }
 
-    public List<Hirvio> getHirviot() {
-        return hirviot;
+    public List<Vihollinen> getViholliset() {
+        return viholliset;
     }
     
     public List<Liittolainen> getLiittolaiset() {
@@ -109,7 +109,7 @@ public class Taistelu {
     
     public List<Ruutuolio> ruutuOliot() {
         List<Ruutuolio> oliot = new ArrayList<>();
-        oliot.addAll(hirviot);
+        oliot.addAll(viholliset);
         oliot.addAll(esteet);
         oliot.addAll(liittolaiset);
         if(pelaaja != null) oliot.add(pelaaja);
@@ -144,11 +144,11 @@ public class Taistelu {
     }
     
     public void paivitaListat(){
-        Iterator<Hirvio> iter = hirviot.iterator();
+        Iterator<Vihollinen> iter = viholliset.iterator();
         while(iter.hasNext()){
-            Hirvio h = iter.next();
-            if(h.getHp() <= 0){
-                h.setTaistelu(null);
+            Vihollinen v = iter.next();
+            if(v.getHp() <= 0){
+                v.setTaistelu(null);
                 iter.remove();
             }
         }
@@ -174,8 +174,8 @@ public class Taistelu {
         for(Liittolainen l : liittolaiset){
             l.toimi();
         }
-        for(Hirvio hirvio : hirviot){            
-            hirvio.toimi();
+        for(Vihollinen vihollinen : viholliset){            
+            vihollinen.toimi();
         }
     }
     
@@ -321,7 +321,7 @@ public class Taistelu {
     }
     
     public void suorita(){
-        while(pelaaja.getHp() > 0 && !hirviot.isEmpty()){
+        while(pelaaja.getHp() > 0 && !viholliset.isEmpty()){
             tulostaPelaajanLoitsut();
             System.out.println("HP: " + pelaaja.getHp() + " MP: " + pelaaja.getMp());
             tulostaKartta();
@@ -353,7 +353,7 @@ public class Taistelu {
 
     public void kierros() {;
         status.setText("HP: " + pelaaja.getHp() + " MP: " + pelaaja.getMp());
-//        if(pelaaja.getHp() <= 0 || hirviot.isEmpty()){
+//        if(pelaaja.getHp() <= 0 || viholliset.isEmpty()){
 //            return;
 //        }
         if(!komento.equals("")){

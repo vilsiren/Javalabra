@@ -2,7 +2,7 @@
 package hirvioluola;
 
 import hirvioluola.domain.Este;
-import hirvioluola.domain.Hirvio;
+import hirvioluola.domain.Vihollinen;
 import hirvioluola.domain.Liittolainen;
 import hirvioluola.domain.Pelaaja;
 import hirvioluola.domain.TeleportHirvio;
@@ -34,14 +34,14 @@ public class Hirvioluola {
         pelaaja.lisaaLoitsu(new Tulikeha(3,2));
         pelaaja.lisaaLoitsu(new KutsuLiittolainen(5, 3, 15));
         Taistelu taistelu = new Taistelu(10,10);
-        taistelu.lisaaOlio(pelaaja,0,0);
-        taistelu.lisaaOlio(new Hirvio(1,3,0),3,3);
-        taistelu.lisaaOlio(new Hirvio(1,3,0),3,2);
-        taistelu.lisaaOlio(new Hirvio(1,3,0),2,4);
-        taistelu.lisaaOlio(new Hirvio(1,3,0),1,4);
-        taistelu.lisaaOlio(new Hirvio(1,3,0),6,8);
-        taistelu.lisaaOlio(new Hirvio(1,3,0),7,8);
-        taistelu.lisaaOlio(new Hirvio(1,3,0),8,8);
+        taistelu.setPelaaja(pelaaja,0,0);
+        taistelu.lisaaOlio(new Vihollinen(1,3,0),3,3);
+        taistelu.lisaaOlio(new Vihollinen(1,3,0),3,2);
+        taistelu.lisaaOlio(new Vihollinen(1,3,0),2,4);
+        taistelu.lisaaOlio(new Vihollinen(1,3,0),1,4);
+        taistelu.lisaaOlio(new Vihollinen(1,3,0),6,8);
+        taistelu.lisaaOlio(new Vihollinen(1,3,0),7,8);
+        taistelu.lisaaOlio(new Vihollinen(1,3,0),8,8);
         taistelu.lisaaOlio(new TeleportHirvio(4,10,10),9,3);
         taistelu.lisaaOlio(new Este(5,'e'),0,1);
         taistelu.lisaaOlio(new Este(5,'e'),1,0);

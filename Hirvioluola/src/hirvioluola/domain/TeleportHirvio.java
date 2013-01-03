@@ -4,7 +4,7 @@ package hirvioluola.domain;
 import hirvioluola.loitsut.Teleportaatio;
 
 
-public class TeleportHirvio extends Hirvio{
+public class TeleportHirvio extends Vihollinen{
     
     private Teleportaatio teleport;
 

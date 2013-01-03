@@ -7,20 +7,20 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class HirvioTest {
+public class VihollinenTest {
     
     Taistelu taistelu;
     Pelaaja pelaaja;
-    Hirvio orkki1;
-    Hirvio orkki2;
+    Vihollinen orkki1;
+    Vihollinen orkki2;
     
     @Before
     public void setUp() {
         pelaaja = new Pelaaja(1,5,5);
         taistelu = new Taistelu(10,10);
         taistelu.setPelaaja(pelaaja,0,0);
-        orkki1 = new Hirvio(1,3,0);
-        orkki2 = new Hirvio(1,3,0); 
+        orkki1 = new Vihollinen(1,3,0);
+        orkki2 = new Vihollinen(1,3,0); 
         taistelu.lisaaOlio(orkki1,4,3);
         taistelu.lisaaOlio(orkki2,3,2);
     }
@@ -59,7 +59,7 @@ public class HirvioTest {
     
     @Test 
     public void orkkiLiikkuuKohtiPelaajaaXakselillaKunYkoordinaattiSamaKuinPelaajalla(){
-        Hirvio orkki3 = new Hirvio(1,3,0);
+        Vihollinen orkki3 = new Vihollinen(1,3,0);
         taistelu.lisaaOlio(orkki3, 2, 0);
         orkki3.toimi();
         assert(orkki3.getX() == 1 && orkki3.getY() == 0);
@@ -67,7 +67,7 @@ public class HirvioTest {
     
     @Test
     public void orkkiHyokkaaKunPelaajaHyokkaysalueella(){
-        Hirvio orkki4 = new Hirvio(1,3,0);
+        Vihollinen orkki4 = new Vihollinen(1,3,0);
         taistelu.lisaaOlio(orkki4, 1, 0);
         assert(orkki4.hyokkaysalueella(pelaaja));
         orkki4.toimi();

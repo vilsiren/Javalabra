@@ -1,7 +1,7 @@
 
 package hirvioluola.loitsut;
 
-import hirvioluola.domain.Hirvio;
+import hirvioluola.domain.Vihollinen;
 import hirvioluola.domain.Ruutuolio;
 import hirvioluola.domain.Taistelija;
 

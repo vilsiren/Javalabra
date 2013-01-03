@@ -11,14 +11,14 @@ public class Liittolainen extends Tekoalytaistelija{
 
     @Override
     public void toimi() {
-        if(super.taistelu.getHirviot().isEmpty()){
+        if(super.taistelu.getViholliset().isEmpty()){
             super.kohde = null;
             return;
         }
                 
         if(super.kohde == null || super.kohde.hp <= 0){
-            int hirvioNro = new Random().nextInt(super.taistelu.getHirviot().size());
-            super.kohde = super.taistelu.getHirviot().get(hirvioNro);
+            int hirvioNro = new Random().nextInt(super.taistelu.getViholliset().size());
+            super.kohde = super.taistelu.getViholliset().get(hirvioNro);
         }
         
         if(hyokkaysalueella(super.kohde)){
@@ -26,7 +26,7 @@ public class Liittolainen extends Tekoalytaistelija{
             return;
         }
         
-        for(Hirvio h : super.taistelu.getHirviot()){
+        for(Vihollinen h : super.taistelu.getViholliset()){
             if( hyokkaysalueella(h) ){
                 hyokkaa(h);
                 return;

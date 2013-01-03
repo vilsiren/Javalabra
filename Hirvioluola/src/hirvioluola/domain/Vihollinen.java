@@ -4,10 +4,10 @@ import hirvioluola.peli.Taistelu;
 import java.awt.Color;
 import java.awt.Graphics;
 
-public class Hirvio extends Tekoalytaistelija{
+public class Vihollinen extends Tekoalytaistelija{
     
 
-    public Hirvio(int voima, int hpMax, int mpMax) {
+    public Vihollinen(int voima, int hpMax, int mpMax) {
         super(voima, hpMax, mpMax);
     }
     
@@ -45,7 +45,7 @@ public class Hirvio extends Tekoalytaistelija{
 
     @Override
     public char merkki() {
-        return 'h';
+        return 'v';
     }
     
 }

@@ -1,7 +1,7 @@
 
 package hirvioluola.loitsut;
 
-import hirvioluola.domain.Hirvio;
+import hirvioluola.domain.Vihollinen;
 import hirvioluola.domain.Pelaaja;
 import hirvioluola.peli.Taistelu;
 import org.junit.After;
@@ -14,8 +14,8 @@ public class TaikanuoliTest {
     private Taikanuoli lapaiseva;
     private Taikanuoli eiLapaiseva;
     private Pelaaja pelaaja;
-    private Hirvio orkki;
-    private Hirvio orkki2;
+    private Vihollinen orkki;
+    private Vihollinen orkki2;
     private Taistelu taistelu;
     private int vahinko = 2;
     
@@ -24,8 +24,8 @@ public class TaikanuoliTest {
         lapaiseva = new Taikanuoli(2,vahinko,true);
         eiLapaiseva = new Taikanuoli(2,vahinko,false);
         pelaaja = new Pelaaja(2,5,5);
-        orkki = new Hirvio(2,5,0);
-        orkki2 = new Hirvio(2,5,0);
+        orkki = new Vihollinen(2,5,0);
+        orkki2 = new Vihollinen(2,5,0);
         taistelu = new Taistelu(10,10);
         taistelu.setPelaaja(pelaaja, 0,0);
         taistelu.lisaaOlio(orkki,0,3);

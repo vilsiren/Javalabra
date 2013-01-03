@@ -5,7 +5,7 @@ package hirvioluola.peli;
  * and open the template in the editor.
  */
 
-import hirvioluola.domain.Hirvio;
+import hirvioluola.domain.Vihollinen;
 import hirvioluola.domain.Pelaaja;
 import hirvioluola.peli.Taistelu;
 import org.junit.After;
@@ -19,13 +19,13 @@ public class TaisteluTest {
     
     Taistelu taistelu;
     Pelaaja pelaaja;
-    Hirvio orkki1;
-    Hirvio orkki2;
+    Vihollinen orkki1;
+    Vihollinen orkki2;
     
     @Before
     public void setUp() {
-        orkki1 = new Hirvio(1,2,0);
-        orkki2 = new Hirvio(1,2,0);      
+        orkki1 = new Vihollinen(1,2,0);
+        orkki2 = new Vihollinen(1,2,0);      
         pelaaja = new Pelaaja(1,5,5);
         taistelu = new Taistelu(10,10);
         taistelu.setPelaaja(pelaaja,0,0);
@@ -35,17 +35,17 @@ public class TaisteluTest {
     
     @Test
     public void hirvionLisaysToimii(){        
-        assert(taistelu.getHirviot().contains(orkki1));
-        assert(taistelu.getHirviot().contains(orkki2));
+        assert(taistelu.getViholliset().contains(orkki1));
+        assert(taistelu.getViholliset().contains(orkki2));
         assert(orkki1.getTaistelu() == taistelu);
         assert(orkki2.getTaistelu() == taistelu);
     }
     
     @Test
     public void hirviotaEiLisataJosListassaOnHirvioSamoillaKoordinaateilla(){
-        Hirvio orkki3 = new Hirvio(1,2,0);
+        Vihollinen orkki3 = new Vihollinen(1,2,0);
         taistelu.lisaaOlio(orkki3, orkki1.getX(), orkki1.getY());
-        assert(!taistelu.getHirviot().contains(orkki3));
+        assert(!taistelu.getViholliset().contains(orkki3));
         assert(orkki3.getTaistelu() == null);
     }
     
@@ -90,6 +90,6 @@ public class TaisteluTest {
     public void hirviolistaPaivittyy(){
         orkki1.vahingoitu(orkki1.getHp());
         taistelu.paivitaListat();
-        assert(!taistelu.getHirviot().contains(orkki1));
+        assert(!taistelu.getViholliset().contains(orkki1));
     }
 }
