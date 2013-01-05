@@ -33,7 +33,14 @@ public class Vihollinen extends Tekoalytaistelija{
             }
         }
         
-        lahestyKohdetta();
+        if(!lahestyKohdetta()){
+            for(Este e : taistelu.getEsteet()){
+                if(hyokkaysalueella(e)){
+                    hyokkaa(e);
+                    return;
+                }
+            }
+        }
         
     }
 

@@ -31,6 +31,10 @@ public abstract class Taistelija extends Ruutuolio {
         loitsut = new ArrayList<>();        
     }
 
+    public void setHpMpMax(){
+        this.hp = hpMax;
+        this.mp = mpMax;
+    }
     
     public void parannu(int parannus){
         if(this.hp + parannus >= this.hpMax){
@@ -94,6 +98,9 @@ public abstract class Taistelija extends Ruutuolio {
     
     public void hyokkaa(Ruutuolio kohde){
         kohde.vahingoitu(this.voima);
+        if(taistelu != null && taistelu.getKayttis() != null){
+            taistelu.getKayttis().piirraHyokkays(this.x, this.y, kohde.getX(), kohde.getY());            
+        }
     }
     
     

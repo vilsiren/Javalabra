@@ -7,9 +7,9 @@ import hirvioluola.domain.Ruutuolio;
 import hirvioluola.domain.Taistelija;
 import hirvioluola.peli.Taistelu;
 
-public class Taikanuoli extends Loitsu implements ToimintoJolleValitaanSuunta{
+public class Taikanuoli extends Suuntaloitsu{
     
-    private int vahinko, dx, dy, kuluttaaMPta;
+    private int vahinko, kuluttaaMPta;
     private boolean lapaiseva;
 
     public Taikanuoli(int kuluttaaMPta, int vahinko, boolean lapaiseva) {
@@ -21,17 +21,16 @@ public class Taikanuoli extends Loitsu implements ToimintoJolleValitaanSuunta{
     @Override
     public void teeLoitsu(Taistelija loitsija){
         Taistelu taistelu = loitsija.getTaistelu();
-        Pelaaja pelaaja = taistelu.getPelaaja();
-        int y = pelaaja.getY() + dy;
-        int x = pelaaja.getX() + dx;
+        int y = loitsija.getY() + super.dy;
+        int x = loitsija.getX() + super.dx;
         while(taistelu.taistelukentanSisalla(x, y)){            
             Ruutuolio olio = taistelu.olioRuudussa(x, y);
             if(olio != null){
                 olio.vahingoitu(vahinko);
                 if(!lapaiseva) return;
             }
-            x += dx;
-            y += dy;
+            x += super.dx;
+            y += super.dy;
         }
     }
     
@@ -50,9 +49,4 @@ public class Taikanuoli extends Loitsu implements ToimintoJolleValitaanSuunta{
         return kuluttaaMPta;
     }
 
-    @Override
-    public void setSuunta(int dx, int dy) {
-        this.dx = dx;
-        this.dy = dy;
-    }
 }

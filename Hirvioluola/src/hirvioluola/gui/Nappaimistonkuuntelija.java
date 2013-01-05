@@ -31,12 +31,9 @@ public class Nappaimistonkuuntelija implements KeyListener{
 //        } else if (e.getKeyCode() == KeyEvent.VK_X) {
 //            taistelu.setKomento("x");
 //        }
-        String komento = "" + e.getKeyChar();
-        if(taistelu.suunnat.contains(komento)){
-            taistelu.setKomento("" + e.getKeyChar());
-            taistelu.kierros();
+        
             
-        }
+        
     }
 
     @Override

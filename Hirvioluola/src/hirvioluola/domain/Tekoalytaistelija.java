@@ -43,26 +43,27 @@ public abstract class Tekoalytaistelija extends Taistelija {
         }
     }
     
-    protected void lahestyKohdetta(){
+    protected boolean lahestyKohdetta(){
         if(suuntaY() == 0){
-            lahestyKohdettaXakselilla();
+            return lahestyKohdettaXakselilla();            
         }
         
         else if(suuntaX() == 0 ){
-            lahestyKohdettaYakselilla();
+            return lahestyKohdettaYakselilla();
         }
         else if( suuntaanVoiLiikkua(suuntaX(), suuntaY()) ){
             liiku(suuntaX(), suuntaY());
+            return true;
 
         }        
-        else if(!lahestyKohdettaYakselilla()){
-            if(!lahestyKohdettaXakselilla()){
-              for(Este e : super.taistelu.getEsteet()){
-                  if(hyokkaysalueella(e)){
-                      hyokkaa(e);
-                  }
-              }  
-            }
+        else if(lahestyKohdettaYakselilla()){
+            return true;
+        }
+        else if(lahestyKohdettaXakselilla()){
+            return true;
+        }
+        else{
+            return false;
         }
     }
     private boolean lahestyKohdettaXakselilla(){        

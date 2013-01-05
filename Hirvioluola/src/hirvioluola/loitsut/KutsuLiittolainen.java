@@ -4,9 +4,9 @@ import hirvioluola.domain.Liittolainen;
 import hirvioluola.domain.Taistelija;
 import hirvioluola.peli.Taistelu;
 
-public class KutsuLiittolainen extends Loitsu implements ToimintoJolleValitaanRuutu{
+public class KutsuLiittolainen extends Ruutuloitsu{
     
-    private int x,y, kuluttaaMPta, voima, hpMax;
+    private int kuluttaaMPta, voima, hpMax;
     
     public KutsuLiittolainen(int kuluttaaMPta, int voima, int hpMax){
         this.kuluttaaMPta = kuluttaaMPta;
@@ -22,7 +22,7 @@ public class KutsuLiittolainen extends Loitsu implements ToimintoJolleValitaanRu
     @Override
     protected void teeLoitsu(Taistelija loitsija) {
         Liittolainen kutsuttava = new Liittolainen(voima,hpMax,0);
-        loitsija.getTaistelu().lisaaOlio(kutsuttava, x, y);
+        loitsija.getTaistelu().lisaaOlio(kutsuttava, super.x, super.y);
     }
 
     @Override
@@ -33,8 +33,8 @@ public class KutsuLiittolainen extends Loitsu implements ToimintoJolleValitaanRu
         if(taistelu.olioRuudussa(x, y) != null){
             return false;
         }
-        this.x = x;
-        this.y = y;
+        super.x = x;
+        super.y = y;
         return true;
     }
     

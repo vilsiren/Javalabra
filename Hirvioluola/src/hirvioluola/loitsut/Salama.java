@@ -7,7 +7,7 @@ import hirvioluola.domain.Ruutuolio;
 import hirvioluola.domain.Taistelija;
 import hirvioluola.peli.Taistelu;
 
-public class Salama extends Loitsu implements ToimintoJolleValitaanRuutu {
+public class Salama extends Ruutuloitsu {
     
     private int vahinko;
     private Ruutuolio kohde;
@@ -20,7 +20,7 @@ public class Salama extends Loitsu implements ToimintoJolleValitaanRuutu {
 
     @Override
     public void teeLoitsu(Taistelija loitsija) {
-        if(!(loitsija instanceof Pelaaja)){
+        if(loitsija instanceof Vihollinen){
             kohde = loitsija.getTaistelu().getPelaaja();
         }
         kohde.vahingoitu(vahinko);

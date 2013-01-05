@@ -15,6 +15,7 @@ import hirvioluola.loitsut.Taikanuoli;
 import hirvioluola.loitsut.Teleportaatio;
 import hirvioluola.loitsut.Tulikeha;
 import hirvioluola.peli.Taistelu;
+import hirvioluola.peli.Tekstitaistelukayttis;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -25,7 +26,7 @@ import javax.swing.SwingUtilities;
 public class Hirvioluola {
    
 
-    public static void main(String[] args) throws FileNotFoundException, IOException {
+    public static void main(String[] args) {
         Pelaaja pelaaja = new Pelaaja(2,100,100);
         pelaaja.lisaaLoitsu(new Parannus(2,5));
         pelaaja.lisaaLoitsu(new Salama(4,6));
@@ -46,7 +47,10 @@ public class Hirvioluola {
         taistelu.lisaaOlio(new Este(5,'e'),0,1);
         taistelu.lisaaOlio(new Este(5,'e'),1,0);
         taistelu.lisaaOlio(new Este(5,'e'),1,1);
-        taistelu.suorita();
+        Tekstitaistelukayttis kayttis = new Tekstitaistelukayttis();
+        kayttis.setTaistelu(taistelu);
+        kayttis.run();
+
 //        Kayttoliittyma kali = new Kayttoliittyma(taistelu);
 //        
 //        SwingUtilities.invokeLater(kali);

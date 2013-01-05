@@ -4,9 +4,8 @@ import hirvioluola.domain.Pelaaja;
 import hirvioluola.domain.Taistelija;
 import hirvioluola.peli.Taistelu;
 
-public class Teleportaatio extends Loitsu implements ToimintoJolleValitaanRuutu{
+public class Teleportaatio extends Ruutuloitsu{
     
-    private int x, y;
     private int kuluttaaMPta;
 
     public Teleportaatio(int kuluttaaMPta) {
@@ -15,8 +14,8 @@ public class Teleportaatio extends Loitsu implements ToimintoJolleValitaanRuutu{
     
     @Override
     public void teeLoitsu(Taistelija loitsija){
-        loitsija.setX(x);
-        loitsija.setY(y);                        
+        loitsija.setX(super.x);
+        loitsija.setY(super.y);                        
     }
 
     @Override
@@ -27,8 +26,8 @@ public class Teleportaatio extends Loitsu implements ToimintoJolleValitaanRuutu{
         if(taistelu.olioRuudussa(x, y) != null){
             return false;
         }
-        this.x = x;
-        this.y = y;
+        super.x = x;
+        super.y = y;
         return true;
     }
     @Override

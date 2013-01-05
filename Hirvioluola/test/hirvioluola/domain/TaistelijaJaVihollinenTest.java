@@ -7,7 +7,7 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class VihollinenTest {
+public class TaistelijaJaVihollinenTest {
     
     Taistelu taistelu;
     Pelaaja pelaaja;
