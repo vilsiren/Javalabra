@@ -7,15 +7,22 @@ import hirvioluola.loitsut.Ruutuloitsu;
 import hirvioluola.loitsut.Suuntaloitsu;
 import java.util.Scanner;
 
-public class Tekstitaistelukayttis implements Taistelukayttis{
+public class Tekstikayttis implements Hirvioluolakayttis{
     
     private Scanner lukija;
-    private Taistelu taistelu;
+    private Peli peli;
+    private Taistelu taistelu;    
     
-    public Tekstitaistelukayttis(){
+    public Tekstikayttis(){
         this.lukija = new Scanner(System.in);
     }
     
+    @Override
+    public void setPeli(Peli peli){
+        this.peli = peli;
+    }
+    
+    @Override
     public void setTaistelu(Taistelu taistelu){
         this.taistelu = taistelu;
         taistelu.setKayttis(this);
@@ -44,7 +51,8 @@ public class Tekstitaistelukayttis implements Taistelukayttis{
             return "ÄLÄ TEE MITÄÄN";
         }
         if(komento.equals("l")){
-            System.out.println(taistelu.loitsulista());
+            System.out.println(taistelu.getPelaaja().loitsuluettelo());
+            return odotaPelaajanKomentoa();
         }
         String suunta = suunta(komento);
         if(suunta != null){
@@ -55,7 +63,7 @@ public class Tekstitaistelukayttis implements Taistelukayttis{
     
     @Override
     public void paivita() {
-        System.out.println(taistelu.pelaajanStatus());
+        System.out.println(taistelu.getPelaaja().status());
         System.out.println();
         for (int y = 0; y < taistelu.getKorkeus(); y++) {
             for (int x = 0; x < taistelu.getLeveys(); x++) {
@@ -121,8 +129,40 @@ public class Tekstitaistelukayttis implements Taistelukayttis{
     @Override
     public void piirraHyokkays(int hyokkaajaX, int hyokkaajaY, int kohdeX, int kohdeY) {
     }
-    
-    public void run(){
-        taistelu.suorita();
+
+    @Override
+    public String valitseKokemuspisteidenKaytto() {
+        System.out.println("Kokemuspisteitä: " + peli.getPelaaja().getKokemuspisteet());
+        System.out.println("Valitse mihin käytät kokemuspisteitä:\n" +
+                "1.Voima\n" +
+                "2.HP\n" +
+                "3.MP\n" +
+                "4.Uusi loitsu\n" +
+                "5.Lopeta");
+        String komento = lukija.nextLine();
+        try{
+            int valinta = Integer.parseInt(komento);
+            if(valinta == 1) return "VOIMA";
+            else if(valinta == 2) return "HP";
+            else if(valinta == 3) return "MP";
+            else if(valinta == 4) return "LOITSU";
+            else return "LOPETA";
+        }
+        catch(Exception e){
+            return "LOPETA";
+        }        
     }
+
+    @Override
+    public int valitseOpittavaLoitsu() {
+        System.out.println("Valitse opittava loitsu:");
+        System.out.println(peli.loitsuluettelo());
+        try{
+            return Integer.parseInt(lukija.nextLine());
+        }
+        catch(Exception e){
+            return -1;
+        }
+    }
+    
 }

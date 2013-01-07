@@ -21,9 +21,9 @@ public class TaikanuoliTest {
     
     @Before
     public void setUp() {
-        lapaiseva = new Taikanuoli(2,vahinko,true);
-        eiLapaiseva = new Taikanuoli(2,vahinko,false);
-        pelaaja = new Pelaaja(2,5,5);
+        lapaiseva = new Taikanuoli(vahinko,true);
+        eiLapaiseva = new Taikanuoli(vahinko,false);
+        pelaaja = new Pelaaja(2,5,20);
         orkki = new Vihollinen(2,5,0);
         orkki2 = new Vihollinen(2,5,0);
         taistelu = new Taistelu(10,10);

@@ -3,6 +3,10 @@ package hirvioluola.domain;
 
 import hirvioluola.peli.Taistelu;
 
+/**
+ * Ruutuolioita ovat kaikki elolliset tai elottomat oliot, jotka voivat sijaita taistelukentällä. 
+ */
+
 public abstract class Ruutuolio {
     
     protected int x, y, hp, hpMax;
@@ -40,6 +44,10 @@ public abstract class Ruutuolio {
     public int getY() {
         return y;
     }    
+
+    public int getHpMax() {
+        return hpMax;
+    }
 
     public int getHp() {
         return hp;

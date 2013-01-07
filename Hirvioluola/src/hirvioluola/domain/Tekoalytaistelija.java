@@ -3,6 +3,12 @@ package hirvioluola.domain;
 
 import hirvioluola.peli.Taistelu;
 
+/**
+ * Tekoalytaistelija on taistelija jolle on määritelty jonkinlainen toimintalogiikka.
+ * Kaikki muut taistelijat paitsi pelaaja ovat tekoalytaistelijoita.
+ * @author Ville
+ */
+
 public abstract class Tekoalytaistelija extends Taistelija {
     
     protected Taistelija kohde;
@@ -17,6 +23,10 @@ public abstract class Tekoalytaistelija extends Taistelija {
         if(taistelu == null){
             kohde = null;
         }
+    }
+    
+    public void setKohde(Taistelija kohde){
+        this.kohde = kohde;
     }
     
     private int suuntaX(){

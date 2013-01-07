@@ -1,6 +1,11 @@
 
 package hirvioluola.domain;
 
+/**
+ * Este ei tee mitään, mutta voi vahingoittua ja tuhoutua. 
+ * @author Ville
+ */
+
 public class Este extends Ruutuolio {
     
     private char merkki;

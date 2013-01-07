@@ -12,6 +12,13 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+/**
+ * Pelaajan on taistelun voittaekseen tuhottava taistelun hirviot. Pelaaja häviää
+ * taistelun jos pelaajan hp:t menevät nollille. Taisteluun osallistuu mahdollisesti
+ * myös pelaajan liittolaiset ja taistelukentällä voi olla myös esteitä.
+ * @author Ville
+ */
+
 public class Taistelu {
     
     private Pelaaja pelaaja;
@@ -20,10 +27,12 @@ public class Taistelu {
     private List<Este> esteet;
     private int leveys;
     private int korkeus;
-    private Taistelukayttis kayttis;
+    private int kokemuspisteita;
+    private Hirvioluolakayttis kayttis;
 
     public Taistelu(int leveys, int korkeus) {
-
+        
+        this.kokemuspisteita = 0;
         this.viholliset = new ArrayList<>();
         this.esteet = new ArrayList<>();
         this.liittolaiset = new ArrayList<>();
@@ -39,13 +48,16 @@ public class Taistelu {
         pelaaja.setTaistelu(this);
         pelaaja.setX(x);
         pelaaja.setY(y);
+        for(Vihollinen v : viholliset){
+            v.setKohde(pelaaja);
+        }
     }
     
-    public void setKayttis(Taistelukayttis kayttis){
+    public void setKayttis(Hirvioluolakayttis kayttis){
         this.kayttis = kayttis;
     } 
     
-    public Taistelukayttis getKayttis(){
+    public Hirvioluolakayttis getKayttis(){
         return this.kayttis;
     }
     
@@ -59,6 +71,7 @@ public class Taistelu {
         if(olio instanceof Vihollinen){
             Vihollinen v = (Vihollinen) olio;
             viholliset.add(v);
+            kokemuspisteita += v.kokemuspisteita();
         }
         if(olio instanceof Este){
             Este e = (Este) olio;
@@ -70,7 +83,8 @@ public class Taistelu {
         }
         if(olio instanceof Pelaaja){
             Pelaaja p = (Pelaaja) olio;
-            this.pelaaja = p;
+            setPelaaja(p,x,y);
+            return;
         }
                 
         olio.setTaistelu(this);
@@ -101,6 +115,10 @@ public class Taistelu {
         oliot.addAll(liittolaiset);
         if(pelaaja != null) oliot.add(pelaaja);
         return oliot;
+    }
+    
+    public int kokemuspisteita(){
+        return kokemuspisteita;
     }
 
     public int getLeveys() {
@@ -157,34 +175,18 @@ public class Taistelu {
         }
     }
         
-    public void tekoalyTaistelijatToimii(){
+    private void tekoalyTaistelijatToimii(){
         for(Liittolainen l : liittolaiset){
             l.toimi();
             kayttis.paivita();
         }
+        paivitaListat();
+        kayttis.paivita();
         for(Vihollinen vihollinen : viholliset){            
             vihollinen.toimi();
             kayttis.paivita();
         }
     }        
-    
-    public String loitsulista(){
-        StringBuilder sb = new StringBuilder();
-        for(Loitsu loitsu : pelaaja.getLoitsut()){
-            sb.append("\n");
-            sb.append(pelaaja.getLoitsut().indexOf(loitsu));
-            sb.append(" ");
-            sb.append(loitsu);
- 
-        }
-        return sb.toString();
-    }
-    
-    public String pelaajanStatus(){
-        return "HP: " + pelaaja.getHp() + "/" + pelaaja.getHpMax() + " MP: "
-                + pelaaja.getMp() + "/" + pelaaja.getMpMax() + " Voima: "
-                + pelaaja.getVoima();
-    }
     
     private void teeLoitsu(Loitsu loitsu){
         
@@ -253,8 +255,16 @@ public class Taistelu {
                 else{
                     pelaaja.liiku(dx, dy);
                 }
-            }        
-        
+            }                
+    }
+    
+    private boolean riittaakoPelaajanMptYhteenkaanLoitsuun(){
+        for(Loitsu loitsu : pelaaja.getLoitsut()){
+            if(loitsu.kuluttaaMPta() <= pelaaja.getMp()){
+                return true;
+            }
+        }
+        return false;
     }
     
     private void toteutaPelaajanKomento(){
@@ -268,6 +278,7 @@ public class Taistelu {
             }
             
             else {
+                if(riittaakoPelaajanMptYhteenkaanLoitsuun() == false) continue;
                 try{
                     int loitsunnumero = Integer.parseInt(komento);
                     if(loitsunnumero >= pelaaja.getLoitsut().size()){
@@ -280,7 +291,10 @@ public class Taistelu {
                     teeLoitsu(loitsu);
                     break;
                 }
-                catch(Exception e){                
+                catch(NumberFormatException e){
+                    break;
+                }
+                catch(Exception e){
                 }
             }                        
         }

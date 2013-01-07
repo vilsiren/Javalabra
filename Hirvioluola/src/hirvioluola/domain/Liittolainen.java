@@ -3,6 +3,11 @@ package hirvioluola.domain;
 import java.awt.Graphics;
 import java.util.Random;
 
+/**
+ * Liittolainen taistelee pelaajan puolella vihollisia vastaan.
+ * @author Ville
+ */
+
 public class Liittolainen extends Tekoalytaistelija{
 
     public Liittolainen(int voima, int hpMax, int mpMax) {

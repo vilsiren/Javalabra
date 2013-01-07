@@ -3,6 +3,10 @@ package hirvioluola.domain;
 
 import hirvioluola.loitsut.Teleportaatio;
 
+/**
+ * TeleportHirvio on vihollinen, joka osaa loitsun teleportaatio.
+ * @author Ville
+ */
 
 public class TeleportHirvio extends Vihollinen{
     
@@ -10,7 +14,12 @@ public class TeleportHirvio extends Vihollinen{
 
     public TeleportHirvio(int voima, int hpMax, int mpMax) {
         super(voima, hpMax, mpMax);
-        teleport = new Teleportaatio(4);
+        teleport = new Teleportaatio();
+    }
+    
+    @Override
+    public int kokemuspisteita(){
+        return super.kokemuspisteita() + (mpMax / 4);
     }
     
     private boolean setTeleportRuutu(){

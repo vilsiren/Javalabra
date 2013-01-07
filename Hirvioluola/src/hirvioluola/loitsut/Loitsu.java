@@ -2,11 +2,13 @@ package hirvioluola.loitsut;
 
 import hirvioluola.domain.Taistelija;
 import hirvioluola.peli.Taistelu;
-import hirvioluola.peli.Taistelukayttis;
+import hirvioluola.peli.Hirvioluolakayttis;
 
 public abstract class Loitsu {  
     
-    public abstract int kuluttaaMPta();        
+    public abstract int kuluttaaMPta();
+    
+    public abstract int vaatiiKokemuspisteita();
     
     protected abstract void teeLoitsu(Taistelija loitsija);
     
@@ -17,7 +19,7 @@ public abstract class Loitsu {
             
             Taistelu taistelu = loitsija.getTaistelu();
             if(taistelu == null) return;
-            Taistelukayttis kayttis = taistelu.getKayttis();
+            Hirvioluolakayttis kayttis = taistelu.getKayttis();
             if(kayttis == null) return;
             kayttis.piirraLoitsu(this, loitsija.getX(), loitsija.getY());
         }        

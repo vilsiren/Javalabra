@@ -22,8 +22,8 @@ public class SalamaTest {
     @Before
     public void setUp() {
         vahinko = 4;
-        salama = new Salama(2,vahinko);
-        pelaaja = new Pelaaja(2,5,5);
+        salama = new Salama(vahinko);
+        pelaaja = new Pelaaja(2,5,10);
         orkki = new Vihollinen(2,5,0);
         taistelu = new Taistelu(10,10);
         taistelu.setPelaaja(pelaaja,0,0);

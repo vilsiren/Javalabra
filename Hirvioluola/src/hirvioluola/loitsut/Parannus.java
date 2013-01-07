@@ -5,10 +5,8 @@ import hirvioluola.domain.Taistelija;
 public class Parannus extends Loitsu{
     
     private int parannus;
-    private int kuluttaaMPta;
     
-    public Parannus(int kuluttaaMPta, int parannus){
-        this.kuluttaaMPta = kuluttaaMPta;
+    public Parannus(int parannus){
         this.parannus = parannus;
     }
 
@@ -24,6 +22,11 @@ public class Parannus extends Loitsu{
 
     @Override
     public int kuluttaaMPta() {
-        return kuluttaaMPta;
+        return parannus / 2;
+    }
+
+    @Override
+    public int vaatiiKokemuspisteita() {
+        return parannus / 2;
     }
 }

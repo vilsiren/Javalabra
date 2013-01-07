@@ -7,13 +7,18 @@ import hirvioluola.domain.Ruutuolio;
 import hirvioluola.domain.Taistelija;
 import hirvioluola.peli.Taistelu;
 
+/**
+ * Vahingoittaa lähintä oliota valitussa suunnassa (jos ei lapaiseva) tai kaikkia olioita valitussa
+ * suunnassa.
+ * @author Ville
+ */
+
 public class Taikanuoli extends Suuntaloitsu{
     
-    private int vahinko, kuluttaaMPta;
+    private int vahinko;
     private boolean lapaiseva;
 
-    public Taikanuoli(int kuluttaaMPta, int vahinko, boolean lapaiseva) {
-        this.kuluttaaMPta = kuluttaaMPta;
+    public Taikanuoli(int vahinko, boolean lapaiseva) {
         this.vahinko = vahinko;
         this.lapaiseva = lapaiseva;
     }
@@ -46,7 +51,22 @@ public class Taikanuoli extends Suuntaloitsu{
 
     @Override
     public int kuluttaaMPta() {
-        return kuluttaaMPta;
+        if(!lapaiseva){
+            return vahinko;
+        }
+        else{
+            return vahinko*vahinko;
+        }
+    }
+
+    @Override
+    public int vaatiiKokemuspisteita() {
+        if(lapaiseva){
+           return 2*vahinko; 
+        }
+        else{
+            return vahinko / 2;
+        }
     }
 
 }

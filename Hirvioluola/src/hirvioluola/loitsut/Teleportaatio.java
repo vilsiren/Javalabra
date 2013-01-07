@@ -4,14 +4,13 @@ import hirvioluola.domain.Pelaaja;
 import hirvioluola.domain.Taistelija;
 import hirvioluola.peli.Taistelu;
 
-public class Teleportaatio extends Ruutuloitsu{
-    
-    private int kuluttaaMPta;
+/**
+ * Siirtää loitsijan valittuun ruutuun.
+ * @author Ville
+ */
 
-    public Teleportaatio(int kuluttaaMPta) {
-        this.kuluttaaMPta = kuluttaaMPta;
-    }
-    
+public class Teleportaatio extends Ruutuloitsu{
+        
     @Override
     public void teeLoitsu(Taistelija loitsija){
         loitsija.setX(super.x);
@@ -37,6 +36,11 @@ public class Teleportaatio extends Ruutuloitsu{
 
     @Override
     public int kuluttaaMPta() {
-        return kuluttaaMPta;
+        return 4;
+    }
+
+    @Override
+    public int vaatiiKokemuspisteita() {
+        return 4;
     }
 }

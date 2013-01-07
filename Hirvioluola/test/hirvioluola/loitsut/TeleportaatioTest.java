@@ -18,7 +18,7 @@ public class TeleportaatioTest {
     
     @Before
     public void setUp() {
-        teleport = new Teleportaatio(1);
+        teleport = new Teleportaatio();
         pelaaja = new Pelaaja(2,5,5);
         orkki = new Vihollinen(2,5,0);
         taistelu = new Taistelu(10,10);

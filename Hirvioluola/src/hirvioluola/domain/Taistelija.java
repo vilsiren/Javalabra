@@ -1,23 +1,18 @@
 
 package hirvioluola.domain;
+/**
+ * 
+ */
 
-import hirvioluola.loitsut.Loitsu;
-import hirvioluola.peli.Taistelu;
 import java.awt.Graphics;
-import java.util.ArrayList;
-import java.util.List;
 
 public abstract class Taistelija extends Ruutuolio {
     
     protected int voima;
     protected int mp;
-    protected int mpMax;
-    protected List<Loitsu> loitsut;    
-    
+    protected int mpMax;       
 
-    public int getHpMax() {
-        return hpMax;
-    }
+
 
     public int getVoima() {
         return voima;
@@ -27,11 +22,10 @@ public abstract class Taistelija extends Ruutuolio {
         super(hpMax);
         this.voima = voima;        
         this.mpMax = mpMax;
-        this.mp = mpMax;
-        loitsut = new ArrayList<>();        
+        this.mp = mpMax;      
     }
 
-    public void setHpMpMax(){
+    public void setHpMpToMax(){
         this.hp = hpMax;
         this.mp = mpMax;
     }
@@ -49,30 +43,8 @@ public abstract class Taistelija extends Ruutuolio {
         return mp;
     }
 
-    public void setMp(int mp) {
-        if(mp < 0 || mp > mpMax){
-            return;
-        }
-        this.mp = mp;
-    }
-
     public int getMpMax() {
         return mpMax;
-    }
-
-    public void setMpMax(int mpMax) {
-        if(mpMax < 0){
-            return;
-        }
-        this.mpMax = mpMax;
-    }
-
-    public List<Loitsu> getLoitsut() {
-        return loitsut;
-    }
-    
-    public void lisaaLoitsu(Loitsu loitsu) {
-        loitsut.add(loitsu);
     }    
     
     public void vahennaMPta(int vahennys){

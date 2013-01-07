@@ -88,6 +88,7 @@ public class TaisteluTest {
     
     @Test
     public void hirviolistaPaivittyy(){
+        assert(taistelu.getViholliset().contains(orkki1));
         orkki1.vahingoitu(orkki1.getHp());
         taistelu.paivitaListat();
         assert(!taistelu.getViholliset().contains(orkki1));

@@ -6,17 +6,16 @@ import hirvioluola.peli.Taistelu;
 
 public class KutsuLiittolainen extends Ruutuloitsu{
     
-    private int kuluttaaMPta, voima, hpMax;
+    private int voima, hpMax;
     
-    public KutsuLiittolainen(int kuluttaaMPta, int voima, int hpMax){
-        this.kuluttaaMPta = kuluttaaMPta;
+    public KutsuLiittolainen(int voima, int hpMax){
         this.voima = voima;
         this.hpMax = hpMax;
     }
 
     @Override
     public int kuluttaaMPta() {
-        return this.kuluttaaMPta;
+        return voima + hpMax;
     }
 
     @Override
@@ -42,6 +41,11 @@ public class KutsuLiittolainen extends Ruutuloitsu{
     public String toString(){
         return "Kutsu Liittolainen, voima: " + voima + ", hp: "
                 + hpMax + ", kuluttaa: " + kuluttaaMPta() + " mp";
+    }
+
+    @Override
+    public int vaatiiKokemuspisteita() {
+        return (voima + hpMax) / 2;
     }
     
 }

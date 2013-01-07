@@ -4,17 +4,25 @@ import hirvioluola.peli.Taistelu;
 import java.awt.Color;
 import java.awt.Graphics;
 
+/*
+ * Viholliset ovat tekoalytaistelijoita jotka yrittävät ensisijaisesti tuhota pelaajan
+ * ja toissijaisesti pelaajan liittolaiset. 
+ */
+
 public class Vihollinen extends Tekoalytaistelija{
     
-
     public Vihollinen(int voima, int hpMax, int mpMax) {
         super(voima, hpMax, mpMax);
+    }
+    
+    public int kokemuspisteita(){
+        return (voima + hpMax) / 4;
     }
     
     @Override
     public void setTaistelu(Taistelu taistelu){
         super.setTaistelu(taistelu);
-        if(taistelu != null){
+        if(taistelu != null && taistelu.getPelaaja() != null){
             super.kohde = taistelu.getPelaaja();
         }
     }
@@ -33,7 +41,9 @@ public class Vihollinen extends Tekoalytaistelija{
             }
         }
         
-        if(!lahestyKohdetta()){
+        boolean liikkuu = lahestyKohdetta();
+        
+        if(!liikkuu){
             for(Este e : taistelu.getEsteet()){
                 if(hyokkaysalueella(e)){
                     hyokkaa(e);

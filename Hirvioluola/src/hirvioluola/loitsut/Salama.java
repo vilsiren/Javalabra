@@ -7,14 +7,17 @@ import hirvioluola.domain.Ruutuolio;
 import hirvioluola.domain.Taistelija;
 import hirvioluola.peli.Taistelu;
 
+/**
+ * Vahingoittaa valitussa ruudussa (jos loitsija on pelaaja) olevaa ruutuoliota,
+ * tai pelaajaa (jos loitsija on vihollinen).
+ * @author Ville
+ */
 public class Salama extends Ruutuloitsu {
     
     private int vahinko;
     private Ruutuolio kohde;
-    private int kuluttaaMPta;
 
-    public Salama(int kuluttaaMPta, int vahinko) {
-        this.kuluttaaMPta = kuluttaaMPta;
+    public Salama(int vahinko) {
         this.vahinko = vahinko;
     }    
 
@@ -45,7 +48,12 @@ public class Salama extends Ruutuloitsu {
 
     @Override
     public int kuluttaaMPta() {
-        return kuluttaaMPta;
+        return vahinko +2;
+    }
+
+    @Override
+    public int vaatiiKokemuspisteita() {
+        return vahinko;
     }
     
 }

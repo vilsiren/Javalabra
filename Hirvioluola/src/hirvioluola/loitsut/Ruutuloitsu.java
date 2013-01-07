@@ -3,6 +3,11 @@ package hirvioluola.loitsut;
 
 import hirvioluola.peli.Taistelu;
 
+/**
+ * Ruutuloitsu on loitsu, jolle on valittava ruutu (x- ja y-koordinaatit).
+ * @author Ville
+ */
+
 public abstract class Ruutuloitsu extends Loitsu {
     
     protected int x, y;

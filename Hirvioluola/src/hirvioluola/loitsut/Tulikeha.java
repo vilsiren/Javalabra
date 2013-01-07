@@ -1,11 +1,13 @@
 
 package hirvioluola.loitsut;
 
-import hirvioluola.domain.Vihollinen;
 import hirvioluola.domain.Ruutuolio;
 import hirvioluola.domain.Taistelija;
 
-
+/**
+ * Vahingoittaa kaikkia ruutuoliot jotka ovat tulikehan sisällä, paitsi loitsijaa.
+ * @author Ville
+ */
 public class Tulikeha extends Loitsu{
     
     private int sade;
@@ -37,5 +39,10 @@ public class Tulikeha extends Loitsu{
         return "Tulikehä, vahingoittaa: " + vahinko + " hp, säteellä: " + 
                 sade + ", kuluttaa: " + kuluttaaMPta() + " mp"; 
     }        
+
+    @Override
+    public int vaatiiKokemuspisteita() {
+        return 2*(vahinko + sade);
+    }
     
 }
