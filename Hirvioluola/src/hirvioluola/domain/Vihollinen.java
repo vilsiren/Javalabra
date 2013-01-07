@@ -4,7 +4,7 @@ import hirvioluola.peli.Taistelu;
 import java.awt.Color;
 import java.awt.Graphics;
 
-/*
+/**
  * Viholliset ovat tekoalytaistelijoita jotka yrittävät ensisijaisesti tuhota pelaajan
  * ja toissijaisesti pelaajan liittolaiset. 
  */

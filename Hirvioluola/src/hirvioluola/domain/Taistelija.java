@@ -1,10 +1,12 @@
 
 package hirvioluola.domain;
-/**
- * 
- */
 
 import java.awt.Graphics;
+
+/**
+ * Taistelijoita ovat kaikki taisteluun osallistuvat, liikkuvat ja toimivat oliot
+ * @author Ville
+ */
 
 public abstract class Taistelija extends Ruutuolio {
     

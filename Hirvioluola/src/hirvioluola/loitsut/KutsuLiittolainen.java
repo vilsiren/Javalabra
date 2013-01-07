@@ -4,6 +4,11 @@ import hirvioluola.domain.Liittolainen;
 import hirvioluola.domain.Taistelija;
 import hirvioluola.peli.Taistelu;
 
+/**
+ * Kutsuu liittolaisen pelaajan valitsemaan ruutuun.
+ * @author Ville
+ */
+
 public class KutsuLiittolainen extends Ruutuloitsu{
     
     private int voima, hpMax;

@@ -2,6 +2,11 @@ package hirvioluola.loitsut;
 
 import hirvioluola.domain.Taistelija;
 
+/**
+ * Palauttaa loitsijan hp:ta.
+ * @author Ville
+ */
+
 public class Parannus extends Loitsu{
     
     private int parannus;

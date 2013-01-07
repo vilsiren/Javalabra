@@ -6,6 +6,10 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Pelaaja on taistelija, jota pelaaja ohjaa.
+ * @author Ville
+ */
 
 public class Pelaaja extends Taistelija {
     
