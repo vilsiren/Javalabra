@@ -28,7 +28,14 @@ public class KutsuLiittolainen extends Ruutuloitsu{
         Liittolainen kutsuttava = new Liittolainen(voima,hpMax,0);
         loitsija.getTaistelu().lisaaOlio(kutsuttava, super.x, super.y);
     }
-
+    
+    /**
+     * Ruutu hyväksytään, jos ruutu on tyhjä ja taistelukentän sisällä.
+     * @param x
+     * @param y
+     * @param taistelu
+     * @return 
+     */
     @Override
     public boolean setRuutu(int x, int y, Taistelu taistelu) {
         if(!taistelu.taistelukentanSisalla(x, y)){

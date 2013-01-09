@@ -12,7 +12,7 @@ import hirvioluola.peli.Taistelu;
 public class Teleportaatio extends Ruutuloitsu{
         
     @Override
-    public void teeLoitsu(Taistelija loitsija){
+    protected void teeLoitsu(Taistelija loitsija){
         loitsija.setX(super.x);
         loitsija.setY(super.y);                        
     }

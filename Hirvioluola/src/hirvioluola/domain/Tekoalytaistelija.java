@@ -29,6 +29,10 @@ public abstract class Tekoalytaistelija extends Taistelija {
         this.kohde = kohde;
     }
     
+    /**
+     * Kertoo missä suunnassa kohde on x-akselilla tekoalytaistelijaan suhteutettuna
+     * @return 
+     */
     private int suuntaX(){
         if(kohde.x == this.x){
             return 0;
@@ -40,7 +44,11 @@ public abstract class Tekoalytaistelija extends Taistelija {
             return 1;
         }
     }
-
+    
+    /**
+     * Kertoo missä suunnassa kohde on y-akselilla tekoalytaistelijaan suhteutettuna
+     * @return 
+     */
     private int suuntaY(){
         if(kohde.y == this.y){
             return 0;
@@ -53,6 +61,11 @@ public abstract class Tekoalytaistelija extends Taistelija {
         }
     }
     
+    /**
+     * Lähestyy kohdetta molemmilla akseleilla jos se on mahdollista, jos ei
+     * niin lähestyy ensisijaisesti y-akselilla, toissijaisesti x-akselilla.
+     * @return 
+     */
     protected boolean lahestyKohdetta(){
         if(suuntaY() == 0){
             return lahestyKohdettaXakselilla();            
@@ -112,6 +125,12 @@ public abstract class Tekoalytaistelija extends Taistelija {
         }
     }    
     
+    /**
+     * Selvittää onko valitussa suunnassa oleva ruutu tyhja ja taistelukentan sisalla
+     * @param dx
+     * @param dy
+     * @return 
+     */
     private boolean suuntaanVoiLiikkua(int dx, int dy){
         if(!taistelu.taistelukentanSisalla(x + dx, y + dy)){
             return false;

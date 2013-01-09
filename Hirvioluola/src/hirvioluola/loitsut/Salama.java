@@ -22,13 +22,20 @@ public class Salama extends Ruutuloitsu {
     }    
 
     @Override
-    public void teeLoitsu(Taistelija loitsija) {
+    protected void teeLoitsu(Taistelija loitsija) {
         if(loitsija instanceof Vihollinen){
             kohde = loitsija.getTaistelu().getPelaaja();
         }
         kohde.vahingoitu(vahinko);
     }
-
+    
+    /**
+     * Ruutu hyväksytään, jos ruudussa on jokin olio.
+     * @param x
+     * @param y
+     * @param taistelu
+     * @return 
+     */
     @Override
     public boolean setRuutu(int x, int y, Taistelu taistelu) {
         Ruutuolio olio = taistelu.olioRuudussa(x,y);

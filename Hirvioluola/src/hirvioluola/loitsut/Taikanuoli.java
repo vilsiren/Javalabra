@@ -24,7 +24,7 @@ public class Taikanuoli extends Suuntaloitsu{
     }
     
     @Override
-    public void teeLoitsu(Taistelija loitsija){
+    protected void teeLoitsu(Taistelija loitsija){
         Taistelu taistelu = loitsija.getTaistelu();
         int y = loitsija.getY() + super.dy;
         int x = loitsija.getX() + super.dx;

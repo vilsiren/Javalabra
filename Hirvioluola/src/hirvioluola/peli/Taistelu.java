@@ -61,6 +61,12 @@ public class Taistelu {
         return this.kayttis;
     }
     
+    /**
+     * Lisää ruutuolion taistelukentälle ja asettaa koordinaatit
+     * @param olio
+     * @param x
+     * @param y 
+     */
     public void lisaaOlio(Ruutuolio olio, int x, int y){
         if( !taistelukentanSisalla( x, y ) ){
             return;
@@ -117,6 +123,10 @@ public class Taistelu {
         return oliot;
     }
     
+    /**
+     * Palauttaa sen määrän kokemuspisteitä, jonka pelaaja saa voitettuaan taistelun
+     * @return 
+     */
     public int kokemuspisteita(){
         return kokemuspisteita;
     }
@@ -148,6 +158,9 @@ public class Taistelu {
         return null;
     }
     
+    /**
+     * Ruutuoliolistoista poistetaan oliot, jotka on tuhottu.
+     */
     public void paivitaListat(){
         Iterator<Vihollinen> iter = viholliset.iterator();
         while(iter.hasNext()){
@@ -243,7 +256,13 @@ public class Taistelu {
         return suunta;
     }
     
-    private void liikutaPelaajaa(int dx, int dy){       
+    /**
+     * Liikuttaa pelaajaa valittuun suuntaan, mikäli suunnassa oleva ruutu
+     * on tyhja. Jos ruudussa on olio, hyökkää olion kimpuuun.
+     * @param dx
+     * @param dy 
+     */
+    private void liikuTaiHyokkaa(int dx, int dy){       
              
             int x = pelaaja.getX() + dx;
             int y = pelaaja.getY() + dy;
@@ -267,13 +286,17 @@ public class Taistelu {
         return false;
     }
     
+    /**
+     * Odotetaan että käyttöliittymä ilmoittaa pelaajan komennot ja totetuttaa
+     * komennon mikäli mahdollista.
+     */
     private void toteutaPelaajanKomento(){
         while(true){
             String komento = kayttis.odotaPelaajanKomentoa();
             if(komento.equals("ÄLÄ TEE MITÄÄN")) break;
             int suunta[] = suunta(komento);
             if(suunta != null){
-                liikutaPelaajaa(suunta[0], suunta[1]);
+                liikuTaiHyokkaa(suunta[0], suunta[1]);
                 break;
             }
             
@@ -300,6 +323,11 @@ public class Taistelu {
         }
     }
     
+    /**
+     * Aloittaa taistelun. Jokaisella kierroksella pelaaja valitsee mitä tekee,
+     * jonka jälkeen tekoalytaistelijat toimivat. Taistelu loppuu kun pelaaja kuolee tai
+     * kaikki viholliset kuolevat
+     */
     public void suorita(){
         kayttis.paivita();
         while(pelaaja.getHp() > 0 && !viholliset.isEmpty()){

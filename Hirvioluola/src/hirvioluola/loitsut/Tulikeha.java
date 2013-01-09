@@ -24,7 +24,7 @@ public class Tulikeha extends Loitsu{
     }
 
     @Override
-    public void teeLoitsu(Taistelija loitsija) {
+    protected void teeLoitsu(Taistelija loitsija) {
         for(Ruutuolio olio : loitsija.getTaistelu().ruutuOliot()){
             if(Math.abs( olio.getX() - loitsija.getX() ) <= sade && 
                     Math.abs( olio.getY() - loitsija.getY()) <= sade &&

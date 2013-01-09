@@ -16,7 +16,7 @@ public class Parannus extends Loitsu{
     }
 
     @Override
-    public void teeLoitsu(Taistelija loitsija) {
+    protected void teeLoitsu(Taistelija loitsija) {
         loitsija.parannu(parannus);
     }
     

@@ -6,8 +6,6 @@ import hirvioluola.domain.Vihollinen;
 import hirvioluola.domain.Liittolainen;
 import hirvioluola.domain.Pelaaja;
 import hirvioluola.domain.TeleportHirvio;
-import hirvioluola.gui.Kayttoliittyma;
-import hirvioluola.gui.Piirtoalusta;
 import hirvioluola.loitsut.KutsuLiittolainen;
 import hirvioluola.loitsut.Parannus;
 import hirvioluola.loitsut.Salama;
@@ -48,7 +46,7 @@ public class Hirvioluola {
         taistelu.lisaaOlio(new Este(5,'e'),0,1);
         taistelu.lisaaOlio(new Este(5,'e'),1,0);
         taistelu.lisaaOlio(new Este(5,'e'),1,1);
-        Taistelu tappelu = new Taistelu(20,10);
+        Taistelu tappelu = new Taistelu(10,10);
         tappelu.lisaaOlio(new Vihollinen(3,5,0),2,4);
         Peli peli = new Peli(3,10,10);
         peli.lisaaTaistelu(tappelu);
@@ -63,18 +61,6 @@ public class Hirvioluola {
         peli.setKayttis(kayttis);
         peli.run();
 
-//        Kayttoliittyma kali = new Kayttoliittyma(taistelu);
-//        
-//        SwingUtilities.invokeLater(kali);
-//        while (kali.getAlusta() == null) {
-//            try {
-//                Thread.sleep(100);
-//            } catch (InterruptedException ex) {
-//                System.out.println("Piirtoalustaa ei ole vielä luotu.");
-//            }
-//        }        
-//        taistelu.setAlusta(kali.getAlusta());
-//        taistelu.setStatus(kali.getStatus());
         
         
 

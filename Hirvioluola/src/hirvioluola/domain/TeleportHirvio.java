@@ -33,6 +33,10 @@ public class TeleportHirvio extends Vihollinen{
         return false;
     }
     
+    /**
+     * TeleportHirvio teleportata hyökkäysetäisyydellä pelaajasta jos tämä onnistuu,
+     * muussa tapauksessa toimii kuin normaali vihollinen.
+     */
     @Override
     public void toimi(){        
         if(hyokkaysalueella(kohde) || mp < teleport.kuluttaaMPta() || setTeleportRuutu() == false){
