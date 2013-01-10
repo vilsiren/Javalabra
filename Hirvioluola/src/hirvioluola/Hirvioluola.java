@@ -6,6 +6,7 @@ import hirvioluola.domain.Vihollinen;
 import hirvioluola.domain.Liittolainen;
 import hirvioluola.domain.Pelaaja;
 import hirvioluola.domain.TeleportHirvio;
+import hirvioluola.gui.GraafinenKayttis;
 import hirvioluola.loitsut.KutsuLiittolainen;
 import hirvioluola.loitsut.Parannus;
 import hirvioluola.loitsut.Salama;
@@ -58,7 +59,17 @@ public class Hirvioluola {
         peli.lisaaLoitsu(new Tulikeha(3,2));
         peli.lisaaLoitsu(new KutsuLiittolainen(3, 15));         
         Tekstikayttis kayttis = new Tekstikayttis();
-        peli.setKayttis(kayttis);
+        GraafinenKayttis kali = new GraafinenKayttis();
+        SwingUtilities.invokeLater(kali);
+ 
+        while (kali.getPiirtoalusta() == null) {
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException ex) {
+                System.out.println("Piirtoalustaa ei ole vielä luotu.");
+            }
+        }        
+        peli.setKayttis(kali);
         peli.run();
 
         

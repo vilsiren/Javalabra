@@ -10,64 +10,70 @@ import hirvioluola.loitsut.Suuntaloitsu;
 import hirvioluola.peli.Hirvioluolakayttis;
 import hirvioluola.peli.Peli;
 import hirvioluola.peli.Taistelu;
+import hirvioluola.peli.Tekstikayttis;
+import java.awt.Container;
+import java.awt.Dimension;
+import javax.swing.JFrame;
+import javax.swing.WindowConstants;
 
 /**
  *
  * @author Ville
  */
-public class GraafinenKayttis implements Hirvioluolakayttis {
+public class GraafinenKayttis extends Tekstikayttis implements Runnable{
     
     private Piirtoalusta piirtoalusta;
-    private Taistelu taistelu;
+    private JFrame ikkuna;
 
     @Override
     public void paivita() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        piirtoalusta.repaint();
+        try{
+            Thread.sleep(100);
+        }
+        catch(Exception e){        
+    }
     }
 
-    @Override
-    public String odotaPelaajanKomentoa() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void luoKomponentit(Container container) {
+        piirtoalusta = new Piirtoalusta();
+        container.add(piirtoalusta);
+        
     }
-
+    
     @Override
-    public String valitseKokemuspisteidenKaytto() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void setTaistelu(Taistelu taistelu){
+        super.setTaistelu(taistelu);
+        piirtoalusta.setTaistelu(taistelu);
     }
-
+    
     @Override
-    public int valitseOpittavaLoitsu() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public void setPeli(Peli peli) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public void setTaistelu(Taistelu taistelu) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public void valitseRuutu(Ruutuloitsu loitsu) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public void valitseSuunta(Suuntaloitsu loitsu) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void valitseRuutu(Ruutuloitsu loitsu){
+        super.valitseRuutu(loitsu);
     }
 
     @Override
     public void piirraHyokkays(int hyokkaajaX, int hyokkaajaY, int kohdeX, int kohdeY) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        
     }
 
     @Override
     public void piirraLoitsu(Loitsu loitsu, int loitsijaX, int loitsijaY) {
-        throw new UnsupportedOperationException("Not supported yet.");
+
+    }
+    
+    public Piirtoalusta getPiirtoalusta(){
+        return piirtoalusta;
+    }
+
+    @Override
+    public void run() {
+        ikkuna = new JFrame("Hirvioluola");
+        ikkuna.setPreferredSize(new Dimension(500,505));
+        ikkuna.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE); 
+        luoKomponentit(ikkuna.getContentPane());
+        ikkuna.pack();
+        ikkuna.setVisible(true);
     }
     
 }
