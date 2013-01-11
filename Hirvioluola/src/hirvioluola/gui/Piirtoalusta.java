@@ -28,6 +28,8 @@ public class Piirtoalusta extends JPanel {
     private ImageIcon vihollisenkuva;
     private ImageIcon esteenkuva;
     private ImageIcon liittolaisenkuva;
+    private ImageIcon liekkikuva;
+    private ImageIcon salamakuva;
     
     public Piirtoalusta(){
         super.setBackground(Color.DARK_GRAY);
@@ -35,6 +37,8 @@ public class Piirtoalusta extends JPanel {
         vihollisenkuva = new ImageIcon("src/vihollinen.gif");
         liittolaisenkuva = new ImageIcon("src/liittolainen.png");
         esteenkuva = new ImageIcon("src/tynnyri.jpg");
+        liekkikuva = new ImageIcon("src/liekki.png");
+        salamakuva = new ImageIcon("src/salama.png");
         piirraHyokkays = false;
         piirraLoitsu = false;
     }
@@ -138,7 +142,7 @@ public class Piirtoalusta extends JPanel {
             for(int y = loitsijaY - tk.getSade(); y <= loitsijaY + tk.getSade(); y++){
                 for(int x = loitsijaX - tk.getSade(); x <= loitsijaX + tk.getSade(); x++){
                     if(!(x == loitsijaX && y == loitsijaY)){
-                        g.fillRect(x*rl,y*rk,rl,rk);
+                        g.drawImage(liekkikuva.getImage(), x*rl, y*rk, rl, rk, liekkikuva.getImageObserver() );                        
                     }
                 }
             }        
@@ -148,7 +152,7 @@ public class Piirtoalusta extends JPanel {
         Salama s = (Salama) loitsu;
         g.setColor(Color.BLUE);
         for(int y = 0; y <= s.getY(); y++){
-            g.fillRect(s.getX()*rl, y*rk, rl, rk);
+            g.drawImage(salamakuva.getImage(), s.getX()*rl, y*rk, rl, rk, salamakuva.getImageObserver());
         }        
     }
     

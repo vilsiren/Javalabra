@@ -17,4 +17,5 @@ public interface Hirvioluolakayttis {
     void valitseSuunta(Suuntaloitsu loitsu);
     void piirraHyokkays(int hyokkaajaX, int hyokkaajaY, int kohdeX, int kohdeY);
     void piirraLoitsu(Loitsu loitsu, int loitsijaX, int loitsijaY);
+    void peliLoppu(boolean voittiko);
 }

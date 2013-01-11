@@ -152,6 +152,16 @@ public class Tekstikayttis implements Hirvioluolakayttis{
             return "LOPETA";
         }        
     }
+    
+    @Override
+    public void peliLoppu(boolean voittiko){
+        if(voittiko == true){
+            System.out.println("Voitit!");
+        }
+        else{
+            System.out.println("Hävisit!");
+        }
+    }
 
     @Override
     public int valitseOpittavaLoitsu() {

@@ -123,5 +123,11 @@ public class Peli {
                 pelaaja.setHpMpToMax();
             }
         }
+        if(pelaaja.getHp() >= 0){
+            kayttis.peliLoppu(true);
+        }
+        else{
+            kayttis.peliLoppu(false);
+        }
     }
 }
