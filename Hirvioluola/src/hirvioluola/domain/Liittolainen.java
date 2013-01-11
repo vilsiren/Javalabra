@@ -51,11 +51,6 @@ public class Liittolainen extends Tekoalytaistelija{
     }
 
     @Override
-    public void piirra(Graphics g) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
     public char merkki() {
         return 'l';
     }

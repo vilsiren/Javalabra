@@ -21,8 +21,8 @@ public class Peli {
     private List<Loitsu> loitsut; 
     private Hirvioluolakayttis kayttis;
     
-    public Peli(int alkuVoima, int alkuHp, int alkuMp){
-        pelaaja = new Pelaaja(alkuVoima,alkuHp, alkuMp);
+    public Peli(){
+        pelaaja = new Pelaaja(3,10,10);
         taistelut = new ArrayList<>();
         loitsut = new ArrayList<>();
     }
@@ -114,7 +114,7 @@ public class Peli {
             taistelu.setPelaaja(pelaaja,0,0);
             kayttis.setTaistelu(taistelu);
             taistelu.suorita();
-            if(pelaaja.getHp() <= 0){
+            if(pelaaja.getHp() <= 0 || taistelut.indexOf(taistelu) == taistelut.size() - 1){
                 break;
             }
             else{

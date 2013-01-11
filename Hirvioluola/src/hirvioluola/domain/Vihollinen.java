@@ -67,12 +67,6 @@ public class Vihollinen extends Tekoalytaistelija{
     }
 
     @Override
-    public void piirra(Graphics g) {
-        g.setColor(Color.GREEN);
-        g.fillOval(x*20, y*20, 20, 20);
-    }
-
-    @Override
     public char merkki() {
         return 'v';
     }

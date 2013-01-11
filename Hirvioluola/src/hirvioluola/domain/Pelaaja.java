@@ -1,6 +1,12 @@
 package hirvioluola.domain;
 
+import hirvioluola.loitsut.KutsuLiittolainen;
 import hirvioluola.loitsut.Loitsu;
+import hirvioluola.loitsut.Parannus;
+import hirvioluola.loitsut.Salama;
+import hirvioluola.loitsut.Taikanuoli;
+import hirvioluola.loitsut.Teleportaatio;
+import hirvioluola.loitsut.Tulikeha;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
@@ -54,14 +60,20 @@ public class Pelaaja extends Taistelija {
     
     public void lisaaLoitsu(Loitsu loitsu) {
         loitsut.add(loitsu);
-    }    
-    
-
-    @Override
-    public void piirra(Graphics g) {
-        g.setColor(Color.BLUE);
-        g.fillOval(x*20, y*20, 20, 20);        
     }
+    
+    public void huijaus(){
+        lisaaLoitsu(new Parannus(5));
+        lisaaLoitsu(new Salama(6));
+        lisaaLoitsu(new Teleportaatio());
+        lisaaLoitsu(new Taikanuoli(5, true));
+        lisaaLoitsu(new Tulikeha(3,2));
+        lisaaLoitsu(new KutsuLiittolainen(3, 15)); 
+        this.hpMax = 100;
+        this.hp = 100;
+        this.mpMax = 100;
+        this.mp = 100;
+    }    
 
     @Override
     public char merkki() {

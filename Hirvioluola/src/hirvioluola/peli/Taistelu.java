@@ -5,9 +5,15 @@ import hirvioluola.domain.Vihollinen;
 import hirvioluola.domain.Liittolainen;
 import hirvioluola.domain.Pelaaja;
 import hirvioluola.domain.Ruutuolio;
+import hirvioluola.loitsut.KutsuLiittolainen;
 import hirvioluola.loitsut.Loitsu;
+import hirvioluola.loitsut.Parannus;
 import hirvioluola.loitsut.Ruutuloitsu;
+import hirvioluola.loitsut.Salama;
 import hirvioluola.loitsut.Suuntaloitsu;
+import hirvioluola.loitsut.Taikanuoli;
+import hirvioluola.loitsut.Teleportaatio;
+import hirvioluola.loitsut.Tulikeha;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -41,7 +47,7 @@ public class Taistelu {
     }
     
     public void setPelaaja(Pelaaja pelaaja, int x, int y){
-        if(olioRuudussa(x,y) != null || !taistelukentanSisalla(x,y)){
+        if( olioRuudussa(x,y) != null || !taistelukentanSisalla(x,y)){
             return;
         }
         this.pelaaja = pelaaja;
@@ -294,6 +300,9 @@ public class Taistelu {
         while(true){
             String komento = kayttis.odotaPelaajanKomentoa();
             if(komento.equals("ÄLÄ TEE MITÄÄN")) break;
+            if(komento.equals("HUIJAUSSALASANA")){
+                pelaaja.huijaus();
+            }
             int suunta[] = suunta(komento);
             if(suunta != null){
                 liikuTaiHyokkaa(suunta[0], suunta[1]);

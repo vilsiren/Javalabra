@@ -56,9 +56,7 @@ public abstract class Taistelija extends Ruutuolio {
         else{
             this.mp -= vahennys;
         }
-    }
-    
-    public abstract void piirra(Graphics g);
+    }    
     
     public void liiku(int dx, int dy){
         this.x += dx;

@@ -50,6 +50,9 @@ public class Tekstikayttis implements Hirvioluolakayttis{
         if(komento.equals("")){
             return "ÄLÄ TEE MITÄÄN";
         }
+        if(komento.equals("cheat")){
+            return "HUIJAUSSALASANA";
+        }
         if(komento.equals("l")){
             System.out.println(taistelu.getPelaaja().loitsuluettelo());
             return odotaPelaajanKomentoa();
@@ -76,6 +79,7 @@ public class Tekstikayttis implements Hirvioluolakayttis{
     
     @Override
     public void valitseRuutu(Ruutuloitsu loitsu){
+        System.out.println("Valitse ruutu:");
         while(true){
             try{
                 int x, y;
@@ -86,6 +90,9 @@ public class Tekstikayttis implements Hirvioluolakayttis{
                 if(loitsu.setRuutu(x, y, taistelu) == false ){
                     throw new Exception();
                 }
+                break;
+            }
+            catch(NumberFormatException nfe){
                 break;
             }
             catch(Exception e){
@@ -107,6 +114,7 @@ public class Tekstikayttis implements Hirvioluolakayttis{
     
     @Override
     public void valitseSuunta(Suuntaloitsu loitsu){
+        System.out.println("Valitse suunta:");
         while(true){
             try{
                 String komento = lukija.nextLine();
@@ -138,7 +146,7 @@ public class Tekstikayttis implements Hirvioluolakayttis{
                 "2.HP\n" +
                 "3.MP\n" +
                 "4.Uusi loitsu\n" +
-                "5.Lopeta");
+                "5.Siirry seuraavaan taisteluun");
         String komento = lukija.nextLine();
         try{
             int valinta = Integer.parseInt(komento);

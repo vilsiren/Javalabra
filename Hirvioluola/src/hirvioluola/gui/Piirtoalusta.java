@@ -33,12 +33,12 @@ public class Piirtoalusta extends JPanel {
     
     public Piirtoalusta(){
         super.setBackground(Color.DARK_GRAY);
-        pelaajankuva = new ImageIcon("src/pelaaja.jpg");
-        vihollisenkuva = new ImageIcon("src/vihollinen.gif");
-        liittolaisenkuva = new ImageIcon("src/liittolainen.png");
-        esteenkuva = new ImageIcon("src/tynnyri.jpg");
-        liekkikuva = new ImageIcon("src/liekki.png");
-        salamakuva = new ImageIcon("src/salama.png");
+        pelaajankuva = new ImageIcon("src/kuvat/pelaaja.jpg");
+        vihollisenkuva = new ImageIcon("src/kuvat/vihollinen.gif");
+        liittolaisenkuva = new ImageIcon("src/kuvat/liittolainen.png");
+        esteenkuva = new ImageIcon("src/kuvat/tynnyri.jpg");
+        liekkikuva = new ImageIcon("src/kuvat/liekki.png");
+        salamakuva = new ImageIcon("src/kuvat/salama.png");
         piirraHyokkays = false;
         piirraLoitsu = false;
     }
@@ -72,17 +72,13 @@ public class Piirtoalusta extends JPanel {
         super.paintComponent(g);
         rl = super.getWidth() / taistelu.getLeveys();
         rk = super.getHeight() / taistelu.getKorkeus();
-//        g.setColor(Color.WHITE);        
-//        g.fillOval(pelaaja.getX()*rl,pelaaja.getY()*rk,rl,rk);
         g.drawImage(pelaajankuva.getImage(),pelaaja.getX()*rl,pelaaja.getY()*rk,rl,rk,pelaajankuva.getImageObserver() );
         g.setColor(Color.RED);
         for(Vihollinen v : taistelu.getViholliset()){
             g.drawImage(vihollisenkuva.getImage(),v.getX()*rl,v.getY()*rk,rl,rk,vihollisenkuva.getImageObserver() );
-            //g.fillOval(v.getX()*rl,v.getY()*rk,rl,rk);
         }
         g.setColor(Color.CYAN);
         for(Liittolainen l : taistelu.getLiittolaiset()){
-           // g.fillOval(l.getX()*rl, l.getY()*rk,rl,rk);
             g.drawImage(liittolaisenkuva.getImage(),l.getX()*rl,l.getY()*rk,rl,rk,liittolaisenkuva.getImageObserver() );
         }
         

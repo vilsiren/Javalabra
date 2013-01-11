@@ -26,14 +26,7 @@ import javax.swing.SwingUtilities;
 public class Hirvioluola {
    
 
-    public static void main(String[] args) {
-        Pelaaja pelaaja = new Pelaaja(2,100,100);
-        pelaaja.lisaaLoitsu(new Parannus(5));
-        pelaaja.lisaaLoitsu(new Salama(6));
-        pelaaja.lisaaLoitsu(new Teleportaatio());
-        pelaaja.lisaaLoitsu(new Taikanuoli(5, true));
-        pelaaja.lisaaLoitsu(new Tulikeha(3,2));
-        pelaaja.lisaaLoitsu(new KutsuLiittolainen(3, 15));                       
+    public static void main(String[] args) {                      
         Taistelu taistelu = new Taistelu(10,10);
         //taistelu.setPelaaja(pelaaja,0,0);
         taistelu.lisaaOlio(new Vihollinen(1,3,0),3,3);
@@ -49,7 +42,7 @@ public class Hirvioluola {
         taistelu.lisaaOlio(new Este(5,'e'),1,1);
         Taistelu tappelu = new Taistelu(10,10);
         tappelu.lisaaOlio(new Vihollinen(3,5,0),2,4);
-        Peli peli = new Peli(pelaaja);
+        Peli peli = new Peli();
         peli.lisaaTaistelu(tappelu);
         peli.lisaaTaistelu(taistelu);
         peli.lisaaLoitsu(new Parannus(5));
@@ -65,8 +58,7 @@ public class Hirvioluola {
         while (kali.getPiirtoalusta() == null) {
             try {
                 Thread.sleep(100);
-            } catch (InterruptedException ex) {
-                System.out.println("Piirtoalustaa ei ole vielä luotu.");
+            } catch (Exception e) {
             }
         }        
         peli.setKayttis(kali);

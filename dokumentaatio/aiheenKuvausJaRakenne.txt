@@ -5,8 +5,8 @@ Peli on sarja taisteluita. Pelaaja voittaa taistelun
 saatuaan kaikki taistelun hirviöt tuhottua. Pelaaja
 häviää jos hirviöt saavat tuhottua pelaajan. Jos pelaaja
 häviää taistelun peli loppuu. Jos pelaaja voittaa, pelaaja
-saa kokemuspisteen ja mahdollisuuden käyttää tai säästää
-sen. Tämän jälkeen pelaaja siirtyy seuraavaan taisteluun
+saa kokemuspisteitä ja mahdollisuuden käyttää tai säästää
+niitä. Tämän jälkeen pelaaja siirtyy seuraavaan taisteluun
 jne. Seuraava taistelu on edellistä haasteellisempi
 (hirviöitä on enemmän, ne ovat vahvempia tai sekä että).
 Pelaaja voittaa pelin voittaessaan kaikki taistelut.

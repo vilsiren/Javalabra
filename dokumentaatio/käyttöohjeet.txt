@@ -1,0 +1,21 @@
+Taistelun komennot:
+	
+	Liikkuminen ja hyökkääminen tehdään suuntakomennoilla. Jos valitussa suunnassa
+	oleva ruutu on tyhjä, ruutuun liikutaan, jos siinä on jokin objekti, objektin
+	kimppuun hyökätään.
+	
+	Suunnat: q ylävasen, w ylös, e yläoikea
+		 a vasen             d oikea
+		 z alavasen  x alas  c alaoikea
+	
+	Loitsut valitaan syöttämällä luku, joka vastaa loitsun järjestysnumeroa loitsulistassa
+	Listan järjestysnumeroineen saa esiin syöttämällä "l". Joillekin loitsulla pitää valita
+	lisäksi ruutu syöttämällä ruudun koordinaatit. Joillekin loitsuilla pitää valita suunta.
+
+	Vuoron voi jättää väliin syöttämällä mitä tahansa muuta.
+	
+	Komento "cheat": pelaajan mp 100, hp 100, kaikki loitsut (voi käyttää testailuun).
+
+
+
+			 
