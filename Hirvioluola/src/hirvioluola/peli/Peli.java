@@ -27,6 +27,12 @@ public class Peli {
         loitsut = new ArrayList<>();
     }
     
+    public Peli(Pelaaja p){
+        this.pelaaja = p;
+        taistelut = new ArrayList<>();
+        loitsut = new ArrayList<>();
+    }
+    
     public void lisaaTaistelu(Taistelu taistelu){
         taistelut.add(taistelu);
     }

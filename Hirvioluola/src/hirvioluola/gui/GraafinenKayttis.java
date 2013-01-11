@@ -13,7 +13,10 @@ import hirvioluola.peli.Taistelu;
 import hirvioluola.peli.Tekstikayttis;
 import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.GridLayout;
+import javax.swing.BoxLayout;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.WindowConstants;
 
 /**
@@ -24,19 +27,31 @@ public class GraafinenKayttis extends Tekstikayttis implements Runnable{
     
     private Piirtoalusta piirtoalusta;
     private JFrame ikkuna;
+    private JLabel pelaajanStatus;
 
     @Override
     public void paivita() {
+        naytaKuvaaXmillisekuntia(100);
+    }
+    
+    private void naytaKuvaaXmillisekuntia(int millisekuntia){
+        pelaajanStatus.setText(super.peli.getPelaaja().status());
         piirtoalusta.repaint();
-        try{
-            Thread.sleep(100);
+         try{
+            Thread.sleep(millisekuntia);
         }
         catch(Exception e){        
-    }
+        }               
     }
 
     public void luoKomponentit(Container container) {
-        piirtoalusta = new Piirtoalusta();
+        
+        BoxLayout layout = new BoxLayout(container, BoxLayout.Y_AXIS);
+        container.setLayout(layout);
+        pelaajanStatus = new JLabel();
+        pelaajanStatus.setPreferredSize(new Dimension(500,100));
+        piirtoalusta = new Piirtoalusta();        
+        container.add(pelaajanStatus);        
         container.add(piirtoalusta);
         
     }
@@ -54,12 +69,14 @@ public class GraafinenKayttis extends Tekstikayttis implements Runnable{
 
     @Override
     public void piirraHyokkays(int hyokkaajaX, int hyokkaajaY, int kohdeX, int kohdeY) {
-        
+        piirtoalusta.setHyokkays(hyokkaajaX,hyokkaajaY,kohdeX,kohdeY);
+        naytaKuvaaXmillisekuntia(200);
     }
 
     @Override
     public void piirraLoitsu(Loitsu loitsu, int loitsijaX, int loitsijaY) {
-
+        piirtoalusta.setLoitsu(loitsu,loitsijaX,loitsijaY);
+        naytaKuvaaXmillisekuntia(300);
     }
     
     public Piirtoalusta getPiirtoalusta(){

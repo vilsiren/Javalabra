@@ -9,13 +9,14 @@ import hirvioluola.peli.Taistelu;
 
 /**
  * Vahingoittaa lähintä oliota valitussa suunnassa (jos ei lapaiseva) tai kaikkia olioita valitussa
- * suunnassa.
+ * suunnassa (jos lapaiseva).
  * @author Ville
  */
 
 public class Taikanuoli extends Suuntaloitsu{
     
     private int vahinko;
+    private int vikaX, vikaY;
     private boolean lapaiseva;
 
     public Taikanuoli(int vahinko, boolean lapaiseva) {
@@ -26,17 +27,31 @@ public class Taikanuoli extends Suuntaloitsu{
     @Override
     protected void teeLoitsu(Taistelija loitsija){
         Taistelu taistelu = loitsija.getTaistelu();
-        int y = loitsija.getY() + super.dy;
-        int x = loitsija.getX() + super.dx;
-        while(taistelu.taistelukentanSisalla(x, y)){            
+        int y = loitsija.getY();
+        int x = loitsija.getX();
+        while(taistelu.taistelukentanSisalla(x, y)){
+            x += super.dx;
+            y += super.dy;            
             Ruutuolio olio = taistelu.olioRuudussa(x, y);
             if(olio != null){
                 olio.vahingoitu(vahinko);
-                if(!lapaiseva) return;
+                if(!lapaiseva){
+                    vikaX = olio.getX();
+                    vikaY = olio.getY();
+                    return;
+                }
             }
-            x += super.dx;
-            y += super.dy;
         }
+        vikaX = x;
+        vikaY = y;
+    }
+    
+    public int getVikaX(){
+        return vikaX;
+    }
+    
+    public int getVikaY(){
+        return vikaY;
     }
     
     @Override

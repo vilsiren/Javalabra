@@ -49,7 +49,7 @@ public class Hirvioluola {
         taistelu.lisaaOlio(new Este(5,'e'),1,1);
         Taistelu tappelu = new Taistelu(10,10);
         tappelu.lisaaOlio(new Vihollinen(3,5,0),2,4);
-        Peli peli = new Peli(3,10,10);
+        Peli peli = new Peli(pelaaja);
         peli.lisaaTaistelu(tappelu);
         peli.lisaaTaistelu(taistelu);
         peli.lisaaLoitsu(new Parannus(5));

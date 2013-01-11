@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class Tekstikayttis implements Hirvioluolakayttis{
     
     private Scanner lukija;
-    private Peli peli;
+    protected Peli peli;
     private Taistelu taistelu;    
     
     public Tekstikayttis(){

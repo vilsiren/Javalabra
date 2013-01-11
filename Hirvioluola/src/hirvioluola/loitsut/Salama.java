@@ -44,6 +44,8 @@ public class Salama extends Ruutuloitsu {
         }
         else{
             kohde = olio;
+            super.x = kohde.getX();
+            super.y = kohde.getY();
             return true;
         }
     }

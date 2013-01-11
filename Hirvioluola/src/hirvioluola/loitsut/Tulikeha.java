@@ -17,6 +17,10 @@ public class Tulikeha extends Loitsu{
         this.vahinko = vahinko;
         this.sade = sade;
     }
+    
+    public int getSade(){
+        return sade;
+    }
 
     @Override
     public int kuluttaaMPta() {
